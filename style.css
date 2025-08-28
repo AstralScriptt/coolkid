@@ -61,7 +61,7 @@ body {
 
 .navbar .discord {
     order: -1;
-    margin-right: 2rem;
+    margin-right: 4rem; /* Increased margin to move Discord button further left */
     background: rgba(88, 101, 242, 0.2);
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
@@ -153,8 +153,9 @@ body {
 }
 
 .features .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: row; /* Explicitly set to row to ensure side-by-side layout */
+    flex-wrap: nowrap; /* Prevent wrapping to keep cards side by side */
     gap: 2.5rem;
     padding: 0 2rem;
     justify-content: center;
@@ -171,14 +172,15 @@ body {
     transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     border: 1px solid rgba(255, 255, 255, 0.15);
     min-width: 280px;
+    width: 300px; /* Fixed width to ensure consistent sizing */
 }
 
 .card1:hover,
 .card2:hover,
 .card3:hover {
     transform: translateY(-12px) scale(1.03);
-    border-color: rgba(88, 101, 242, 0.5);
-    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.2);
+    border-color: rgba(255, 255, 255, 0.5); /* Changed to white outline on hover */
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2); /* Adjusted shadow to match white theme */
 }
 
 .card1 h3,
@@ -286,7 +288,7 @@ body {
 
 @media (max-width: 1024px) {
     .features .cards {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
     }
 }
 
@@ -303,7 +305,7 @@ body {
         gap: 0.5rem;
     }
     .navbar .discord {
-        margin-right: 1rem;
+        margin-right: 2rem; /* Adjusted for smaller screens */
     }
     .features {
         margin: 15rem 1rem 3rem;
@@ -327,5 +329,11 @@ body {
     }
     .card1, .card2, .card3 {
         padding: 1.5rem;
+        width: 100%; /* Full width on very small screens */
+        min-width: 250px;
+    }
+    .features .cards {
+        flex-direction: column; /* Stack cards vertically on very small screens */
+        align-items: center;
     }
 }
