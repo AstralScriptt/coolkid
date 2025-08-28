@@ -22,7 +22,7 @@ body {
     background: rgba(15, 15, 15, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 1.2rem 3rem;
+    padding: 1.2rem 1rem; /* Further reduced left/right padding to shift buttons left */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -46,15 +46,15 @@ body {
 }
 .navbar .discord {
     background: rgba(88, 101, 242, 0.2);
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.2rem; /* Further reduced margin-left to move button left */
+    margin-right: 0.5rem;
 }
 .navbar .discord:hover {
     background: rgba(88, 101, 242, 0.4);
 }
 .navbar .keysystem {
     background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
-    margin-left: 1rem;
+    margin-left: 0.2rem; /* Further reduced margin-left to move button left */
 }
 .navbar .keysystem:hover {
     background: linear-gradient(45deg, #ff6666, #ff3333);
@@ -381,16 +381,16 @@ body {
         font-size: 1.3rem;
     }
     .navbar {
-        padding: 1rem 1.5rem;
+        padding: 1rem 0.5rem; /* Adjusted for smaller screens */
         flex-wrap: wrap;
         gap: 0.5rem;
     }
     .navbar .discord {
         margin-right: 0.5rem;
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
     }
     .navbar .keysystem {
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
     }
     .features {
         margin: 15rem 1rem 3rem;
