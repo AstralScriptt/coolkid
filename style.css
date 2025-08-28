@@ -61,7 +61,8 @@ body {
 
 .navbar .discord {
     order: -1;
-    margin-right: 4rem; /* Increased margin to move Discord button further left */
+    margin-right: 6rem; /* Increased margin-right to move Discord button further left */
+    margin-left: 1rem; /* Added small left margin for spacing from edge */
     background: rgba(88, 101, 242, 0.2);
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
@@ -179,8 +180,8 @@ body {
 .card2:hover,
 .card3:hover {
     transform: translateY(-12px) scale(1.03);
-    border-color: rgba(255, 255, 255, 0.5); /* Changed to white outline on hover */
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2); /* Adjusted shadow to match white theme */
+    border-color: rgba(255, 255, 255, 0.5); /* White outline on hover */
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2); /* White-themed shadow */
 }
 
 .card1 h3,
@@ -305,7 +306,8 @@ body {
         gap: 0.5rem;
     }
     .navbar .discord {
-        margin-right: 2rem; /* Adjusted for smaller screens */
+        margin-right: 3rem; /* Adjusted for smaller screens */
+        margin-left: 0.5rem;
     }
     .features {
         margin: 15rem 1rem 3rem;
