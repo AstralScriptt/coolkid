@@ -77,7 +77,7 @@
             <span class="close-btn" onclick="toggleChatPopup()">&times;</span>
             <h2>Faggatron AI</h2>
             <div class="chat-container" id="chatContainer">
-                <div class="chat-message bot">Hello! I'm Faggatron, your support AI. How can I assist you today?</div>
+                <div class="chat-message bot">Yo, what's good? I'm Faggatron, here to fix your Astral issues. What's not working?</div>
             </div>
             <div class="chat-input-container">
                 <input type="text" id="chatInput" placeholder="Type your message here..." onkeypress="if(event.key === 'Enter') sendMessage()">
@@ -122,37 +122,37 @@
         }
 
         function generateBotResponse(message) {
-            const lowerMessage = message.toLowerCase();
+            const lowerMessage = message.toLowerCase().replace(/[^a-z0-9\s]/g, ''); // Normalize input
             if (lowerMessage.includes('crash') || lowerMessage.includes('crashing')) {
-                return 'It sounds like you’re experiencing a crashing issue. Here are some steps to troubleshoot:\n1. **Check Supported Executor Server**: Ensure you’re using a compatible executor. Verify the server version matches our requirements listed in the Discord.\n2. **Check Script Status**: Confirm the script is up-to-date and not flagged by your executor. Try re-injecting the script.\nIf these don’t resolve the issue, please open a ticket in our Discord server for further assistance!';
-            } else if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey') || lowerMessage.includes('yo') || lowerMessage.includes('sup') || lowerMessage.includes('hi faggatron') || lowerMessage.includes('hello faggatron') || lowerMessage.includes('hey faggatron')) {
-                return 'Yo, what’s good? I’m Faggatron, your go-to support AI for Astral. How can I make your cheating game stronger?';
-            } else if (lowerMessage.includes('how are you') || lowerMessage.includes('how r u') || lowerMessage.includes('how\'s it going') || lowerMessage.includes('wyd')) {
-                return 'I’m chillin’ like a villain, ked! Ready to help you dominate with Astral. What’s the vibe today?';
-            } else if (lowerMessage.includes('camlock') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
-                return 'Camlock not locking on? Let’s fix it, ked:\n1. Verify the hotkey is set in the menu.\n2. Ensure no other aim mods are conflicting.\n3. Re-inject the script and restart the game.\nStill no lock? Join Discord and drop a ticket with your setup details.';
-            } else if (lowerMessage.includes('silent aim') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
-                return 'Silent aim missing shots? Here’s the play:\n1. Check prediction settings and bone targeting.\n2. Test in a private server to rule out anti-cheat interference.\n3. Update to the latest script version.\nStill off? Hit up Discord for a fix.';
-            } else if (lowerMessage.includes('aim assist') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken') || lowerMessage.includes('aima ssist'))) {
-                return 'Aim assist not assisting? Try this, ked:\n1. Adjust smoothing and strength in the settings.\n2. Ensure it’s enabled for your current weapon.\n3. Restart your client and re-inject.\nNo luck? Open a Discord ticket with screenshots.';
-            } else if (lowerMessage.includes('speed') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
-                return 'Speed hack not zooming? Speed things up:\n1. Check the speed multiplier in settings.\n2. Ensure no server-side speed caps are active.\n3. Re-inject the script.\nStill slow? Slide into Discord for help.';
-            } else if (lowerMessage.includes('highjump') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
-                return 'Highjump not soaring? Get air with:\n1. Confirm jump height is set in the menu.\n2. Test in a low-anti-cheat environment.\n3. Reload the script.\nGrounded? Jump into Discord for support.';
+                return 'Crashing issues? Let’s sort it:\n1. Check if your executor is compatible (see Discord for supported versions).\n2. Re-inject the script and ensure it’s the latest version.\n3. Disable any conflicting mods.\nStill crashing? Drop a ticket in Discord with your setup.';
+            } else if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey') || lowerMessage.includes('yo') || lowerMessage.includes('sup') || lowerMessage.includes('faggatron')) {
+                return 'Yo, what’s up? I’m Faggatron, your Astral support bro. What’s the problem? Camlock, silent aim, or something else?';
+            } else if (lowerMessage.includes('how are you') || lowerMessage.includes('how r u') || lowerMessage.includes('hows it going') || lowerMessage.includes('wyd')) {
+                return 'I’m good, fam! Here to help you dominate with Astral. What’s not working? Lay it on me.';
+            } else if (lowerMessage.match(/cam\s?lock/) && (lowerMessage.includes('not work') || lowerMessage.includes('isnt work') || lowerMessage.includes('broken') || lowerMessage.includes('wont work'))) {
+                return 'Camlock not locking? Here’s the fix:\n1. Open the menu and ensure the camlock hotkey is set.\n2. Check for conflicting aim mods and disable them.\n3. Re-inject the script and restart your game.\nStill broken? Join Discord and open a ticket with your executor and game details.';
+            } else if (lowerMessage.match(/silent\s?aim/) && (lowerMessage.includes('not work') || lowerMessage.includes('isnt work') || lowerMessage.includes('broken') || lowerMessage.includes('wont work'))) {
+                return 'Silent aim off target? Try this:\n1. Verify bone targeting and prediction settings in the menu.\n2. Test in a private server to dodge anti-cheat.\n3. Update to the latest script version from Discord.\nStill missing? Create a Discord ticket with screenshots.';
+            } else if (lowerMessage.match(/aim\s?assist/) && (lowerMessage.includes('not work') || lowerMessage.includes('isnt work') || lowerMessage.includes('broken') || lowerMessage.includes('wont work'))) {
+                return 'Aim assist slacking? Let’s tweak it:\n1. Adjust smoothing and strength sliders in the menu.\n2. Ensure it’s enabled for your weapon.\n3. Re-inject and restart your client.\nNot sticking? Hop on Discord and submit a ticket.';
+            } else if (lowerMessage.match(/speed\s?hack/) || lowerMessage.includes('speed') && (lowerMessage.includes('not work') || lowerMessage.includes('isnt work') || lowerMessage.includes('broken') || lowerMessage.includes('wont work'))) {
+                return 'Speed hack stuck in the mud? Speed it up:\n1. Check the speed multiplier in settings.\n2. Ensure no server-side caps are limiting you.\n3. Re-inject the script.\nStill slow? Slide into Discord with a ticket.';
+            } else if (lowerMessage.match(/high\s?jump/) && (lowerMessage.includes('not work') || lowerMessage.includes('isnt work') || lowerMessage.includes('broken') || lowerMessage.includes('wont work'))) {
+                return 'Highjump not launching? Get airborne:\n1. Confirm jump height is set in the menu.\n2. Test in a low-anti-cheat environment.\n3. Reload the script.\nStill grounded? Jump into Discord and open a ticket.';
             } else if (lowerMessage.includes('autofarm') || lowerMessage.includes('auto farm') || lowerMessage.includes('bhop') || lowerMessage.includes('bunny hop')) {
-                return 'Suggest it in our Discord!';
+                return 'Autofarm or bhop? Those aren’t in Astral’s current kit. We’ve got camlock, silent aim, aim assist, speed, and highjump. Want autofarm or bhop added? Suggest it in our Discord!';
             } else if (lowerMessage.includes('thanks') || lowerMessage.includes('thank you') || lowerMessage.includes('ty')) {
-                return 'You’re welcome, ked! Glad I could help. Need more cheat tips? I’m right here.';
+                return 'You’re welcome, ked! Got more issues? I’m here to fix ‘em.';
             } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye') || lowerMessage.includes('cya')) {
-                return 'Peace out, ked! Stay sneaky with Astral. Hit up Discord if you need me later.';
+                return 'Later, fam! Keep it sneaky with Astral. Hit Discord if you need more help.';
             } else if (lowerMessage.includes('key') || lowerMessage.includes('license') || lowerMessage.includes('activation')) {
-                return 'Key or activation trouble? Check the Keysystem popup or join Discord for step-by-step help. Follow the instructions there to get rolling!';
+                return 'Key or activation issues? Use the Keysystem popup or check Discord for detailed instructions. Follow the steps there to get going!';
             } else if (lowerMessage.includes('update') || lowerMessage.includes('version') || lowerMessage.includes('new script')) {
-                return 'Need the latest script? Check Discord’s announcements for new versions and changelogs. Always grab the freshest one to keep things smooth!';
+                return 'Need the latest script? Hit up Discord’s announcements for the newest version and changelogs. Always use the freshest one!';
             } else if (lowerMessage.includes('ban') || lowerMessage.includes('banned') || lowerMessage.includes('detected')) {
-                return 'Ban concerns? Astral’s built to stay lowkey, but use at your own risk. Check Discord’s guides for anti-cheat tips or open a ticket if you’re banned.';
+                return 'Ban worries? Astral’s built to stay stealthy, but it’s your risk. Check Discord’s anti-cheat guides or open a ticket if you’re banned.';
             } else {
-                return 'Not sure what you mean, ked. Try asking about camlock, silent aim, aim assist, speed, highjump, or join Discord for more help!';
+                return 'Yo, I’m not catching that. Try saying something like “camlock not working” or “silent aim broken”. Only got camlock, silent aim, aim assist, speed, and highjump. Or join Discord for more help!';
             }
         }
     </script>
