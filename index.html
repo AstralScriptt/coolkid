@@ -125,10 +125,54 @@
             const lowerMessage = message.toLowerCase();
             if (lowerMessage.includes('crash') || lowerMessage.includes('crashing')) {
                 return 'It sounds like you’re experiencing a crashing issue. Here are some steps to troubleshoot:\n1. **Check Supported Executor Server**: Ensure you’re using a compatible executor. Verify the server version matches our requirements listed in the Discord.\n2. **Check Script Status**: Confirm the script is up-to-date and not flagged by your executor. Try re-injecting the script.\nIf these don’t resolve the issue, please open a ticket in our Discord server for further assistance!';
-            } else if (lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
-                return 'Hi there! How can Faggatron assist you today?';
+            } else if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey') || lowerMessage.includes('yo') || lowerMessage.includes('sup') || lowerMessage.includes('hi faggatron') || lowerMessage.includes('hello faggatron') || lowerMessage.includes('hey faggatron')) {
+                return 'Hi there! I\'m Faggatron, your cheeky support AI. What\'s up? How can I help with Astral today?';
+            } else if (lowerMessage.includes('how are you') || lowerMessage.includes('how r u') || lowerMessage.includes('how\'s it going') || lowerMessage.includes('wyd')) {
+                return 'I\'m doing great, thanks! As an AI, I\'m always powered up and ready to assist with your cheating adventures. What about you? Need help with something specific?';
+            } else if (lowerMessage.includes('aimbot') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Bummer about the aimbot not working. Let\'s fix that:\n1. Make sure it\'s enabled in the menu.\n2. Check your FOV settings and target selection.\n3. Re-inject the script or restart the game.\nIf it persists, hop into Discord and provide more details in a ticket!';
+            } else if (lowerMessage.includes('camlock') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Camlock issues? No worries:\n1. Verify the hotkey is set correctly.\n2. Ensure no conflicting mods are running.\n3. Try toggling it on/off a few times.\nStill stuck? Open a ticket on Discord with your setup info.';
+            } else if (lowerMessage.includes('triggerbot') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Triggerbot not firing? Here\'s what to try:\n1. Adjust the delay and hitbox settings.\n2. Make sure your crosshair is over the target.\n3. Update your executor if it\'s outdated.\nIf that doesn\'t help, join Discord for advanced troubleshooting.';
+            } else if (lowerMessage.includes('fly') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Can\'t get off the ground with fly? Try this:\n1. Check if anti-cheat is blocking it – use in supported games only.\n2. Bind a proper hotkey and ensure speed is set.\n3. Re-load the script.\nPersistent? Report it in our Discord server.';
+            } else if (lowerMessage.includes('aim assist') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken') || lowerMessage.includes('aima ssist'))) {
+                return 'Aim assist acting up? Let\'s sort it:\n1. Calibrate the smoothing and strength sliders.\n2. Ensure it\'s activated for your weapon.\n3. Restart your client.\nIf it\'s still off, create a ticket on Discord with screenshots.';
+            } else if (lowerMessage.includes('silent aim') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Silent aim missing the mark? Troubleshooting steps:\n1. Confirm prediction and bone targeting are correct.\n2. Test in a private server first.\n3. Update to the latest script version.\nNo luck? Head to Discord for help.';
+            } else if (lowerMessage.includes('esp') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'ESP not showing enemies? Fix it like this:\n1. Toggle visibility options in the menu.\n2. Check render distance settings.\n3. Re-inject if it glitched.\nStill invisible? Open a Discord ticket.';
+            } else if (lowerMessage.includes('wallhack') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Wallhack failing? Try:\n1. Ensure X-ray mode is enabled.\n2. Avoid high-graphics settings that might interfere.\n3. Reload the cheat.\nIf walls stay solid, let us know in Discord.';
+            } else if (lowerMessage.includes('speedhack') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Speedhack too slow? Speed it up:\n1. Adjust the multiplier in settings.\n2. Make sure no server-side limits are kicking in.\n3. Test after a fresh inject.\nStill lagging? Discord ticket time.';
+            } else if (lowerMessage.includes('godmode') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Godmode not invincible? Here\'s the drill:\n1. Verify health manipulation is on.\n2. Avoid games with strong anti-cheat.\n3. Re-apply the script.\nDying anyway? Report to Discord.';
+            } else if (lowerMessage.includes('teleport') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Teleport stuck? Warp through this:\n1. Set coordinates properly.\n2. Ensure no collision detection issues.\n3. Restart and try again.\nIf you\'re grounded, open a ticket.';
+            } else if (lowerMessage.includes('noclip') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Noclip clipping? Fix:\n1. Toggle collision off fully.\n2. Test in open areas.\n3. Update your executor.\nStill hitting walls? Discord help awaits.';
+            } else if (lowerMessage.includes('ragebot') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Ragebot not raging? Calm it down with:\n1. Max out aggression settings.\n2. Check for target prioritization.\n3. Re-inject.\nTame? Tame it in Discord.';
+            } else if (lowerMessage.includes('antiaim') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Antiaim getting hit? Dodge this:\n1. Adjust spin/yaw settings.\n2. Ensure it\'s synced with movement.\n3. Test against bots.\nStill vulnerable? Discord ticket.';
+            } else if (lowerMessage.includes('bhop') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Bhop not hopping? Jumpstart:\n1. Set auto-jump and speed.\n2. Practice on flat ground.\n3. Reload script.\nGrounded? Hop to Discord.';
+            } else if (lowerMessage.includes('autofarm') && (lowerMessage.includes('not working') || lowerMessage.includes('isn\'t working') || lowerMessage.includes('broken'))) {
+                return 'Autofarm idle? Harvest fixes:\n1. Configure resource targets.\n2. Ensure loop is running.\n3. Avoid AFK detection.\nBarren? Plant a ticket in Discord.';
+            } else if (lowerMessage.includes('key') || lowerMessage.includes('license') || lowerMessage.includes('activation')) {
+                return 'Need help with your key or activation? Head to the Keysystem popup or join Discord for key-related support. Make sure to follow the instructions carefully!';
+            } else if (lowerMessage.includes('update') || lowerMessage.includes('version') || lowerMessage.includes('new script')) {
+                return 'Looking for updates? Check the Discord announcements channel for the latest script versions and changelogs. Always use the newest one to avoid issues!';
+            } else if (lowerMessage.includes('ban') || lowerMessage.includes('banned') || lowerMessage.includes('detected')) {
+                return 'Worried about bans? Astral is designed to be closet-friendly, but always use at your own risk. For detection tips, check Discord\'s guides or open a ticket if you got hit.';
+            } else if (lowerMessage.includes('thanks') || lowerMessage.includes('thank you') || lowerMessage.includes('ty')) {
+                return 'You\'re welcome! Glad I could help. Anything else on your mind?';
+            } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye') || lowerMessage.includes('cya')) {
+                return 'Catch you later! Stay sneaky with Astral. Join Discord if you need more help.';
             } else {
-                return 'I’m not sure how to help with that. Try asking about a specific issue, like crashing, or join our Discord for more support!';
+                return 'I’m not sure how to help with that. Try asking about a specific issue, like crashing or aimbot not working, or join our Discord for more support!';
             }
         }
     </script>
