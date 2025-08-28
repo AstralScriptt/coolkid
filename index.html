@@ -11,7 +11,8 @@
     <div class="bg-container" id="bg"></div>
     <nav class="navbar">
         <div class="banner"><h3>Astral</h3></div>
-        <a href="https://discord.gg/JssU6fdtvz" target="_blank">ye</a>
+        <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord">Discord</a>
+        <a href="#" class="keysystem" onclick="togglePopup()">Keysystem</a>
     </nav>
     <div id="headertext">
         <h1 class="title">Astral</h1>
@@ -57,10 +58,24 @@
             </div>
         </div>
     </div>
+    <div class="popup" id="keysystemPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="togglePopup()">&times;</span>
+            <h2>Choose Keysystem</h2>
+            <p>Select a keysystem to continue to Astral</p>
+            <div class="popup-buttons">
+                <a href="https://getpolsec.com/linkvertise/df3b9ac33352821fc167805269318198fa41445f290e71f12cc2c03bc82c8692" target="_blank" class="popup-btn linkvertise">Linkvertise</a>
+                <a href="https://getpolsec.com/lootlabs/df3b9ac33352821fc167805269318198fa41445f290e71f12cc2c03bc82c8692" target="_blank" class="popup-btn lootlabs">Lootlabs</a>
+            </div>
+        </div>
+    </div>
     <a href="/credits" target="_blank" class="a">Icon Credits</a>
     <script src="app.js"></script>
+    <script>
+        function togglePopup() {
+            const popup = document.getElementById('keysystemPopup');
+            popup.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
-
-
-
