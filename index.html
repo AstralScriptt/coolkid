@@ -18,7 +18,10 @@
         <h1 class="title">Astral</h1>
         <p class="desc">The Best Closet Cheat</p>
         <br>
-        <a class="joinbtn btn" href="https://discord.gg/JssU6fdtvz" target="_blank">Join the Discord</a>
+        <div class="button-container">
+            <a class="joinbtn btn" href="https://discord.gg/JssU6fdtvz" target="_blank">Join the Discord</a>
+            <a class="chatbtn btn" href="#" onclick="toggleChatPopup()">Talk to Faggatron</a>
+        </div>
     </div>
     <div class="features">
         <h1>What we offer</h1>
@@ -69,12 +72,64 @@
             </div>
         </div>
     </div>
+    <div class="popup" id="chatPopup">
+        <div class="chat-popup-content">
+            <span class="close-btn" onclick="toggleChatPopup()">&times;</span>
+            <h2>Faggatron AI</h2>
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-message bot">Hello! I'm Faggatron, your support AI. How can I assist you today?</div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Type your message here..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
     <a href="/credits" target="_blank" class="a">Icon Credits</a>
-    <script src="app.js"></script>
     <script>
         function togglePopup() {
             const popup = document.getElementById('keysystemPopup');
             popup.classList.toggle('active');
+        }
+
+        function toggleChatPopup() {
+            const chatPopup = document.getElementById('chatPopup');
+            chatPopup.classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const chatContainer = document.getElementById('chatContainer');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message user';
+                userMessage.textContent = message;
+                chatContainer.appendChild(userMessage);
+
+                // Generate bot response
+                const botResponse = document.createElement('div');
+                botResponse.className = 'chat-message bot';
+                botResponse.textContent = generateBotResponse(message);
+                chatContainer.appendChild(botResponse);
+
+                // Clear input and scroll to bottom
+                input.value = '';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
+
+        function generateBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            if (lowerMessage.includes('crash') || lowerMessage.includes('crashing')) {
+                return 'It sounds like you’re experiencing a crashing issue. Here are some steps to troubleshoot:\n1. **Check Supported Executor Server**: Ensure you’re using a compatible executor. Verify the server version matches our requirements listed in the Discord.\n2. **Check Script Status**: Confirm the script is up-to-date and not flagged by your executor. Try re-injecting the script.\nIf these don’t resolve the issue, please open a ticket in our Discord server for further assistance!';
+            } else if (lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
+                return 'Hi there! How can Faggatron assist you today?';
+            } else {
+                return 'I’m not sure how to help with that. Try asking about a specific issue, like crashing, or join our Discord for more support!';
+            }
         }
     </script>
 </body>
