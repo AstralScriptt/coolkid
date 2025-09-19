@@ -3,141 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno.cc</title>
+    <title>Bruno.cc - Ultimate Cheat Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="/none">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Enhanced Particle Systems -->
     <div class="particle-container" id="particles"></div>
+    <div class="matrix-container" id="matrix"></div>
+    <div class="neon-grid" id="neonGrid"></div>
+    
+    <!-- Advanced Navbar with Admin Panel -->
     <nav class="navbar">
-        <div class="banner"><h3>Bruno</h3></div>
-        <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord">Discord</a>
-        <a href="#" class="chatbtn" onclick="toggleChatPopup()">Talk to BrunoBot</a>
-        <a href="#" class="shopbtn" onclick="toggleShopPopup()">Shop</a>
+        <div class="banner">
+            <h3 class="logo-text">Bruno</h3>
+            <div class="logo-glow"></div>
+        </div>
+        
+        <!-- User Status -->
+        <div class="user-status" id="userStatus">
+            <span class="user-icon">👤</span>
+            <span id="usernameDisplay">Guest</span>
+            <span class="status-indicator" id="statusIndicator"></span>
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord nav-link">Discord</a>
+            <a href="#" class="chatbtn nav-link" onclick="toggleChatPopup()">🤖 AI Chat</a>
+            <a href="#" class="shopbtn nav-link" onclick="toggleShopPopup()">🛒 Shop</a>
+            <a href="#" class="statsbtn nav-link" onclick="toggleStatsPopup()">📊 Stats</a>
+            <a href="#" class="loginbtn nav-link" onclick="toggleAuthPopup()">🔐 Account</a>
+        </div>
+        
+        <!-- Admin Panel Trigger -->
+        <div class="admin-panel-trigger" id="adminTrigger" style="display: none;">
+            <a href="#" class="adminbtn nav-link" onclick="toggleAdminPanel()">⚙️ Admin</a>
+        </div>
     </nav>
+
+    <!-- Enhanced Header -->
     <div id="headertext">
-        <h1 class="title">Bruno</h1>
-        <p class="desc">Simply the Best Cheat hub</p>
+        <div class="title-container">
+            <h1 class="title">Bruno</h1>
+            <div class="title-glow"></div>
+            <div class="title-particles"></div>
+        </div>
+        <p class="desc">The Ultimate Cheat Experience - Unmatched Quality & Performance</p>
         <div class="button-container">
-            <a class="joinbtn btn" href="https://discord.gg/DhWsx7rHjS" target="_blank">Join the Discord</a>
+            <a class="joinbtn btn primary" href="https://discord.gg/DhWsx7rHjS" target="_blank">Join Elite Community</a>
+            <a class="demo-btn btn secondary" href="#" onclick="showDemo()">View Demo</a>
         </div>
     </div>
+
+    <!-- Dynamic Changelog Section -->
+    <div class="changelog-section" id="changelogSection">
+        <div class="changelog-header">
+            <h2 class="section-title">Latest Updates</h2>
+            <button class="refresh-btn" onclick="loadChangelog()">🔄 Refresh</button>
+        </div>
+        <div class="changelog-container" id="changelogContainer">
+            <!-- Changelog items loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Enhanced Features Section -->
     <div class="features">
-        <h1>Our Cheats</h1>
-        <div class="cards">
-            <div class="card1">
-                <svg width="100px" height="100px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" fill="#00bfff" d="M3.05492878,11 C3.5160776,6.82838339 6.82838339,3.5160776 11,3.05492878 L11,1 L13,1 L13,3.05492878 C17.1716166,3.5160776 20.4839224,6.82838339 20.9450712,11 L23,11 L23,13 L20.9450712,13 C20.4839224,17.1716166 17.1716166,20.4839224 13,20.9450712 L13,23 L11,23 L11,20.9450712 C6.82838339,20.4839224 3.5160776,17.1716166 3.05492878,13 L1,13 L1,11 L3.05492878,11 Z M5.07088886,11 L7,11 L7,13 L5.07088886,13 C5.50940162,16.0656912 7.93430884,18.4905984 11,18.9291111 L11,17 L13,17 L13,18.9291111 C16.0656912,18.4905984 18.4905984,16.0656912 18.9291111,13 L17,13 L17,11 L18.9291111,11 C18.4905984,7.93430884 16.0656912,5.50940162 13,5.07088886 L13,7 L11,7 L11,5.07088886 C7.93430884,5.50940162 5.50940162,7.93430884 5.07088886,11 Z M12,14 C10.8954305,14 10,13.1045695 10,12 C10,10.8954305 10.8954305,10 12,10 C13.1045695,10 14,10.8954305 14,12 C14,13.1045695 13.1045695,14 12,14 Z"/>
-                </svg>
-                <h2>The Bronx 3</h2>
-                <p>Infinite Money<br>Auto Farm<br>ESP</p>
+        <h1 class="features-title">Our Premium Cheats</h1>
+        <div class="features-subtitle">Battle-tested, undetected, and insanely powerful</div>
+        <div class="cards" id="featureCards">
+            <!-- Cards loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Advanced Paste System Preview -->
+    <div class="paste-preview" id="pastePreview">
+        <h3 class="paste-title">Recent Pastes</h3>
+        <div class="paste-grid" id="pasteGrid">
+            <!-- Pastes loaded dynamically -->
+        </div>
+        <a href="#" class="view-all-pastes" onclick="togglePastePopup()">View All Pastes →</a>
+    </div>
+
+    <!-- Authentication Popup -->
+    <div class="popup" id="authPopup">
+        <div class="auth-popup-content">
+            <span class="close-btn" onclick="toggleAuthPopup()">&times;</span>
+            <h2 id="authTitle">Login to Bruno</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchAuthTab('register')">Register</button>
             </div>
-            <div class="card2">
-                <svg width="100px" height="100px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                    <path d="m 74.375,7.96875 c -5.283702,0 -9.5625,4.278798 -9.5625,9.5625 0,5.283702 4.278798,9.5625 9.5625,9.5625 5.283702,0 9.5625,-4.278798 9.5625,-9.5625 0,-5.283702 -4.278798,-9.5625 -9.5625,-9.5625 z m -29.71875,10.625 c -1.643157,-0.02482 -3.085286,0.979175 -4.0625,1.78125 l -13.125,10.78125 c -1.784537,1.465229 -2.027819,4.090418 -0.5625,5.875 1.465095,1.784559 4.059213,2.058979 5.84375,0.59375 L 44.0625,28.3125 52.78125,30.125 39.125,51.21875 29.5,63.40625 c -6.811329,-0.270955 -13.095582,-1.082038 -19,-1.625 -2.7777349,-0.256157 -5.2127943,1.753203 -5.46875,4.53125 -0.2557322,2.777981 1.7477032,5.312761 4.53125,5.5 6.923324,0.465706 13.85815,0.909294 20.78125,1.375 1.783419,0.119952 3.095267,0.08945 4.34375,-0.875 0.546114,-0.42198 0.943116,-0.953685 1.375,-1.5 2.532509,-3.203135 7.59375,-9.625 7.59375,-9.625 L 57.4375,70.90625 50.15625,84.9375 c -1.243118,2.389844 -0.327165,5.319494 2.0625,6.5625 2.389666,1.243162 5.319829,0.327143 6.5625,-2.0625 l 9.03125,-17.375 c 0.320112,-0.615814 0.437809,-1.294101 0.53125,-1.9375 0.259756,-1.786393 -0.366446,-3.624711 -1.9375,-4.75 l -13,-9.3125 10.71875,-16.40625 4.78125,8.5 c 0.708405,1.254138 2.013576,2.148761 3.5625,2.1875 6.087499,0.151786 18.25,0.4375 18.25,0.4375 2.308072,0.05767 4.223576,-1.754248 4.28125,-4.0625 0.05767,-2.308251 -1.754427,-4.223599 -4.0625,-4.28125 l -14.28125,-0.34375 -7.25,-12.875 c -1.191703,-2.11795 -4.724265,-6.546135 -7.8125,-7.1875 L 45.375,18.65625 c -0.241481,-0.05019 -0.484013,-0.05896 -0.71875,-0.0625 z" fill="#00bfff" fill-opacity="1" fill-rule="nonzero" stroke="none"/>
-                </svg>
-                <h2>SAB</h2>
-                <p>Instant Steal<br>Speed Hack<br>Auto rich boy</p>
-            </div>
-            <div class="card3">
-                <svg width="100px" height="100px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" fill="#00bfff" d="M3.05492878,11 C3.5160776,6.82838339 6.82838339,3.5160776 11,3.05492878 L11,1 L13,1 L13,3.05492878 C17.1716166,3.5160776 20.4839224,6.82838339 20.9450712,11 L23,11 L23,13 L20.9450712,13 C20.4839224,17.1716166 17.1716166,20.4839224 13,20.9450712 L13,23 L11,23 L11,20.9450712 C6.82838339,20.4839224 3.5160776,17.1716166 3.05492878,13 L1,13 L1,11 L3.05492878,11 Z M5.07088886,11 L7,11 L7,13 L5.07088886,13 C5.50940162,16.0656912 7.93430884,18.4905984 11,18.9291111 L11,17 L13,17 L13,18.9291111 C16.0656912,18.4905984 18.4905984,16.0656912 18.9291111,13 L17,13 L17,11 L18.9291111,11 C18.4905984,7.93430884 16.0656912,5.50940162 13,5.07088886 L13,7 L11,7 L11,5.07088886 C7.93430884,5.50940162 5.50940162,7.93430884 5.07088886,11 Z M12,14 C10.8954305,14 10,13.1045695 10,12 C10,10.8954305 10.8954305,10 12,10 C13.1045695,10 14,10.8954305 14,12 C14,13.1045695 13.1045695,14 12,14 Z"/>
-                </svg>
-                <h2>Arcade Basketball</h2>
-                <p>Auto Green<br>Aim Assist<br>Perfect Timing</p>
+            <form id="authForm" class="auth-form">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="form-group" id="emailGroup" style="display: none;">
+                    <input type="email" id="email" placeholder="Email (for registration)">
+                    <div class="input-glow"></div>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            <div class="auth-footer">
+                <p>Admin Access: <code>admin/bruno2024</code></p>
             </div>
         </div>
     </div>
+
+    <!-- Enhanced Chat Popup -->
     <div class="popup" id="chatPopup">
         <div class="chat-popup-content">
             <span class="close-btn" onclick="toggleChatPopup()">&times;</span>
-            <h2>BrunoBot AI</h2>
+            <h2>🤖 BrunoBot AI Assistant</h2>
             <div class="chat-container" id="chatContainer">
-                <div class="chat-message bot">Hey! I'm BrunoBot, here to assist with Bruno cheats. What's up?</div>
+                <div class="chat-message bot welcome-message">
+                    <div class="typing-indicator" id="typingIndicator"></div>
+                    Welcome to BrunoBot! I'm your AI assistant for all things Bruno. Ask me about cheats, updates, or support! 🚀
+                </div>
             </div>
             <div class="chat-input-container">
-                <input type="text" id="chatInput" placeholder="Type your message here..." onkeypress="if(event.key === 'Enter') sendMessage()">
-                <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+                <input type="text" id="chatInput" placeholder="Ask BrunoBot anything..." onkeypress="if(event.key === 'Enter') sendAdvancedMessage()">
+                <button class="chat-send-btn" onclick="sendAdvancedMessage()">
+                    <span class="send-icon">➤</span>
+                </button>
             </div>
         </div>
     </div>
+
+    <!-- Enhanced Shop Popup -->
     <div class="popup" id="shopPopup">
         <div class="shop-popup-content">
             <span class="close-btn" onclick="toggleShopPopup()">&times;</span>
-            <h2>Bruno Shop</h2>
-            <div class="shop-items">
-                <div class="shop-card shop-card1">
-                    <svg width="80px" height="80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" fill="#00bfff" d="M3.05492878,11 C3.5160776,6.82838339 6.82838339,3.5160776 11,3.05492878 L11,1 L13,1 L13,3.05492878 C17.1716166,3.5160776 20.4839224,6.82838339 20.9450712,11 L23,11 L23,13 L20.9450712,13 C20.4839224,17.1716166 17.1716166,20.4839224 13,20.9450712 L13,23 L11,23 L11,20.9450712 C6.82838339,20.4839224 3.5160776,17.1716166 3.05492878,13 L1,13 L1,11 L3.05492878,11 Z M5.07088886,11 L7,11 L7,13 L5.07088886,13 C5.50940162,16.0656912 7.93430884,18.4905984 11,18.9291111 L11,17 L13,17 L13,18.9291111 C16.0656912,18.4905984 18.4905984,16.0656912 18.9291111,13 L17,13 L17,11 L18.9291111,11 C18.4905984,7.93430884 16.0656912,5.50940162 13,5.07088886 L13,7 L11,7 L11,5.07088886 C7.93430884,5.50940162 5.50940162,7.93430884 5.07088886,11 Z M12,14 C10.8954305,14 10,13.1045695 10,12 C10,10.8954305 10.8954305,10 12,10 C13.1045695,10 14,10.8954305 14,12 C14,13.1045695 13.1045695,14 12,14 Z"/>
-                    </svg>
-                    <h3>The Bronx 3</h3>
-                    <p class="shop-desc">Infinite Money, Auto Farm, ESP</p>
-                    <p class="price">$19.99 / month</p>
-                    <button class="buy-btn" onclick="simulatePurchase('The Bronx 3')">Buy Now</button>
+            <h2>🛒 Bruno Premium Shop</h2>
+            <div class="shop-filter">
+                <select id="shopFilter" onchange="filterShopItems()">
+                    <option value="all">All Products</option>
+                    <option value="bronx">The Bronx 3</option>
+                    <option value="sab">SAB</option>
+                    <option value="basketball">Arcade Basketball</option>
+                </select>
+            </div>
+            <div class="shop-items" id="shopItems">
+                <!-- Shop items loaded dynamically -->
+            </div>
+            <div class="shop-summary">
+                <div class="total-users">Active Users: <span id="activeUsers">1,247</span></div>
+                <div class="total-sales">Monthly Revenue: $<span id="monthlyRevenue">24,750</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Popup -->
+    <div class="popup" id="statsPopup">
+        <div class="stats-popup-content">
+            <span class="close-btn" onclick="toggleStatsPopup()">&times;</span>
+            <h2>📊 Bruno Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <div class="stat-number" id="totalUsers">12,847</div>
+                    <div class="stat-change positive">+2.3%</div>
                 </div>
-                <div class="shop-card shop-card2">
-                    <svg width="80px" height="80px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                        <path d="m 74.375,7.96875 c -5.283702,0 -9.5625,4.278798 -9.5625,9.5625 0,5.283702 4.278798,9.5625 9.5625,9.5625 5.283702,0 9.5625,-4.278798 9.5625,-9.5625 0,-5.283702 -4.278798,-9.5625 -9.5625,-9.5625 z m -29.71875,10.625 c -1.643157,-0.02482 -3.085286,0.979175 -4.0625,1.78125 l -13.125,10.78125 c -1.784537,1.465229 -2.027819,4.090418 -0.5625,5.875 1.465095,1.784559 4.059213,2.058979 5.84375,0.59375 L 44.0625,28.3125 52.78125,30.125 39.125,51.21875 29.5,63.40625 c -6.811329,-0.270955 -13.095582,-1.082038 -19,-1.625 -2.7777349,-0.256157 -5.2127943,1.753203 -5.46875,4.53125 -0.2557322,2.777981 1.7477032,5.312761 4.53125,5.5 6.923324,0.465706 13.85815,0.909294 20.78125,1.375 1.783419,0.119952 3.095267,0.08945 4.34375,-0.875 0.546114,-0.42198 0.943116,-0.953685 1.375,-1.5 2.532509,-3.203135 7.59375,-9.625 7.59375,-9.625 L 57.4375,70.90625 50.15625,84.9375 c -1.243118,2.389844 -0.327165,5.319494 2.0625,6.5625 2.389666,1.243162 5.319829,0.327143 6.5625,-2.0625 l 9.03125,-17.375 c 0.320112,-0.615814 0.437809,-1.294101 0.53125,-1.9375 0.259756,-1.786393 -0.366446,-3.624711 -1.9375,-4.75 l -13,-9.3125 10.71875,-16.40625 4.78125,8.5 c 0.708405,1.254138 2.013576,2.148761 3.5625,2.1875 6.087499,0.151786 18.25,0.4375 18.25,0.4375 2.308072,0.05767 4.223576,-1.754248 4.28125,-4.0625 0.05767,-2.308251 -1.754427,-4.223599 -4.0625,-4.28125 l -14.28125,-0.34375 -7.25,-12.875 c -1.191703,-2.11795 -4.724265,-6.546135 -7.8125,-7.1875 L 45.375,18.65625 c -0.241481,-0.05019 -0.484013,-0.05896 -0.71875,-0.0625 z" fill="#00bfff" fill-opacity="1" fill-rule="nonzero" stroke="none"/>
-                    </svg>
-                    <h3>SAB</h3>
-                    <p class="shop-desc">Instant Steal, Speed Hack, Auto rich boy</p>
-                    <p class="price">$14.99 / month</p>
-                    <button class="buy-btn" onclick="simulatePurchase('SAB')">Buy Now</button>
+                <div class="stat-card">
+                    <h3>Active Cheats</h3>
+                    <div class="stat-number" id="activeCheats">3</div>
+                    <div class="stat-change neutral">Stable</div>
                 </div>
-                <div class="shop-card shop-card3">
-                    <svg width="80px" height="80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" fill="#00bfff" d="M3.05492878,11 C3.5160776,6.82838339 6.82838339,3.5160776 11,3.05492878 L11,1 L13,1 L13,3.05492878 C17.1716166,3.5160776 20.4839224,6.82838339 20.9450712,11 L23,11 L23,13 L20.9450712,13 C20.4839224,17.1716166 17.1716166,20.4839224 13,20.9450712 L13,23 L11,23 L11,20.9450712 C6.82838339,20.4839224 3.5160776,17.1716166 3.05492878,13 L1,13 L1,11 L3.05492878,11 Z M5.07088886,11 L7,11 L7,13 L5.07088886,13 C5.50940162,16.0656912 7.93430884,18.4905984 11,18.9291111 L11,17 L13,17 L13,18.9291111 C16.0656912,18.4905984 18.4905984,16.0656912 18.9291111,13 L17,13 L17,11 L18.9291111,11 C18.4905984,7.93430884 16.0656912,5.50940162 13,5.07088886 L13,7 L11,7 L11,5.07088886 C7.93430884,5.50940162 5.50940162,7.93430884 5.07088886,11 Z M12,14 C10.8954305,14 10,13.1045695 10,12 C10,10.8954305 10.8954305,10 12,10 C13.1045695,10 14,10.8954305 14,12 C14,13.1045695 13.1045695,14 12,14 Z"/>
-                    </svg>
-                    <h3>Arcade Basketball</h3>
-                    <p class="shop-desc">Auto Green, Aim Assist, Perfect Timing</p>
-                    <p class="price">$9.99 / month</p>
-                    <button class="buy-btn" onclick="simulatePurchase('Arcade Basketball')">Buy Now</button>
+                <div class="stat-card">
+                    <h3>Uptime</h3>
+                    <div class="stat-number" id="uptime">99.9%</div>
+                    <div class="stat-change positive">Perfect</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Detections</h3>
+                    <div class="stat-number" id="detections">0</div>
+                    <div class="stat-change positive">Clean</div>
+                </div>
+            </div>
+            <canvas id="analyticsChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Advanced Admin Panel -->
+    <div class="popup" id="adminPanel">
+        <div class="admin-panel-content">
+            <span class="close-btn" onclick="toggleAdminPanel()">&times;</span>
+            <h2>⚙️ Bruno Admin Control Center</h2>
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('dashboard')">Dashboard</button>
+                <button class="tab-btn" onclick="switchAdminTab('changelog')">Changelog</button>
+                <button class="tab-btn" onclick="switchAdminTab('pastes')">Paste Manager</button>
+                <button class="tab-btn" onclick="switchAdminTab('users')">User Management</button>
+                <button class="tab-btn" onclick="switchAdminTab('content')">Content Editor</button>
+                <button class="tab-btn" onclick="switchAdminTab('analytics')">Analytics</button>
+            </div>
+            
+            <!-- Dashboard Tab -->
+            <div id="adminDashboard" class="admin-tab-content active">
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <h3>System Status</h3>
+                        <div class="status-indicators">
+                            <div class="status-item online">Server: <span class="green">Online</span></div>
+                            <div class="status-item online">Database: <span class="green">Online</span></div>
+                            <div class="status-item online">API: <span class="green">Online</span></div>
+                            <div class="status-item warning">Cache: <span class="yellow">Warning</span></div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Quick Actions</h3>
+                        <button class="quick-action-btn" onclick="broadcastMessage()">📢 Broadcast</button>
+                        <button class="quick-action-btn" onclick="clearCache()">🧹 Clear Cache</button>
+                        <button class="quick-action-btn danger" onclick="maintenanceMode()">🔧 Maintenance</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Changelog Tab -->
+            <div id="adminChangelog" class="admin-tab-content">
+                <div class="changelog-editor">
+                    <div class="changelog-form">
+                        <h3>Add New Changelog Entry</h3>
+                        <input type="text" id="changelogTitle" placeholder="Update Title" required>
+                        <textarea id="changelogContent" placeholder="Update details..." rows="4" required></textarea>
+                        <select id="changelogType">
+                            <option value="feature">New Feature</option>
+                            <option value="fix">Bug Fix</option>
+                            <option value="update">Update</option>
+                            <option value="security">Security</option>
+                        </select>
+                        <button class="admin-btn" onclick="addChangelogEntry()">Add Entry</button>
+                    </div>
+                    <div class="changelog-list">
+                        <h3>Existing Entries</h3>
+                        <div id="adminChangelogList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paste Manager Tab -->
+            <div id="adminPastes" class="admin-tab-content">
+                <div class="paste-creator">
+                    <h3>Create New Paste</h3>
+                    <input type="text" id="pasteTitle" placeholder="Paste Title">
+                    <textarea id="pasteContent" placeholder="Paste content (code, scripts, configs)..." rows="6"></textarea>
+                    <div class="paste-options">
+                        <label><input type="checkbox" id="pastePublic"> Public</label>
+                        <label><input type="checkbox" id="pasteSyntax"> Syntax Highlight</label>
+                        <select id="pasteLanguage">
+                            <option value="lua">Lua</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="json">JSON</option>
+                        </select>
+                    </div>
+                    <button class="admin-btn" onclick="createPaste()">Create Paste</button>
+                </div>
+                <div class="paste-list">
+                    <h3>All Pastes</h3>
+                    <div id="adminPasteList"></div>
+                </div>
+            </div>
+
+            <!-- User Management Tab -->
+            <div id="adminUsers" class="admin-tab-content">
+                <div class="user-search">
+                    <input type="text" id="userSearch" placeholder="Search users..." oninput="searchUsers()">
+                    <select id="userFilter">
+                        <option value="all">All Users</option>
+                        <option value="admin">Admins</option>
+                        <option value="premium">Premium</option>
+                        <option value="banned">Banned</option>
+                    </select>
+                </div>
+                <div class="user-list" id="userList">
+                    <!-- Users loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Content Editor Tab -->
+            <div id="adminContent" class="admin-tab-content">
+                <div class="content-editor">
+                    <h3>Edit Site Content</h3>
+                    <div class="editor-section">
+                        <h4>Hero Section</h4>
+                        <textarea id="heroTitle" placeholder="Main title...">Bruno</textarea>
+                        <textarea id="heroDesc" placeholder="Description...">Simply the Best Cheat hub</textarea>
+                        <button class="save-btn" onclick="saveHeroContent()">Save Hero</button>
+                    </div>
+                    <div class="editor-section">
+                        <h4>Features</h4>
+                        <div id="featureEditors"></div>
+                        <button class="add-feature-btn" onclick="addFeatureEditor()">Add Feature</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="adminAnalytics" class="admin-tab-content">
+                <div class="analytics-dashboard">
+                    <canvas id="adminChart" width="800" height="400"></canvas>
+                    <div class="analytics-controls">
+                        <button class="analytics-btn" onclick="loadAnalytics('day')">24h</button>
+                        <button class="analytics-btn active" onclick="loadAnalytics('week')">7d</button>
+                        <button class="analytics-btn" onclick="loadAnalytics('month')">30d</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="/credits" target="_blank" class="a">Icon Credits</a>
+
+    <!-- Paste Viewer Popup -->
+    <div class="popup" id="pastePopup">
+        <div class="paste-popup-content">
+            <span class="close-btn" onclick="togglePastePopup()">&times;</span>
+            <h2 id="pasteTitleDisplay">Paste Viewer</h2>
+            <pre><code id="pasteContentDisplay" class="language-lua"></code></pre>
+            <div class="paste-actions">
+                <button class="copy-btn" onclick="copyPaste()">📋 Copy</button>
+                <button class="raw-btn" onclick="viewRawPaste()">🔗 Raw</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="/credits" target="_blank" class="footer-link">Icon Credits</a>
+        <div class="footer-stats">
+            <span>© 2024 Bruno.cc - All Rights Reserved</span>
+            <span class="live-counter">Live Users: <span id="liveCounter">247</span></span>
+        </div>
+    </footer>
+
+    <!-- Load Essential Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
     <script src="app.js"></script>
-    <script>
-        function toggleChatPopup() {
-            const chatPopup = document.getElementById('chatPopup');
-            chatPopup.classList.toggle('active');
-        }
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const chatContainer = document.getElementById('chatContainer');
-            const message = input.value.trim();
-            if (message) {
-                const userMessage = document.createElement('div');
-                userMessage.className = 'chat-message user';
-                userMessage.textContent = message;
-                chatContainer.appendChild(userMessage);
-                const botResponse = document.createElement('div');
-                botResponse.className = 'chat-message bot';
-                botResponse.textContent = generateBotResponse(message);
-                chatContainer.appendChild(botResponse);
-                input.value = '';
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        }
-        function generateBotResponse(message) {
-            const lowerMessage = message.toLowerCase().replace(/[^a-z0-9\s]/g, '');
-            if (lowerMessage.includes('key') || lowerMessage.includes('license') || lowerMessage.includes('activation')) {
-                return "Make sure the key includes 'bruno'.";
-            } else if (lowerMessage.includes('crash') || lowerMessage.includes('crashing')) {
-                return "Open a ticket in our Discord for crashing issues.";
-            } else {
-                return "Open a ticket in our Discord for support. if it isnt crashing or key issues";
-            }
-        }
-        function toggleShopPopup() {
-            const shopPopup = document.getElementById('shopPopup');
-            shopPopup.classList.toggle('active');
-        }
-        function simulatePurchase(productName) {
-            alert(`Thank you for purchasing ${productName}! Redirecting to payment... (This is a simulation; in a real setup, integrate with Stripe or similar.)`);
-            // Here you could redirect to a payment gateway like: window.location.href = 'https://your-payment-link';
-        }
-    </script>
 </body>
 </html>
