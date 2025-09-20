@@ -3,580 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno.cc - Ultimate Cheat Hub</title>
+    <title>Advanced Keysys Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/none">
-    <!-- Stripe for payments -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Optimized Particle System -->
-    <div class="particle-container" id="particles"></div>
-    <div class="matrix-bg"></div>
-   
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="banner">
-            <h3 class="banner-text">BRUNO</h3>
-            <div class="banner-glow"></div>
-        </div>
-       
-        <!-- Auth System -->
-        <div class="auth-container" id="authContainer">
-            <button class="auth-btn login-btn fancy-btn" onclick="showLogin()">
-                <span class="btn-icon">🔐</span> Login
-            </button>
-            <button class="auth-btn register-btn fancy-btn" onclick="showRegister()">
-                <span class="btn-icon">📝</span> Register
-            </button>
-        </div>
-       
-        <!-- Admin Panel Access -->
-        <div class="admin-access" id="adminAccess" style="display: none;">
-            <button class="admin-btn fancy-btn" onclick="toggleAdminPanel()">
-                <span class="btn-icon">⚙️</span> Admin
-            </button>
-        </div>
-       
-        <div class="nav-links">
-            <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord-btn fancy-btn">
-                <span class="btn-icon">💎</span> Discord
-            </a>
-            <a href="#" class="chatbtn fancy-btn" onclick="toggleChatPopup()">
-                <span class="btn-icon">🤖</span> AI Chat
-            </a>
-            <a href="#" class="shopbtn fancy-btn" onclick="toggleShopPopup()">
-                <span class="btn-icon">🛒</span> Shop
-            </a>
-            <a href="#" class="pastes-btn fancy-btn" id="pastesBtn" onclick="togglePastesPopup()" style="display: none;">
-                <span class="btn-icon">📝</span> Pastes
-            </a>
-        </div>
-    </nav>
-    <!-- Advanced Notification Container -->
-    <div id="notificationContainer" class="advanced-notifications"></div>
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content modal-narrow">
-            <span class="close fancy-close" onclick="closeLogin()">&times;</span>
-            <h2 class="modal-title">🔐 Secure Login</h2>
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <h2>Admin Login</h2>
             <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="modal-btn full-width fancy-btn">Enter Portal</button>
-            </form>
-            <div class="auth-links">
-                <a href="#" onclick="showRegister()">Need an account? Register</a>
-            </div>
-        </div>
-    </div>
-    <!-- Register Modal -->
-    <div class="modal" id="registerModal">
-        <div class="modal-content modal-narrow">
-            <span class="close fancy-close" onclick="closeRegister()">&times;</span>
-            <h2 class="modal-title">📝 Create Account</h2>
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="registerUsername">Username</label>
-                    <input type="text" id="registerUsername" placeholder="Choose a username" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" placeholder="Your email address" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" placeholder="At least 6 characters" required>
-                </div>
-                <button type="submit" class="modal-btn full-width fancy-btn">Create Account</button>
-            </form>
-            <div class="auth-links">
-                <a href="#" onclick="showLogin()">Already have an account? Login</a>
-            </div>
-        </div>
-    </div>
-    <!-- Purchase Confirmation Modal -->
-    <div class="modal" id="purchaseModal">
-        <div class="modal-content">
-            <span class="close fancy-close" onclick="closePurchaseModal()">&times;</span>
-            <h2 class="modal-title" id="purchaseTitle">🛒 Complete Purchase</h2>
-            <div id="purchaseFormContainer">
-                <!-- Dynamic form -->
-            </div>
-        </div>
-    </div>
-    <!-- Main Header -->
-    <div class="header-section">
-        <div class="hero-content">
-            <h1 class="title" data-text="BRUNO">BRUNO</h1>
-            <p class="desc">Simply the Best Cheat Hub • Trusted Since 2023</p>
-            <div class="button-container">
-                <a class="joinbtn btn fancy-btn" href="https://discord.gg/DhWsx7rHjS" target="_blank">
-                    <span class="btn-icon">💎</span> Join Discord
-                </a>
-                <button class="demo-btn btn fancy-btn" onclick="showDemo()">
-                    <span class="btn-icon">🎮</span> Try Demo
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Changelogs Section - Visible to all -->
-    <div class="changelogs-section">
-        <h2 class="section-title">📋 Latest Updates</h2>
-        <div class="changelog-controls" id="changelogControls" style="display: none;">
-            <button class="control-btn fancy-btn" onclick="showChangelogEditor()">
-                <span class="btn-icon">➕</span> New Changelog
-            </button>
-            <button class="control-btn fancy-btn" onclick="exportChangelogs()">
-                <span class="btn-icon">📊</span> Export
-            </button>
-        </div>
-        <div class="changelog-grid" id="changelogGrid"></div>
-    </div>
-    <!-- Features Section -->
-    <div class="features">
-        <h1 class="features-title">Our Premium Cheats</h1>
-        <div class="cards-container">
-            <div class="cards" id="cardsContainer"></div>
-        </div>
-    </div>
-    <!-- Chat Popup -->
-    <div class="popup" id="chatPopup">
-        <div class="popup-content chat-popup-content">
-            <span class="close-btn fancy-close" onclick="toggleChatPopup()">&times;</span>
-            <h2 class="popup-title">🤖 BrunoBot AI Assistant</h2>
-            <div class="chat-header">
-                <span>Online</span>
-                <div class="chat-status"></div>
-            </div>
-            <div class="chat-container" id="chatContainer">
-                <div class="chat-message bot welcome-message">
-                    <div class="message-avatar">🤖</div>
-                    <div class="message-content">
-                        <strong>BrunoBot</strong>
-                        <span>Hey! I'm here to assist with Bruno cheats. Ask away!</span>
-                        <div class="message-time"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input-container">
-                <div class="chat-input-wrapper">
-                    <input type="text" id="chatInput" placeholder="Type your question..." maxlength="500">
-                    <button class="attach-btn fancy-btn" onclick="attachFile()" title="Attach">📎</button>
-                </div>
-                <button id="sendButton" class="fancy-btn">
-                    <span class="send-icon">➤</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Shop Popup -->
-    <div class="popup" id="shopPopup">
-        <div class="popup-content shop-popup-content">
-            <span class="close-btn fancy-close" onclick="toggleShopPopup()">&times;</span>
-            <h2 class="popup-title">🛒 Premium Shop</h2>
-            <div class="shop-header">
-                <div class="shop-stats">
-                    <span>🔥 Top Seller: The Bronx 3</span>
-                    <span>⭐ 4.9/5 Stars</span>
-                </div>
-                <div id="adminShopBtn" style="display: none;">
-                    <button class="admin-shop-btn fancy-btn" onclick="showNewProductModal()">
-                        <span class="btn-icon">⚙️</span> Manage
-                    </button>
-                </div>
-            </div>
-            <div class="shop-items" id="shopItems"></div>
-        </div>
-    </div>
-    <!-- Pastes Popup -->
-    <div class="popup" id="pastesPopup">
-        <div class="popup-content pastes-popup-content">
-            <span class="close-btn fancy-close" onclick="togglePastesPopup()">&times;</span>
-            <h2 class="popup-title">📝 Secure Paste Hub</h2>
-            <div class="pastes-header">
-                <div class="paste-input-row">
-                    <input type="text" id="pasteTitle" placeholder="Title (optional)" maxlength="100">
-                    <textarea id="pasteContent" placeholder="Your script here... Supports loadstring" rows="6" maxlength="10000"></textarea>
-                </div>
-                <div class="pastes-actions">
-                    <button class="create-paste-btn fancy-btn" onclick="createPaste()">
-                        <span class="btn-icon">📝</span> Create & Share
-                    </button>
-                    <button class="clear-paste-btn fancy-btn" onclick="clearPasteForm()">
-                        <span class="btn-icon">🗑️</span> Clear
-                    </button>
-                </div>
-                <div id="pasteUrlOutput" class="paste-url-output" style="display: none;">
-                    <label>🔗 Loadstring URL:</label>
-                    <div class="url-input-wrapper">
-                        <input type="text" id="pasteUrlInput" readonly>
-                        <button class="copy-url-btn fancy-btn" onclick="copyPasteURL()">Copy</button>
-                        <button class="test-url-btn fancy-btn" onclick="testPasteURL()">Test</button>
-                    </div>
-                </div>
-            </div>
-            <div class="pastes-stats">
-                <span>Total: <span id="totalPastesCount">0</span></span>
-                <span>Today: <span id="pastesToday">0</span></span>
-            </div>
-            <div class="pastes-grid" id="pastesGrid"></div>
-        </div>
-    </div>
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-panel-content">
-            <div class="admin-header">
-                <span class="close-btn fancy-close" onclick="toggleAdminPanel()">&times;</span>
-                <h2 class="admin-title">⚙️ Control Center v2.1</h2>
-                <div class="admin-status">
-                    <span class="status-indicator"></span>
-                    <span>Active • ${new Date().toLocaleString()}</span>
-                </div>
-            </div>
-            <div class="admin-dashboard">
-                <div class="stat-grid">
-                    <div class="stat-card primary">
-                        <div class="stat-icon">👥</div>
-                        <div class="stat-content">
-                            <h3>Users</h3>
-                            <div class="stat-number" id="totalUsersStat">0</div>
-                            <div class="stat-change positive">+2 today</div>
-                        </div>
-                    </div>
-                    <div class="stat-card success">
-                        <div class="stat-icon">📝</div>
-                        <div class="stat-content">
-                            <h3>Pastes</h3>
-                            <div class="stat-number" id="totalPastesStat">0</div>
-                            <div class="stat-change positive">+5 week</div>
-                        </div>
-                    </div>
-                    <div class="stat-card warning">
-                        <div class="stat-icon">📋</div>
-                        <div class="stat-content">
-                            <h3>Changelogs</h3>
-                            <div class="stat-number" id="totalChangelogsStat">0</div>
-                            <div class="stat-change neutral">3 active</div>
-                        </div>
-                    </div>
-                    <div class="stat-card danger">
-                        <div class="stat-icon">🔑</div>
-                        <div class="stat-content">
-                            <h3>Keys</h3>
-                            <div class="stat-number" id="totalKeysStat">0</div>
-                            <div class="stat-change positive">+12 month</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="admin-nav">
-                <button class="nav-tab active" data-tab="dashboard" onclick="switchAdminTab(this, 'dashboard')">📊 Dashboard</button>
-                <button class="nav-tab" data-tab="content" onclick="switchAdminTab(this, 'content')">📝 Content</button>
-                <button class="nav-tab" data-tab="pastes" onclick="switchAdminTab(this, 'pastes')">📁 Pastes</button>
-                <button class="nav-tab" data-tab="users" onclick="switchAdminTab(this, 'users')">👥 Users</button>
-                <button class="nav-tab" data-tab="shop" onclick="switchAdminTab(this, 'shop')">🛒 Products</button>
-                <button class="nav-tab" data-tab="system" onclick="switchAdminTab(this, 'system')">⚙️ Customize</button>
-            </div>
-            <!-- Dashboard Tab -->
-            <div id="dashboardTab" class="admin-tab active">
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>🚀 Quick Actions</h3>
-                        <div class="action-grid">
-                            <button class="action-btn primary fancy-btn" onclick="generateKey()">
-                                <span class="btn-icon">🔑</span> Gen Key
-                            </button>
-                            <button class="action-btn success fancy-btn" onclick="broadcastMessage()">
-                                <span class="btn-icon">📢</span> Broadcast
-                            </button>
-                            <button class="action-btn warning fancy-btn" onclick="showChangelogEditor()">
-                                <span class="btn-icon">📝</span> Changelog
-                            </button>
-                            <button class="action-btn info fancy-btn" onclick="showNewProductModal()">
-                                <span class="btn-icon">🛒</span> New Product
-                            </button>
-                            <button class="action-btn danger fancy-btn" onclick="clearAllCache()">
-                                <span class="btn-icon">🧹</span> Clear Cache
-                            </button>
-                            <button class="action-btn secondary fancy-btn" onclick="backupEverything()">
-                                <span class="btn-icon">💾</span> Backup All
-                            </button>
-                        </div>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>📈 Recent Activity</h3>
-                        <div class="activity-feed" id="activityFeed"></div>
-                    </div>
-                    <div class="dashboard-card full-width">
-                        <h3>📊 Overview</h3>
-                        <div class="system-metrics">
-                            <div class="metric-item">
-                                <div class="metric-label">Storage</div>
-                                <div class="metric-value" id="storageUsageMetric">0 KB</div>
-                                <div class="metric-bar"><div class="metric-progress" id="storageBar" style="width: 0%"></div></div>
-                            </div>
-                            <div class="metric-item">
-                                <div class="metric-label">Perf</div>
-                                <div class="metric-value" id="performanceMetric">Loading...</div>
-                                <div class="metric-bar"><div class="metric-progress success" id="performanceBar" style="width: 0%"></div></div>
-                            </div>
-                            <div class="metric-item">
-                                <div class="metric-label">Uptime</div>
-                                <div class="metric-value" id="uptimeMetric">Calc...</div>
-                                <div class="metric-bar"><div class="metric-progress success" id="uptimeBar" style="width: 0%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Content Tab -->
-            <div id="contentTab" class="admin-tab" style="display: none;">
-                <h3>📝 Changelogs</h3>
-                <div class="content-controls">
-                    <button class="control-btn fancy-btn primary" onclick="showChangelogEditor()">➕ New</button>
-                    <button class="control-btn fancy-btn secondary" onclick="exportChangelogs()">📊 Export</button>
-                    <button class="control-btn fancy-btn danger" onclick="clearAllChangelogs()">🗑️ Clear</button>
-                </div>
-                <div class="content-table">
-                    <div class="table-header">
-                        <span>Title</span><span>Version</span><span>Status</span><span>Date</span><span>Actions</span>
-                    </div>
-                    <div id="changelogsTable" class="table-body"></div>
-                </div>
-            </div>
-            <!-- Pastes Tab -->
-            <div id="pastesTab" class="admin-tab" style="display: none;">
-                <h3>📁 Pastes Manager</h3>
-                <div class="pastes-controls">
-                    <div class="search-controls">
-                        <input type="text" id="adminPasteSearch" placeholder="Search..." onkeyup="searchAdminPastes()">
-                        <select id="adminPasteFilter" onchange="filterAdminPastes()">
-                            <option value="all">All</option>
-                            <option value="today">Today</option>
-                            <option value="week">Week</option>
-                            <option value="featured">Featured</option>
-                        </select>
-                    </div>
-                    <div class="bulk-actions">
-                        <button class="control-btn fancy-btn danger" id="bulkDeleteBtn" disabled onclick="bulkDeletePastes()">🗑️ Delete Sel.</button>
-                        <button class="control-btn fancy-btn success" id="bulkFeatureBtn" disabled onclick="bulkFeaturePastes()">⭐ Feature Sel.</button>
-                        <button class="control-btn fancy-btn warning" onclick="exportPastes()">📊 Export</button>
-                    </div>
-                </div>
-                <div class="pastes-admin-grid" id="adminPastesGrid">
-                    <!-- Dynamic -->
-                </div>
-            </div>
-            <!-- Users Tab -->
-            <div id="usersTab" class="admin-tab" style="display: none;">
-                <h3>👥 Users</h3>
-                <div class="users-controls">
-                    <div class="search-controls">
-                        <input type="text" id="adminUserSearch" placeholder="Search users..." onkeyup="searchAdminUsers()">
-                        <select id="adminUserFilter" onchange="filterAdminUsers()">
-                            <option value="all">All</option>
-                            <option value="active">Active</option>
-                            <option value="premium">Premium</option>
-                        </select>
-                    </div>
-                    <div class="user-actions">
-                        <button class="control-btn fancy-btn success" onclick="createNewUser()">➕ Create</button>
-                        <button class="control-btn fancy-btn warning" onclick="importUsers()">📥 Import</button>
-                        <button class="control-btn fancy-btn secondary" onclick="exportUsers()">📊 Export</button>
-                    </div>
-                </div>
-                <div class="users-admin-grid" id="adminUsersGrid"></div>
-            </div>
-            <!-- Shop Tab -->
-            <div id="shopTab" class="admin-tab" style="display: none;">
-                <h3>🛒 Products Manager</h3>
-                <div class="shop-controls">
-                    <button class="control-btn fancy-btn primary" onclick="showNewProductModal()">➕ New Product</button>
-                    <button class="control-btn fancy-btn success" onclick="saveAllProducts()">💾 Save All</button>
-                    <button class="control-btn fancy-btn warning" onclick="previewShopChanges()">👁️ Preview</button>
-                    <button class="control-btn fancy-btn secondary" onclick="exportProducts()">📊 Export</button>
-                </div>
-                <div class="products-grid" id="productsGrid"></div>
-                <div class="shop-analytics">
-                    <h4>📈 Analytics</h4>
-                    <div class="analytics-grid">
-                        <div class="analytics-card">
-                            <h5>Revenue</h5>
-                            <div class="revenue-number">$<span id="totalRevenue">0</span></div>
-                            <div class="revenue-change positive">+15%</div>
-                        </div>
-                        <div class="analytics-card">
-                            <h5>Best Seller</h5>
-                            <div class="product-name" id="bestSeller">Loading</div>
-                            <div class="sales-count"><span id="bestSellerSales">0</span> sales</div>
-                        </div>
-                        <div class="analytics-card">
-                            <h5>Conversion</h5>
-                            <div class="conversion-rate" id="conversionRate">0%</div>
-                            <div class="conversion-change positive">+2.3%</div>
-                        </div>
-                        <div class="analytics-card">
-                            <h5>Subs</h5>
-                            <div class="subscription-count" id="activeSubs">0</div>
-                            <div class="churn-rate neutral">2% churn</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- System Tab - Customization -->
-            <div id="systemTab" class="admin-tab" style="display: none;">
-                <h3>⚙️ Customize Site</h3>
-                <div class="system-grid">
-                    <div class="system-card">
-                        <h4>🎨 Theme Colors</h4>
-                        <div class="setting-group">
-                            <div class="setting-item">
-                                <label>Primary Color</label>
-                                <input type="color" id="customPrimary" value="#00bfff" onchange="updateCustomTheme()">
-                            </div>
-                            <div class="setting-item">
-                                <label>Accent Color</label>
-                                <input type="color" id="customAccent" value="#48d1cc" onchange="updateCustomTheme()">
-                            </div>
-                            <div class="setting-item">
-                                <label>Background</label>
-                                <input type="color" id="customBg" value="#00111a" onchange="updateCustomTheme()">
-                            </div>
-                        </div>
-                        <button class="save-settings-btn fancy-btn" onclick="saveCustomTheme()">Apply Theme</button>
-                    </div>
-                    <div class="system-card">
-                        <h4>🔒 Security</h4>
-                        <div class="setting-group">
-                            <label class="setting-item">
-                                <input type="checkbox" id="enable2FA" checked> Enable 2FA
-                                <span class="setting-desc">For admin logins</span>
-                            </label>
-                            <label class="setting-item">
-                                <input type="checkbox" id="enableRateLimit" checked> Rate Limit
-                                <span class="setting-desc">Prevent spam</span>
-                            </label>
-                        </div>
-                        <button class="save-settings-btn fancy-btn" onclick="saveSecuritySettings()">Save</button>
-                    </div>
-                    <div class="system-card full-width">
-                        <h4>📊 Logs</h4>
-                        <div class="logs-container">
-                            <div class="logs-header">
-                                <input type="text" id="logSearch" placeholder="Search logs" onkeyup="searchLogs()">
-                                <select id="logFilter" onchange="filterLogs()">
-                                    <option value="all">All</option>
-                                    <option value="error">Errors</option>
-                                    <option value="info">Info</option>
-                                </select>
-                                <button class="clear-logs-btn fancy-btn" onclick="clearLogs()">Clear</button>
-                            </div>
-                            <div class="logs-body" id="systemLogs"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Product Editor Modal -->
-    <div class="popup" id="productEditorModal">
-        <div class="popup-content product-editor-content">
-            <span class="close-btn fancy-close" onclick="closeProductEditor()">&times;</span>
-            <h2 id="productEditorTitle">➕ New Product</h2>
-            <form id="productForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" id="productName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Price ($)</label>
-                        <input type="number" id="productPrice" step="0.01" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Description *</label>
-                    <input type="text" id="productDescription" required>
-                </div>
-                <div class="form-group">
-                    <label>Features</label>
-                    <textarea id="productFeatures" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Image</label>
-                    <input type="file" id="productImage" accept="image/*" onchange="previewProductImage()">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Color</label>
-                        <input type="color" id="productColor">
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select id="productStatus">
-                            <option value="active">Active</option>
-                            <option value="coming-soon">Coming Soon</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="hidden" id="editingProductId">
-                <div class="form-actions">
-                    <button type="button" class="cancel-btn fancy-btn" onclick="closeProductEditor()">Cancel</button>
-                    <button type="submit" class="save-btn fancy-btn">Save</button>
-                </div>
-            </form>
-            <div class="product-preview">
-                <h4>Preview</h4>
-                <div id="productPreview" class="product-preview-card">
-                    <img id="previewImage" src="" style="width: 100px; height: 100px; border-radius: 8px; object-fit: cover;">
-                    <h3 id="previewName">Product</h3>
-                    <p id="previewDesc">Description</p>
-                    <p class="price" id="previewPrice">$0</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Changelog Editor -->
-    <div class="modal" id="changelogEditor">
-        <div class="modal-content">
-            <span class="close fancy-close" onclick="closeChangelogEditor()">&times;</span>
-            <h2 class="modal-title">📝 Changelog</h2>
-            <form id="changelogForm">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" id="changelogTitle" required>
-                </div>
-                <div class="form-group">
-                    <label>Content</label>
-                    <textarea id="changelogContent" rows="8" required></textarea>
-                </div>
-                <button type="submit" class="modal-btn full-width fancy-btn">Save</button>
+                <input type="text" id="username" placeholder="Username (admin)" value="admin">
+                <input type="password" id="password" placeholder="Password">
+                <button type="submit">Enter Dashboard</button>
             </form>
         </div>
     </div>
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-text" id="loadingText">Loading...</div>
-        </div>
+
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <header>
+            <h1>Keysys Pro</h1>
+            <nav>
+                <button class="tab-btn active" data-tab="generator">Generator</button>
+                <button class="tab-btn" data-tab="stats">Statistics</button>
+                <button class="tab-btn" data-tab="management">Key Management</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Generator Tab -->
+            <section id="generator" class="tab-content active">
+                <h2>Generate New Key</h2>
+                <form id="keyForm">
+                    <label for="userId">Roblox User ID:</label>
+                    <input type="number" id="userId" required>
+                    
+                    <label for="discordTag">Discord Tag:</label>
+                    <input type="text" id="discordTag" placeholder="user#1234" required>
+                    
+                    <label for="expiresDays">Expiration (Days):</label>
+                    <input type="number" id="expiresDays" value="7" min="1" max="365">
+                    
+                    <button type="submit">Generate Key</button>
+                </form>
+                <div id="genResult" class="toast"></div>
+            </section>
+
+            <!-- Stats Tab -->
+            <section id="stats" class="tab-content">
+                <h2>System Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Keys</h3>
+                        <p id="totalKeys" class="stat-value">0</p>
+                        <div class="stat-bar full"></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Keys</h3>
+                        <p id="activeKeys" class="stat-value">0</p>
+                        <div class="stat-bar" id="activeBar"></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Used Keys</h3>
+                        <p id="usedKeys" class="stat-value">0</p>
+                        <div class="stat-bar" id="usedBar"></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Expired Keys</h3>
+                        <p id="expiredKeys" class="stat-value">0</p>
+                        <div class="stat-bar" id="expiredBar"></div>
+                    </div>
+                </div>
+                <button id="exportCSV">Export Stats as CSV</button>
+                <div id="statsResult" class="toast"></div>
+            </section>
+
+            <!-- Management Tab -->
+            <section id="management" class="tab-content">
+                <h2>Manage Keys</h2>
+                <div id="keysList"></div>
+                <div id="mgmtResult" class="toast"></div>
+            </section>
+        </main>
     </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <a href="/credits" class="footer-link fancy-link">Credits</a>
-            <a href="/privacy" class="footer-link fancy-link">Privacy</a>
-            <a href="/terms" class="footer-link fancy-link">Terms</a>
-        </div>
-        <div class="footer-text">© 2025 Bruno.cc | v2.1.0</div>
-    </footer>
-    <script src="app.js"></script>
+
+    <script>
+        const AUTH = 'Basic ' + btoa('admin:admin123');
+        const API_BASE = '/api';
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            try {
+                const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: 'Basic ' + btoa(user + ':' + pass) } });
+                if (res.ok) {
+                    document.getElementById('loginOverlay').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                    loadStats();
+                    loadKeys();
+                } else {
+                    alert('Invalid login');
+                }
+            } catch (err) {
+                alert('Login error');
+            }
+        });
+
+        // Tab Switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Generator
+        document.getElementById('keyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = {
+                userId: document.getElementById('userId').value,
+                discordTag: document.getElementById('discordTag').value,
+                expiresDays: document.getElementById('expiresDays').value
+            };
+            const res = await fetch(`${API_BASE}/generate-key`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: AUTH },
+                body: JSON.stringify(formData)
+            });
+            const data = await res.json();
+            const result = document.getElementById('genResult');
+            if (data.key) {
+                result.innerHTML = `<p>Key: <strong>${data.key}</strong> (Expires: ${data.expires})</p>`;
+                result.className = 'toast success';
+                loadStats();
+                loadKeys();
+            } else {
+                result.innerHTML = `<p>Error: ${data.error}</p>`;
+                result.className = 'toast error';
+            }
+            setTimeout(() => result.classList.add('show'), 10);
+        });
+
+        // Stats Loader
+        async function loadStats() {
+            const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: AUTH } });
+            const stats = await res.json();
+            document.getElementById('totalKeys').textContent = stats.total;
+            document.getElementById('activeKeys').textContent = stats.active;
+            document.getElementById('usedKeys').textContent = stats.used;
+            document.getElementById('expiredKeys').textContent = stats.expired;
+
+            // Update bars (percentage of total)
+            const updateBar = (id, val) => {
+                const bar = document.getElementById(id);
+                const perc = stats.total > 0 ? (val / stats.total * 100) : 0;
+                bar.style.width = perc + '%';
+                bar.dataset.value = val;
+            };
+            updateBar('activeBar', stats.active);
+            updateBar('usedBar', stats.used);
+            updateBar('expiredBar', stats.expired);
+        }
+
+        // Export CSV
+        document.getElementById('exportCSV').addEventListener('click', async () => {
+            const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: AUTH } });
+            const stats = await res.json();
+            const csv = `Metric,Value\nTotal Keys,${stats.total}\nActive,${stats.active}\nUsed,${stats.used}\nExpired,${stats.expired}`;
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'keys-stats.csv'; a.click();
+        });
+
+        // Keys Loader
+        async function loadKeys() {
+            const res = await fetch(`${API_BASE}/keys`, { headers: { Authorization: AUTH } });
+            const keys = await res.json();
+            const list = document.getElementById('keysList');
+            list.innerHTML = keys.map(key => `
+                <div class="key-card ${key.used ? 'used' : key.expires < new Date().toISOString().slice(0,19).replace('T',' ') ? 'expired' : 'active'}">
+                    <div class="key-info">
+                        <strong>${key.key}</strong><br>
+                        UserID: ${key.userId} | Discord: ${key.discordTag}<br>
+                        Expires: ${key.expires} | Status: ${key.used ? 'Used' : (key.expires < new Date().toISOString().slice(0,19).replace('T',' ') ? 'Expired' : 'Active')}
+                    </div>
+                    <button onclick="revokeKey(${key.id})" class="revoke-btn">Revoke</button>
+                </div>
+            `).join('');
+        }
+
+        // Revoke Key
+        window.revokeKey = async (id) => {
+            const res = await fetch(`${API_BASE}/revoke-key/${id}`, {
+                method: 'DELETE',
+                headers: { Authorization: AUTH }
+            });
+            const data = await res.json();
+            const result = document.getElementById('mgmtResult');
+            result.innerHTML = `<p>${data.message}</p>`;
+            result.className = 'toast success';
+            setTimeout(() => result.classList.add('show'), 10);
+            loadKeys();
+            loadStats();
+        };
+    </script>
 </body>
 </html>
