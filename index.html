@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno.cc - Ultimate Cheat Hub</title>
+    <title>Bruno.cc - Website Made By Zeq</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="/none">
 </head>
@@ -27,35 +27,38 @@
         
         <!-- Admin Panel Access -->
         <div class="admin-access" id="adminAccess" style="display: none;">
-            <button class="admin-btn" onclick="toggleAdminPanel()">Admin Panel</button>
+            <button class="admin-btn" onclick="toggleAdminPanel()">⚙️ Admin</button>
         </div>
         
         <div class="nav-links">
             <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord-btn">Discord</a>
-            <a href="#" class="chatbtn" onclick="toggleChatPopup()">AI Chat</a>
-            <a href="#" class="shopbtn" onclick="toggleShopPopup()">Shop</a>
-            <a href="#" class="pastes-btn" onclick="togglePastesPopup()">Pastes</a>
+            <a href="#" class="chatbtn" onclick="toggleChatPopup()">🤖 AI Chat</a>
+            <a href="#" class="shopbtn" onclick="toggleShopPopup()">🛒 Shop</a>
+            <a href="#" class="pastes-btn" id="pastesBtn" onclick="togglePastesPopup()" style="display: none;">📝 Pastes</a>
         </div>
     </nav>
 
-    <!-- Login Modal - FIXED WIDTH -->
+    <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content modal-narrow">
             <span class="close" onclick="closeLogin()">&times;</span>
-            <h2 class="modal-title">Login</h2>
+            <h2 class="modal-title">🔐 Login</h2>
             <form id="loginForm">
-                <input type="text" id="loginEmail" placeholder="Email or Admin Code" required>
+                <input type="text" id="loginEmail" placeholder="Email or Admin Code (21)" required>
                 <input type="password" id="loginPassword" placeholder="Password" required>
+                <div style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;">
+                    <strong>Admin:</strong> Use "21" for both fields
+                </div>
                 <button type="submit" class="modal-btn">Login</button>
             </form>
         </div>
     </div>
 
-    <!-- Register Modal - FIXED WIDTH -->
+    <!-- Register Modal -->
     <div class="modal" id="registerModal">
         <div class="modal-content modal-narrow">
             <span class="close" onclick="closeRegister()">&times;</span>
-            <h2 class="modal-title">Register</h2>
+            <h2 class="modal-title">📝 Register</h2>
             <form id="registerForm">
                 <input type="text" id="registerUsername" placeholder="Username" required>
                 <input type="email" id="registerEmail" placeholder="Email" required>
@@ -79,7 +82,7 @@
 
     <!-- Dynamic Changelogs Section -->
     <div class="changelogs-section" id="changelogsSection">
-        <h2 class="section-title">Latest Updates</h2>
+        <h2 class="section-title">📋 Latest Updates</h2>
         <div class="changelog-grid" id="changelogGrid">
             <!-- Dynamic changelogs will be populated here -->
         </div>
@@ -95,11 +98,11 @@
         </div>
     </div>
 
-    <!-- Enhanced Chat Popup - FIXED SENDING -->
+    <!-- Enhanced Chat Popup -->
     <div class="popup" id="chatPopup">
         <div class="popup-content chat-popup-content">
             <span class="close-btn" onclick="toggleChatPopup()">&times;</span>
-            <h2 class="popup-title">BrunoBot AI Assistant</h2>
+            <h2 class="popup-title">🤖 BrunoBot AI Assistant</h2>
             <div class="chat-container" id="chatContainer">
                 <div class="chat-message bot" id="welcomeMessage">
                     Hey! I'm BrunoBot, your AI assistant for all Bruno cheats. What can I help you with today?
@@ -107,7 +110,7 @@
             </div>
             <div class="chat-input-container">
                 <input type="text" id="chatInput" placeholder="Ask me anything about Bruno..." maxlength="500">
-                <button class="chat-send-btn" id="sendButton" onclick="sendMessage()">Send</button>
+                <button class="chat-send-btn" id="sendButton">Send</button>
             </div>
         </div>
     </div>
@@ -116,26 +119,38 @@
     <div class="popup" id="shopPopup">
         <div class="popup-content shop-popup-content">
             <span class="close-btn" onclick="toggleShopPopup()">&times;</span>
-            <h2 class="popup-title">Bruno Premium Shop</h2>
+            <h2 class="popup-title">🛒 Bruno Premium Shop</h2>
             <div class="shop-items" id="shopItems">
                 <!-- Dynamic shop items -->
             </div>
         </div>
     </div>
 
-    <!-- FIXED Pastes System -->
+    <!-- ENHANCED Pastes System - ADMIN ONLY -->
     <div class="popup" id="pastesPopup">
         <div class="popup-content pastes-popup-content">
             <span class="close-btn" onclick="togglePastesPopup()">&times;</span>
-            <h2 class="popup-title">Code Pastes</h2>
+            <h2 class="popup-title">📝 Code Pastes Hub</h2>
             <div class="pastes-container">
                 <div class="pastes-header">
-                    <input type="text" id="pasteTitle" placeholder="Paste Title (optional)" maxlength="100">
-                    <textarea id="pasteContent" placeholder="Enter your code here... (Ctrl+V to paste)" rows="4" maxlength="5000"></textarea>
-                    <div class="pastes-actions">
-                        <button class="create-paste-btn" onclick="createPaste()">Create Paste</button>
-                        <button class="clear-paste-btn" onclick="clearPasteForm()">Clear</button>
+                    <div class="paste-input-row">
+                        <input type="text" id="pasteTitle" placeholder="Paste Title (optional)" maxlength="100">
+                        <button class="paste-url-btn" onclick="generatePasteURL()">🔗 Get URL</button>
                     </div>
+                    <textarea id="pasteContent" placeholder="Enter your Lua script here...&#10;Supports loadstring(game:HttpGet()) URLs&#10;Ctrl+V to paste code" rows="6" maxlength="10000"></textarea>
+                    <div class="pastes-actions">
+                        <button class="create-paste-btn" id="createPasteBtn" onclick="createPaste()">📝 Create Paste</button>
+                        <button class="clear-paste-btn" onclick="clearPasteForm()">🗑️ Clear</button>
+                        <div id="pasteUrlOutput" class="paste-url-output" style="display: none;">
+                            <label>Shareable URL:</label>
+                            <input type="text" id="pasteUrlInput" readonly placeholder="Your paste URL will appear here">
+                            <button class="copy-url-btn" onclick="copyPasteURL()">📋 Copy URL</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pastes-stats">
+                    <span>Total Pastes: <span id="totalPastes">0</span></span>
+                    <span>Active: <span id="activePastes">0</span></span>
                 </div>
                 <div class="pastes-grid" id="pastesGrid">
                     <!-- Dynamic pastes will be loaded here -->
@@ -144,60 +159,274 @@
         </div>
     </div>
 
-    <!-- Admin Panel - FIXED SINGLE ADMIN -->
+    <!-- BUFFED Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-panel-content">
             <span class="close-btn" onclick="toggleAdminPanel()">&times;</span>
-            <h2 class="admin-title">Admin Control Panel</h2>
-            
+            <h2 class="admin-title">⚙️ Bruno Admin Control Panel</h2>
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <div class="stat-number" id="totalUsers">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Pastes</h3>
+                    <div class="stat-number" id="totalPastesAdmin">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Changelogs</h3>
+                    <div class="stat-number" id="totalChangelogs">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Keys Generated</h3>
+                    <div class="stat-number" id="totalKeys">0</div>
+                </div>
+            </div>
+
             <!-- Content Management -->
             <div class="admin-section">
-                <h3>Content Management</h3>
+                <h3>📝 Content Management</h3>
                 <div class="admin-grid">
-                    <div class="admin-card">
-                        <h4>Edit Changelogs</h4>
-                        <button class="admin-btn-small" onclick="showChangelogEditor()">Edit</button>
+                    <div class="admin-card" onclick="showChangelogEditor()">
+                        <div class="card-icon">📋</div>
+                        <h4>Changelogs</h4>
+                        <p>Create & edit update notes</p>
+                        <span class="card-badge" id="changelogBadge">0</span>
                     </div>
-                    <div class="admin-card">
-                        <h4>Manage Products</h4>
-                        <button class="admin-btn-small" onclick="showProductEditor()">Edit</button>
+                    <div class="admin-card" onclick="showProductEditor()">
+                        <div class="card-icon">🛒</div>
+                        <h4>Products</h4>
+                        <p>Manage shop items</p>
+                        <span class="card-badge" id="productBadge">3</span>
                     </div>
-                    <div class="admin-card">
-                        <h4>Site Settings</h4>
-                        <button class="admin-btn-small" onclick="showSiteSettings()">Settings</button>
+                    <div class="admin-card" onclick="showPasteManager()">
+                        <div class="card-icon">📁</div>
+                        <h4>Paste Manager</h4>
+                        <p>View all pastes & analytics</p>
+                        <span class="card-badge" id="pasteBadge">0</span>
                     </div>
-                    <div class="admin-card">
-                        <h4>User Management</h4>
-                        <button class="admin-btn-small" onclick="showUserManagement()">Users</button>
+                    <div class="admin-card" onclick="showUserManager()">
+                        <div class="card-icon">👥</div>
+                        <h4>Users</h4>
+                        <p>Manage user accounts</p>
+                        <span class="card-badge" id="userBadge">0</span>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
             <div class="admin-section">
-                <h3>Quick Actions</h3>
+                <h3>⚡ Quick Actions</h3>
                 <div class="quick-actions">
-                    <button class="quick-btn" onclick="broadcastMessage()">Broadcast</button>
-                    <button class="quick-btn" onclick="generateKey()">Generate Key</button>
-                    <button class="quick-btn" onclick="backupDatabase()">Backup</button>
+                    <button class="quick-btn" onclick="generateKey()">
+                        <span class="btn-icon">🔑</span> Generate Key
+                    </button>
+                    <button class="quick-btn" onclick="broadcastMessage()">
+                        <span class="btn-icon">📢</span> Broadcast
+                    </button>
+                    <button class="quick-btn" onclick="backupDatabase()">
+                        <span class="btn-icon">💾</span> Backup
+                    </button>
+                    <button class="quick-btn danger" onclick="clearCache()">
+                        <span class="btn-icon">🧹</span> Clear Cache
+                    </button>
+                </div>
+            </div>
+
+            <!-- System Info -->
+            <div class="admin-section">
+                <h3>💻 System Information</h3>
+                <div class="system-info-grid">
+                    <div class="info-card">
+                        <h4>Server Status</h4>
+                        <div class="status-online">🟢 Online</div>
+                        <div class="info-text">Uptime: 99.9%</div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Storage Usage</h4>
+                        <div class="info-text">Pastes: <span id="storagePastes">0</span>KB</div>
+                        <div class="info-text">Changelogs: <span id="storageChangelogs">0</span>KB</div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Security</h4>
+                        <div class="status-secure">🔒 Secure</div>
+                        <div class="info-text">Admin: Single Access</div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Performance</h4>
+                        <div class="info-text">Load Time: <span id="loadTime">0.2s</span></div>
+                        <div class="info-text">Memory: <span id="memoryUsage">Low</span></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Changelog Editor -->
+    <!-- Enhanced Changelog Editor -->
     <div class="popup" id="changelogEditor">
-        <div class="popup-content modal-narrow">
+        <div class="popup-content changelog-editor-content">
             <span class="close-btn" onclick="closeChangelogEditor()">&times;</span>
-            <h2>Edit Changelogs</h2>
+            <h2 id="changelogEditorTitle">📝 Create New Changelog</h2>
+            <div class="editor-tabs">
+                <button class="tab-btn active" onclick="switchEditorTab('basic')">Basic</button>
+                <button class="tab-btn" onclick="switchEditorTab('advanced')">Advanced</button>
+            </div>
             <div class="editor-container">
-                <input type="text" id="changelogTitle" placeholder="Changelog Title" maxlength="100">
-                <textarea id="changelogContent" placeholder="Changelog content..." rows="8" maxlength="2000"></textarea>
-                <input type="hidden" id="editingChangelogId">
-                <div class="editor-actions">
-                    <button class="save-btn" onclick="saveChangelog()">Save</button>
-                    <button class="cancel-btn" onclick="closeChangelogEditor()">Cancel</button>
+                <!-- Basic Tab -->
+                <div id="basicTab" class="editor-tab active">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="changelogTitle" placeholder="e.g. Version 2.1.0 - Major Update" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Content *</label>
+                        <textarea id="changelogContent" placeholder="Write your changelog here...&#10;• Use bullet points with - or *&#10;• Support for **bold** and *italic* text" rows="10" maxlength="5000" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Version Number</label>
+                        <input type="text" id="changelogVersion" placeholder="e.g. 2.1.0">
+                    </div>
                 </div>
+                
+                <!-- Advanced Tab -->
+                <div id="advancedTab" class="editor-tab" style="display: none;">
+                    <div class="form-group">
+                        <label>Featured</label>
+                        <input type="checkbox" id="changelogFeatured">
+                        <span class="checkbox-label">Mark as featured (shows on homepage)</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Categories</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="performance"> Performance</label>
+                            <label><input type="checkbox" value="features"> New Features</label>
+                            <label><input type="checkbox" value="bugfixes"> Bug Fixes</label>
+                            <label><input type="checkbox" value="security"> Security</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" id="changelogDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Internal Notes</label>
+                        <textarea id="changelogNotes" placeholder="Internal admin notes (not visible to users)" rows="4" maxlength="1000"></textarea>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="editingChangelogId">
+            <div class="editor-actions">
+                <button class="cancel-btn" onclick="closeChangelogEditor()">Cancel</button>
+                <button class="save-btn" onclick="saveChangelog()" id="saveChangelogBtn">Save Changelog</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paste Manager -->
+    <div class="popup" id="pasteManager">
+        <div class="popup-content paste-manager-content">
+            <span class="close-btn" onclick="closePasteManager()">&times;</span>
+            <h2>📁 Paste Manager</h2>
+            <div class="manager-tabs">
+                <button class="tab-btn active" onclick="switchManagerTab('all')">All Pastes</button>
+                <button class="tab-btn" onclick="switchManagerTab('analytics')">Analytics</button>
+                <button class="tab-btn" onclick="switchManagerTab('settings')">Settings</button>
+            </div>
+            <div id="allTab" class="manager-tab active">
+                <div class="manager-search">
+                    <input type="text" id="pasteSearch" placeholder="Search pastes..." onkeyup="searchPastes()">
+                    <select id="pasteFilter">
+                        <option value="all">All Pastes</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+                <div class="manager-table">
+                    <div class="table-header">
+                        <span>Title</span>
+                        <span>Author</span>
+                        <span>Date</span>
+                        <span>Views</span>
+                        <span>Actions</span>
+                    </div>
+                    <div id="pastesTable" class="table-body">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+            </div>
+            <div id="analyticsTab" class="manager-tab" style="display: none;">
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Total Pastes</h3>
+                        <div class="analytics-number" id="analyticsTotal">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Today</h3>
+                        <div class="analytics-number" id="analyticsToday">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>This Week</h3>
+                        <div class="analytics-number" id="analyticsWeek">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Most Viewed</h3>
+                        <div class="analytics-number" id="analyticsTop">0</div>
+                    </div>
+                </div>
+                <div class="analytics-chart">
+                    <canvas id="pastesChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <div id="settingsTab" class="manager-tab" style="display: none;">
+                <div class="settings-group">
+                    <h4>Paste Settings</h4>
+                    <label><input type="checkbox" id="enableUrls" checked> Enable shareable URLs</label>
+                    <label><input type="checkbox" id="requireLogin" > Require login to create</label>
+                    <label><input type="range" id="maxPastes" min="10" max="100" value="50"> Max pastes per user: <span id="maxPastesValue">50</span></label>
+                </div>
+                <div class="settings-group">
+                    <h4>Security</h4>
+                    <label><input type="checkbox" id="enableModeration" checked> Enable auto-moderation</label>
+                    <label><input type="checkbox" id="blockBadWords"> Block profanity</label>
+                </div>
+                <div class="settings-actions">
+                    <button class="save-btn" onclick="savePasteSettings()">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Manager -->
+    <div class="popup" id="userManager">
+        <div class="popup-content user-manager-content">
+            <span class="close-btn" onclick="closeUserManager()">&times;</span>
+            <h2>👥 User Management</h2>
+            <div class="manager-search">
+                <input type="text" id="userSearch" placeholder="Search users..." onkeyup="searchUsers()">
+                <select id="userFilter">
+                    <option value="all">All Users</option>
+                    <option value="active">Active (30 days)</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="admin">Admins</option>
+                </select>
+            </div>
+            <div class="manager-table">
+                <div class="table-header">
+                    <span>Username</span>
+                    <span>Email</span>
+                    <span>Role</span>
+                    <span>Registered</span>
+                    <span>Last Active</span>
+                    <span>Actions</span>
+                </div>
+                <div id="usersTable" class="table-body">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+            <div class="user-actions">
+                <button class="create-user-btn" onclick="createNewUser()">➕ Create User</button>
+                <button class="export-users-btn" onclick="exportUsers()">📊 Export Users</button>
             </div>
         </div>
     </div>
@@ -208,10 +437,10 @@
     <!-- Footer -->
     <footer class="footer">
         <a href="/credits" target="_blank" class="footer-link">Icon Credits</a>
-        <div class="footer-text">© 2025 Bruno.cc - All rights reserved</div>
+        <div class="footer-text">© 2025 Bruno.cc - All rights reserved | Admin: 21</div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
