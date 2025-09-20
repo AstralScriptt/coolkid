@@ -6,7 +6,6 @@
     <title>Bruno.cc - website made by zeq (:</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="/none">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <!-- Enhanced Particle System -->
@@ -33,9 +32,9 @@
         
         <div class="nav-links">
             <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord-btn">Discord</a>
-            <a href="#" class="chatbtn" onclick="toggleChatPopup()">🤖 AI Chat</a>
-            <a href="#" class="shopbtn" onclick="toggleShopPopup()">🛒 Shop</a>
-            <a href="#" class="pastes-btn" onclick="togglePastesPopup()">📋 Pastes</a>
+            <a href="#" class="chatbtn" onclick="toggleChatPopup()">AI Chat</a>
+            <a href="#" class="shopbtn" onclick="toggleShopPopup()">Shop</a>
+            <a href="#" class="pastes-btn" onclick="togglePastesPopup()">Pastes</a>
         </div>
     </nav>
 
@@ -43,7 +42,7 @@
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <span class="close" onclick="closeLogin()">&times;</span>
-            <h2 class="modal-title">🔐 Login</h2>
+            <h2 class="modal-title">Login</h2>
             <form id="loginForm">
                 <input type="email" id="loginEmail" placeholder="Email" required>
                 <input type="password" id="loginPassword" placeholder="Password" required>
@@ -56,15 +55,11 @@
     <div class="modal" id="registerModal">
         <div class="modal-content">
             <span class="close" onclick="closeRegister()">&times;</span>
-            <h2 class="modal-title">📝 Register</h2>
+            <h2 class="modal-title">Register</h2>
             <form id="registerForm">
                 <input type="text" id="registerUsername" placeholder="Username" required>
                 <input type="email" id="registerEmail" placeholder="Email" required>
                 <input type="password" id="registerPassword" placeholder="Password" required>
-                <select id="registerRole">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
                 <button type="submit" class="modal-btn">Register</button>
             </form>
         </div>
@@ -73,18 +68,18 @@
     <!-- Main Header -->
     <div id="headertext" class="header-section">
         <div class="hero-content">
-            <h1 class="title glitch" data-text="BRUNO">BRUNO</h1>
-            <p class="desc neon-text" data-text="Simply the Best Cheat hub">Simply the Best Cheat hub</p>
+            <h1 class="title" data-text="BRUNO">BRUNO</h1>
+            <p class="desc">Simply the Best Cheat hub</p>
             <div class="button-container">
-                <a class="joinbtn btn glitch-btn" href="https://discord.gg/DhWsx7rHjS" target="_blank" data-text="Join the Discord">Join the Discord</a>
-                <button class="demo-btn btn" onclick="showDemo()">🎮 Try Demo</button>
+                <a class="joinbtn btn" href="https://discord.gg/DhWsx7rHjS" target="_blank">Join the Discord</a>
+                <button class="demo-btn btn" onclick="showDemo()">Try Demo</button>
             </div>
         </div>
     </div>
 
     <!-- Dynamic Changelogs Section -->
     <div class="changelogs-section" id="changelogsSection">
-        <h2 class="section-title">📋 Latest Updates</h2>
+        <h2 class="section-title">Latest Updates</h2>
         <div class="changelog-grid" id="changelogGrid">
             <!-- Dynamic changelogs will be populated here -->
         </div>
@@ -92,7 +87,7 @@
 
     <!-- Features Section -->
     <div class="features">
-        <h1 class="features-title glitch" data-text="Our Cheats">Our Cheats</h1>
+        <h1 class="features-title" data-text="Our Cheats">Our Cheats</h1>
         <div class="cards-container">
             <div class="cards" id="cardsContainer">
                 <!-- Cards will be populated dynamically -->
@@ -104,15 +99,15 @@
     <div class="popup" id="chatPopup">
         <div class="popup-content chat-popup-content">
             <span class="close-btn" onclick="toggleChatPopup()">&times;</span>
-            <h2 class="popup-title">🤖 BrunoBot AI Assistant</h2>
+            <h2 class="popup-title">BrunoBot AI Assistant</h2>
             <div class="chat-container" id="chatContainer">
-                <div class="chat-message bot typing-animation">
-                    <span class="typing-dots">Hey! I'm BrunoBot, your AI assistant for all Bruno cheats. What can I help you with today?</span>
+                <div class="chat-message bot" id="welcomeMessage">
+                    Hey! I'm BrunoBot, your AI assistant for all Bruno cheats. What can I help you with today?
                 </div>
             </div>
             <div class="chat-input-container">
-                <input type="text" id="chatInput" placeholder="Ask me anything about Bruno..." onkeypress="if(event.key === 'Enter') sendMessage()">
-                <button class="chat-send-btn" onclick="sendMessage()">Send 🚀</button>
+                <input type="text" id="chatInput" placeholder="Ask me anything about Bruno..." maxlength="500">
+                <button class="chat-send-btn" id="sendButton" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
@@ -121,23 +116,26 @@
     <div class="popup" id="shopPopup">
         <div class="popup-content shop-popup-content">
             <span class="close-btn" onclick="toggleShopPopup()">&times;</span>
-            <h2 class="popup-title">🛒 Bruno Premium Shop</h2>
+            <h2 class="popup-title">Bruno Premium Shop</h2>
             <div class="shop-items" id="shopItems">
                 <!-- Dynamic shop items -->
             </div>
         </div>
     </div>
 
-    <!-- Advanced Pastes System -->
+    <!-- Pastes System -->
     <div class="popup" id="pastesPopup">
         <div class="popup-content pastes-popup-content">
             <span class="close-btn" onclick="togglePastesPopup()">&times;</span>
-            <h2 class="popup-title">📋 Code Pastes</h2>
+            <h2 class="popup-title">Code Pastes</h2>
             <div class="pastes-container">
                 <div class="pastes-header">
-                    <input type="text" id="pasteTitle" placeholder="Paste Title">
-                    <textarea id="pasteContent" placeholder="Enter your code here..." rows="5"></textarea>
-                    <button class="create-paste-btn" onclick="createPaste()">Create Paste 📝</button>
+                    <input type="text" id="pasteTitle" placeholder="Paste Title (optional)" maxlength="100">
+                    <textarea id="pasteContent" placeholder="Enter your code here..." rows="4" maxlength="5000"></textarea>
+                    <div class="pastes-actions">
+                        <button class="create-paste-btn" onclick="createPaste()">Create Paste</button>
+                        <button class="clear-paste-btn" onclick="clearPasteForm()">Clear</button>
+                    </div>
                 </div>
                 <div class="pastes-grid" id="pastesGrid">
                     <!-- Dynamic pastes will be loaded here -->
@@ -150,58 +148,62 @@
     <div class="admin-panel" id="adminPanel">
         <div class="admin-panel-content">
             <span class="close-btn" onclick="toggleAdminPanel()">&times;</span>
-            <h2 class="admin-title">⚙️ Admin Control Panel</h2>
+            <h2 class="admin-title">Admin Control Panel</h2>
             
             <!-- Content Management -->
             <div class="admin-section">
-                <h3>📝 Content Management</h3>
+                <h3>Content Management</h3>
                 <div class="admin-grid">
                     <div class="admin-card">
                         <h4>Edit Changelogs</h4>
-                        <button onclick="showChangelogEditor()">✏️ Edit</button>
+                        <button class="admin-btn-small" onclick="showChangelogEditor()">Edit</button>
                     </div>
                     <div class="admin-card">
                         <h4>Manage Products</h4>
-                        <button onclick="showProductEditor()">🛒 Edit</button>
+                        <button class="admin-btn-small" onclick="showProductEditor()">Edit</button>
                     </div>
                     <div class="admin-card">
                         <h4>Site Settings</h4>
-                        <button onclick="showSiteSettings()">⚙️ Settings</button>
+                        <button class="admin-btn-small" onclick="showSiteSettings()">Settings</button>
                     </div>
                     <div class="admin-card">
                         <h4>User Management</h4>
-                        <button onclick="showUserManagement()">👥 Users</button>
+                        <button class="admin-btn-small" onclick="showUserManagement()">Users</button>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
             <div class="admin-section">
-                <h3>⚡ Quick Actions</h3>
+                <h3>Quick Actions</h3>
                 <div class="quick-actions">
-                    <button class="quick-btn" onclick="broadcastMessage()">📢 Broadcast</button>
-                    <button class="quick-btn" onclick="generateKey()">🔑 Generate Key</button>
-                    <button class="quick-btn" onclick="backupDatabase()">💾 Backup</button>
+                    <button class="quick-btn" onclick="broadcastMessage()">Broadcast</button>
+                    <button class="quick-btn" onclick="generateKey()">Generate Key</button>
+                    <button class="quick-btn" onclick="backupDatabase()">Backup</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Admin Editors -->
+    <!-- Changelog Editor -->
     <div class="popup" id="changelogEditor">
         <div class="popup-content">
             <span class="close-btn" onclick="closeChangelogEditor()">&times;</span>
-            <h2>✏️ Edit Changelogs</h2>
+            <h2>Edit Changelogs</h2>
             <div class="editor-container">
-                <input type="text" id="changelogTitle" placeholder="Changelog Title">
-                <textarea id="changelogContent" placeholder="Changelog content..." rows="10"></textarea>
+                <input type="text" id="changelogTitle" placeholder="Changelog Title" maxlength="100">
+                <textarea id="changelogContent" placeholder="Changelog content..." rows="8" maxlength="2000"></textarea>
+                <input type="hidden" id="editingChangelogId">
                 <div class="editor-actions">
-                    <button class="save-btn" onclick="saveChangelog()">💾 Save</button>
-                    <button class="delete-btn" onclick="deleteChangelog()">🗑️ Delete</button>
+                    <button class="save-btn" onclick="saveChangelog()">Save</button>
+                    <button class="cancel-btn" onclick="closeChangelogEditor()">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -209,6 +211,7 @@
         <div class="footer-text">© 2025 Bruno.cc - All rights reserved</div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>
 </html>
