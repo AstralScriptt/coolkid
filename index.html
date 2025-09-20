@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno.cc - Website made by zeqq (:</title>
+    <title>Bruno.cc - Ultimate Cheat Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="/none">
 </head>
 <body>
-    <!-- Enhanced Particle System -->
+    <!-- Optimized Particle System (Reduced to 30 particles for performance) -->
     <div class="particle-container" id="particles"></div>
     <div class="matrix-bg"></div>
-    
+   
     <!-- Navigation -->
     <nav class="navbar">
         <div class="banner">
             <h3 class="banner-text">BRUNO</h3>
             <div class="banner-glow"></div>
         </div>
-        
+       
         <!-- Auth System -->
         <div class="auth-container" id="authContainer">
             <button class="auth-btn login-btn" onclick="showLogin()">Login</button>
             <button class="auth-btn register-btn" onclick="showRegister()">Register</button>
         </div>
-        
+       
         <!-- Admin Panel Access -->
         <div class="admin-access" id="adminAccess" style="display: none;">
             <button class="admin-btn" onclick="toggleAdminPanel()">⚙️ Admin</button>
         </div>
-        
+       
         <div class="nav-links">
             <a href="https://discord.gg/JssU6fdtvz" target="_blank" class="discord-btn">Discord</a>
             <a href="#" class="chatbtn" onclick="toggleChatPopup()">🤖 AI Chat</a>
@@ -37,7 +37,6 @@
             <a href="#" class="pastes-btn" id="pastesBtn" onclick="togglePastesPopup()" style="display: none;">📝 Pastes</a>
         </div>
     </nav>
-
     <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content modal-narrow">
@@ -57,7 +56,6 @@
             </form>
         </div>
     </div>
-
     <!-- Register Modal -->
     <div class="modal" id="registerModal">
         <div class="modal-content modal-narrow">
@@ -77,7 +75,6 @@
             </form>
         </div>
     </div>
-
     <!-- Main Header -->
     <div id="headertext" class="header-section">
         <div class="hero-content">
@@ -89,7 +86,6 @@
             </div>
         </div>
     </div>
-
     <!-- Dynamic Changelogs Section -->
     <div class="changelogs-section" id="changelogsSection">
         <h2 class="section-title">📋 Latest Updates</h2>
@@ -101,7 +97,6 @@
             <!-- Dynamic changelogs will be populated here -->
         </div>
     </div>
-
     <!-- Features Section -->
     <div class="features">
         <h1 class="features-title">Our Cheats</h1>
@@ -111,7 +106,6 @@
             </div>
         </div>
     </div>
-
     <!-- Enhanced Chat Popup -->
     <div class="popup" id="chatPopup">
         <div class="popup-content chat-popup-content">
@@ -142,7 +136,6 @@
             </div>
         </div>
     </div>
-
     <!-- Enhanced Shop Popup -->
     <div class="popup" id="shopPopup">
         <div class="popup-content shop-popup-content">
@@ -160,7 +153,6 @@
             </div>
         </div>
     </div>
-
     <!-- ENHANCED Pastes System - ADMIN ONLY -->
     <div class="popup" id="pastesPopup">
         <div class="popup-content pastes-popup-content">
@@ -180,7 +172,7 @@
                     <div class="url-header">
                         <label>🔗 Shareable Loadstring URL:</label>
                         <span class="url-stats">
-                            Size: <span id="urlSize">0</span>KB • 
+                            Size: <span id="urlSize">0</span>KB •
                             Ready for: <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.8rem;">loadstring(game:HttpGet("URL"))()</code>
                         </span>
                     </div>
@@ -201,19 +193,17 @@
             </div>
         </div>
     </div>
-
     <!-- FULLY FUNCTIONAL Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-panel-content">
             <div class="admin-header">
                 <span class="close-btn" onclick="toggleAdminPanel()">&times;</span>
-                <h2 class="admin-title">⚙️ Bruno Admin Control Center v2.0</h2>
+                <h2 class="admin-title">⚙️ Bruno Admin Control Center v2.1</h2>
                 <div class="admin-status">
                     <span class="status-indicator online"></span>
                     <span>Admin Mode Active • Last Login: ${new Date().toLocaleString()}</span>
                 </div>
             </div>
-
             <!-- Enhanced Dashboard Stats -->
             <div class="admin-dashboard">
                 <div class="stat-grid">
@@ -251,7 +241,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Main Navigation Tabs -->
             <div class="admin-nav">
                 <button class="nav-tab active" data-tab="dashboard" onclick="switchAdminTab(this, 'dashboard')">📊 Dashboard</button>
@@ -261,7 +250,6 @@
                 <button class="nav-tab" data-tab="shop" onclick="switchAdminTab(this, 'shop')">🛒 Shop</button>
                 <button class="nav-tab" data-tab="system" onclick="switchAdminTab(this, 'system')">⚙️ System</button>
             </div>
-
             <!-- Dashboard Tab -->
             <div id="dashboardTab" class="admin-tab active">
                 <div class="dashboard-grid">
@@ -277,8 +265,8 @@
                             <button class="action-btn warning" onclick="showChangelogEditor()">
                                 <span class="btn-icon">📝</span> New Changelog
                             </button>
-                            <button class="action-btn info" onclick="showProductEditor()">
-                                <span class="btn-icon">🛒</span> Edit Products
+                            <button class="action-btn info" onclick="showNewProductModal()">
+                                <span class="btn-icon">🛒</span> New Product
                             </button>
                             <button class="action-btn danger" onclick="clearAllCache()">
                                 <span class="btn-icon">🧹</span> Clear Cache
@@ -288,14 +276,14 @@
                             </button>
                         </div>
                     </div>
-                    
+                   
                     <div class="dashboard-card">
                         <h3>📈 Recent Activity</h3>
                         <div class="activity-feed" id="activityFeed">
                             <!-- Dynamic activity will load here -->
                         </div>
                     </div>
-                    
+                   
                     <div class="dashboard-card full-width">
                         <h3>📊 System Overview</h3>
                         <div class="system-metrics">
@@ -324,7 +312,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Content Tab -->
             <div id="contentTab" class="admin-tab" style="display: none;">
                 <div class="content-section">
@@ -348,7 +335,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Pastes Tab -->
             <div id="pastesTab" class="admin-tab" style="display: none;">
                 <div class="pastes-admin-section">
@@ -375,7 +361,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Users Tab -->
             <div id="usersTab" class="admin-tab" style="display: none;">
                 <div class="users-admin-section">
@@ -401,7 +386,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Shop Tab - FULL PRODUCT EDITOR -->
             <div id="shopTab" class="admin-tab" style="display: none;">
                 <div class="shop-admin-section">
@@ -412,11 +396,11 @@
                         <button class="control-btn warning" onclick="previewShopChanges()">👁️ Preview Changes</button>
                         <button class="control-btn secondary" onclick="exportProducts()">📊 Export Products</button>
                     </div>
-                    
+                   
                     <div class="products-grid" id="productsGrid">
                         <!-- Dynamic products editor -->
                     </div>
-                    
+                   
                     <div class="shop-analytics">
                         <h4>📈 Sales Analytics</h4>
                         <div class="analytics-grid">
@@ -444,7 +428,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- System Tab -->
             <div id="systemTab" class="admin-tab" style="display: none;">
                 <div class="system-section">
@@ -471,7 +454,7 @@
                             </div>
                             <button class="save-settings-btn" onclick="saveSecuritySettings()">Save Security Settings</button>
                         </div>
-                        
+                       
                         <div class="system-card">
                             <h4>🌐 Site Configuration</h4>
                             <div class="setting-group">
@@ -493,7 +476,7 @@
                             </div>
                             <button class="save-settings-btn" onclick="saveSiteSettings()">Save Site Settings</button>
                         </div>
-                        
+                       
                         <div class="system-card full-width">
                             <h4>📊 System Logs</h4>
                             <div class="logs-container">
@@ -518,7 +501,6 @@
             </div>
         </div>
     </div>
-
     <!-- Product Editor Modal -->
     <div class="popup" id="productEditorModal">
         <div class="popup-content product-editor-content">
@@ -581,7 +563,6 @@
             </div>
         </div>
     </div>
-
     <!-- Enhanced Confirmation Dialog -->
     <div id="confirmDialog" class="confirm-dialog">
         <div class="confirm-content">
@@ -593,10 +574,8 @@
             </div>
         </div>
     </div>
-
     <!-- Notification Container -->
     <div id="notificationContainer"></div>
-
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-content">
@@ -604,7 +583,22 @@
             <div class="loading-text" id="loadingText">Loading...</div>
         </div>
     </div>
-
+    <!-- Changelog Editor Modal -->
+    <div class="modal" id="changelogEditor">
+        <div class="modal-content">
+            <span class="close" onclick="closeChangelogEditor()">&times;</span>
+            <h2 class="modal-title">📝 ${editingChangelogId ? 'Edit' : 'New'} Changelog</h2>
+            <form id="changelogForm">
+                <div class="form-group">
+                    <input type="text" id="changelogTitle" placeholder="Changelog Title (e.g. Version 2.1.0 - Major Update)" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="changelogContent" rows="8" placeholder="Write your changelog details here..." required></textarea>
+                </div>
+                <button type="submit" class="modal-btn full-width">Save Changelog</button>
+            </form>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -614,7 +608,6 @@
         </div>
         <div class="footer-text">© 2025 Bruno.cc - All Rights Reserved | v2.1.0 | Admin Access: 21</div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
