@@ -2507,4 +2507,469 @@ select:focus {
     border: 0;
 }
 
-/* End of Stylesheet */
+/* Add these new classes to your existing CSS after the modal styles */
+
+/* FIXED Modal Widths */
+.modal-narrow {
+    width: 400px;
+    max-width: 90vw;
+    min-width: 320px;
+}
+
+@media (max-width: 480px) {
+    .modal-narrow {
+        width: 95vw;
+        min-width: 280px;
+    }
+}
+
+/* FIXED Chat Input Container */
+.chat-input-container {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+    position: relative;
+    z-index: 2;
+    align-items: center;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-light);
+    border-radius: 25px;
+    color: var(--light);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    font-family: inherit;
+    max-width: none; /* FIXED: Remove width constraints */
+}
+
+#sendButton {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    min-width: 80px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0; /* FIXED: Prevent shrinking */
+}
+
+/* FIXED Pastes Header */
+.pastes-actions {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 2;
+    align-items: center;
+}
+
+.create-paste-btn {
+    flex: 1;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.95rem;
+    min-height: 48px;
+    font-family: inherit;
+    position: relative;
+    z-index: 2;
+    max-width: none; /* FIXED: Remove width constraints */
+}
+
+.clear-paste-btn {
+    padding: 1rem;
+    background: #666;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px; /* FIXED: Proper width */
+    font-family: inherit;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+/* FIXED Admin Panel Width */
+.admin-panel-content {
+    max-width: 95%;
+    max-height: 95vh;
+    width: 800px; /* FIXED: Narrower width */
+    min-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .admin-panel-content {
+        width: 95vw;
+        min-width: 0;
+    }
+}
+
+/* FIXED Shop Cards Width */
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* FIXED Chat Popup Width */
+.chat-popup-content {
+    width: 600px;
+    max-width: 90vw;
+    min-width: 400px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .chat-popup-content {
+        width: 95vw;
+        min-width: 0;
+    }
+}
+
+/* FIXED Pastes Popup Width */
+.pastes-popup-content {
+    width: 700px;
+    max-width: 90vw;
+    min-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .pastes-popup-content {
+        width: 95vw;
+        min-width: 0;
+    }
+}
+
+/* FIXED Shop Popup Width */
+.shop-popup-content {
+    width: 800px;
+    max-width: 90vw;
+    min-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .shop-popup-content {
+        width: 95vw;
+        min-width: 0;
+    }
+}
+
+/* FIXED Modal Content Max Width */
+.modal-content {
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 2.5rem;
+    border-radius: 25px;
+    max-width: 500px; /* FIXED: Proper max width */
+    max-height: 90vh;
+    width: 100%;
+    border: 1px solid var(--border-light);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(0, 191, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: modalSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* FIXED Form Input Widths */
+.modal input, 
+.modal textarea {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%; /* FIXED: Full width */
+    max-width: none; /* FIXED: Remove max-width */
+    box-sizing: border-box;
+}
+
+.pastes-header input,
+.pastes-header textarea {
+    width: 100% !important; /* FIXED: Force full width */
+    max-width: none !important;
+    box-sizing: border-box;
+}
+
+/* FIXED Editor Container */
+.editor-container input,
+.editor-container textarea {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+}
+
+/* FIXED Admin Grid */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* FIXED: Narrower cards */
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* FIXED Quick Actions */
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .quick-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .quick-btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* FIXED Chat Messages */
+.chat-message {
+    margin: 0.8rem 0;
+    padding: 1rem 1.2rem;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 75%; /* FIXED: Better width */
+    animation: messageSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* FIXED Paste Cards */
+.paste-card {
+    background: var(--glass);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    animation: pasteCardAppear 0.4s ease-out;
+    max-width: none; /* FIXED: Remove width constraints */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* FIXED Shop Cards */
+.shop-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 2rem;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: shopCardFloat 4s ease-in-out infinite;
+    width: 100%;
+    max-width: none; /* FIXED: Remove max width */
+    box-sizing: border-box;
+}
+
+/* FIXED Changelog Cards */
+.changelog-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    animation: cardFloat 4s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: none; /* FIXED: Remove max width */
+    box-sizing: border-box;
+}
+
+/* FIXED Feature Cards */
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.5rem 2rem;
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-light);
+    min-width: 280px; /* FIXED: Reasonable min width */
+    width: 100%; /* FIXED: Full width */
+    max-width: 320px; /* FIXED: Reasonable max width */
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: card3D 6s ease-in-out infinite;
+    box-sizing: border-box;
+}
+
+/* FIXED Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+    }
+    
+    .shop-card {
+        padding: 1.5rem;
+    }
+    
+    .changelog-card {
+        padding: 1.5rem;
+    }
+    
+    .paste-card {
+        padding: 1rem;
+    }
+    
+    .chat-message {
+        max-width: 85%;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* FIXED Button Widths */
+.modal-btn, .save-btn, .create-paste-btn, .buy-btn {
+    width: 100%; /* FIXED: Full width buttons */
+    max-width: none;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    .modal-btn, .save-btn, .create-paste-btn, .buy-btn {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* FIXED Container Max Widths */
+.header-section,
+.features,
+.changelogs-section {
+    max-width: 1200px; /* FIXED: Reasonable max width */
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .header-section,
+    .features,
+    .changelogs-section {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* FIXED Admin Section */
+.admin-section {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* FIXED Editor Actions */
+.editor-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+    align-items: center;
+}
+
+@media (max-width: 480px) {
+    .editor-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .save-btn,
+    .cancel-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
