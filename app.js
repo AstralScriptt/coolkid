@@ -8,6 +8,8 @@ class PolishedNotificationSystem {
         notif.className = `notification ${type}`;
         notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i><span>${message}</span>`;
         this.container.appendChild(notif);
+        // Force reflow for animation
+        notif.offsetHeight;
         setTimeout(() => notif.classList.add('show'), 10);
         setTimeout(() => {
             notif.classList.remove('show');
@@ -50,23 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('contactCta').addEventListener('click', () => {
         document.getElementById('contactPopup').style.display = 'flex';
         notify.show('Contact form opened.', 'success');
-    });
-
-    // Subtle Ripple Buttons
-    document.querySelectorAll('.gold-subtle-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const ripple = document.createElement('span');
-            ripple.className = 'subtle-ripple';
-            const rect = btn.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            btn.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 500);
-        });
     });
 
     // Quick Form Submit
