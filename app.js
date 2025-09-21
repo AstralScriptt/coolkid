@@ -1,93 +1,133 @@
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const app = express();
-const port = 3000;
+// script.js - Crazy Animations & Interactions
+class NotificationSystem {
+    constructor() {
+        this.container = document.getElementById('notificationContainer');
+    }
+    show(message, type = 'info', duration = 3000) {
+        const notif = document.createElement('div');
+        notif.className = `notification ${type}`;
+        notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-triangle' : 'star'}"></i><span>${message}</span>`;
+        this.container.appendChild(notif);
+        setTimeout(() => notif.classList.add('show'), 10);
+        setTimeout(() => {
+            notif.classList.remove('show');
+            setTimeout(() => notif.remove(), 500);
+        }, duration);
+        // Add confetti explosion
+        this.triggerConfetti();
+    }
+    triggerConfetti() {
+        for (let i = 0; i < 50; i++) {
+            const conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            conf.style.animationDuration = (Math.random() * 3 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 4000);
+        }
+    }
+}
+const notify = new NotificationSystem();
 
-// Middleware
-app.use(express.json());
-app.use(express.static('.'));
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // CORS for bot
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-    if (req.method === 'OPTIONS') return res.sendStatus(200);
-    next();
-});
-
-// SQLite Setup
-const db = new sqlite3.Database('keys.db');
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS keys (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        key TEXT UNIQUE,
-        userId INTEGER,
-        discordTag TEXT,
-        used BOOLEAN DEFAULT 0,
-        expires DATETIME DEFAULT (datetime('now', '+7 days'))
-    )`);
-});
-
-// Health Check (for website sync status)
-app.get('/api/health', (req, res) => res.json({ status: 'healthy', timestamp: new Date().toISOString() }));
-
-// API: Generate Key
-app.post('/api/generate-key', (req, res) => {
-    const { userId, discordTag, expiresDays = 7 } = req.body;
-    if (!userId || !discordTag) return res.status(400).json({ error: 'Missing userId or discordTag' });
-    
-    const key = Math.random().toString(36).substring(2, 15).toUpperCase();
-    const expires = new Date(Date.now() + expiresDays * 24 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
-    db.run(`INSERT INTO keys (key, userId, discordTag, expires) VALUES (?, ?, ?, ?)`, 
-           [key, userId, discordTag, expires], function(err) {
-        if (err) return res.status(500).json({ error: 'DB Insert Failed' });
-        res.json({ key, expires, message: 'Key generated and synced!' });
+// Stagger Animations on Load
+document.addEventListener('DOMContentLoaded', () => {
+    const staggers = document.querySelectorAll('.stagger-card');
+    staggers.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.style.animationPlayState = 'running';
     });
-});
 
-// API: Get All Keys
-app.get('/api/keys', (req, res) => {
-    db.all(`SELECT * FROM keys ORDER BY id DESC`, (err, rows) => {
-        if (err) return res.status(500).json({ error: 'DB Query Failed' });
-        res.json(rows || []);
+    // Hero CTA
+    document.getElementById('heroCta').addEventListener('click', (e) => {
+        e.target.classList.add('explode-btn-active');
+        setTimeout(() => e.target.classList.remove('explode-btn-active'), 600);
+        notify.show('Blasting off to glory! 🚀', 'success');
     });
-});
 
-// API: Revoke Key
-app.delete('/api/revoke-key/:id', (req, res) => {
-    const { id } = req.params;
-    db.run(`DELETE FROM keys WHERE id = ?`, [id], function(err) {
-        if (err) return res.status(500).json({ error: 'DB Delete Failed' });
-        res.json({ message: 'Key revoked and synced!' });
+    // Popup Triggers
+    document.querySelectorAll('.popup-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const popupId = trigger.dataset.popup + 'Popup';
+            document.getElementById(popupId).style.display = 'flex';
+            notify.show(`Popup exploded: ${trigger.querySelector('h3').textContent}! 💥`, 'info');
+        });
     });
-});
 
-// API: Stats (Enhanced with health)
-app.get('/api/stats', (req, res) => {
-    db.get(`SELECT 
-        COUNT(*) as total,
-        SUM(CASE WHEN used = 1 THEN 1 ELSE 0 END) as used,
-        SUM(CASE WHEN used = 0 AND expires > datetime('now') THEN 1 ELSE 0 END) as active,
-        SUM(CASE WHEN expires <= datetime('now') THEN 1 ELSE 0 END) as expired
-        FROM keys`, (err, row) => {
-        if (err) return res.status(500).json({ error: 'DB Stats Failed' });
-        res.json({ ... (row || { total: 0, used: 0, active: 0, expired: 0 }), synced: true });
+    // Close Popups
+    document.querySelectorAll('.close-popup').forEach(close => {
+        close.addEventListener('click', (e) => {
+            e.target.closest('.popup-overlay').style.display = 'none';
+        });
     });
-});
 
-// Public Validate (Unchanged)
-app.get('/validate', (req, res) => {
-    const { key, userId } = req.query;
-    if (!key || !userId) return res.status(400).json({ error: 'Missing key or userId' });
-    
-    db.get(`SELECT * FROM keys WHERE key = ? AND userId = ? AND used = 0 AND expires > datetime('now')`, [key, parseInt(userId)], (err, row) => {
-        if (err || !row) return res.json({ valid: false });
-        
-        db.run(`UPDATE keys SET used = 1 WHERE key = ?`, [key]);
-        res.json({ valid: true, discordTag: row.discordTag });
+    // Contact CTA
+    document.getElementById('contactCta').addEventListener('click', () => {
+        document.getElementById('contactPopup').style.display = 'flex';
+        notify.show('Contact portal opened – Let's make magic! ✨', 'success');
     });
+
+    // Placeholder Button Ripples
+    document.querySelectorAll('.ripple-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            const rect = btn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+            notify.show('Ripple activated – Feeling the waves! 🌊', 'info');
+        });
+    });
+
+    // Quick Form Submit
+    document.querySelector('.quick-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        notify.show('Message blasted to Fancy HQ! Response incoming... 📡', 'success');
+        e.target.reset();
+        e.target.closest('.popup-overlay').style.display = 'none';
+    });
+
+    // Continuous Morphing
+    setInterval(() => {
+        document.querySelectorAll('.morph-shape').forEach(shape => {
+            shape.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        });
+    }, 5000);
+
+    // Initial Load Explosion
+    notify.show('Welcome to Fancy – Prepare for digital insanity! 🎉', 'success');
 });
 
-app.listen(port, () => {
-    console.log(`🌟 Enhanced Keysys at http://localhost:${port} – Synced & Ready!`);
-});
+// CSS Classes for Explosions (add to JS-triggered elements)
+const style = document.createElement('style');
+style.textContent = `
+    .explode-btn-active {
+        animation: explode 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    @keyframes explode {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.5) rotate(180deg); }
+        100% { transform: scale(1) rotate(360deg); }
+    }
+    .confetti {
+        position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 1500;
+        animation: confetti-fall 3s linear forwards;
+    }
+    @keyframes confetti-fall {
+        to { transform: translateY(100vh) rotate(1080deg); opacity: 0; }
+    }
+    .ripple {
+        position: absolute; border-radius: 50%; background: rgba(255,255,255,0.6);
+        transform: scale(0); animation: ripple-effect 0.6s linear;
+    }
+    @keyframes ripple-effect {
+        to { transform: scale(4); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
