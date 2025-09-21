@@ -74,11 +74,6 @@ body {
 .gold-growth-icon { color: #DAA520; }
 .gold-rocket-icon { color: #B8860B; }
 .why-card h3 { font-family: 'Orbitron', monospace; color: #fff; margin-bottom: 0.5rem; font-size: 1.4rem; }
-.placeholder-btn {
-    margin-top: 1rem; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #FFD700, #FFA500); border: none;
-    border-radius: 25px; color: #000; font-weight: 600; cursor: pointer; transition: all 0.3s;
-}
-.placeholder-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
 
 /* Services Section - Compact Popup Triggers */
 .services-section { padding: 2rem 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(255,215,0,0.05)); }
@@ -96,19 +91,6 @@ body {
 .service-card i { font-size: 3rem; color: #FFD700; margin-bottom: 1rem; transition: transform 0.3s; }
 .service-card:hover i { transform: rotate(10deg); }
 .service-card h3 { color: #fff; margin-bottom: 0.5rem; }
-
-/* Testimonials - Subtle Gold Floats */
-.testimonials-section { padding: 2rem 0; background: rgba(0,0,0,0.8); }
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-.testimonial-card {
-    background: rgba(255,215,0,0.1); padding: 1.5rem; border-radius: 15px; border-left: 3px solid #FFD700;
-    animation: subtle-float-card 4s ease-in-out infinite;
-}
-@keyframes subtle-float-card {
-    0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); }
-}
-.testimonial-card p { font-style: italic; margin-bottom: 1rem; color: #e0e0e0; }
-.testimonial-card h4 { color: #FFD700; text-align: right; }
 
 /* Contact Section */
 .contact-section { padding: 2rem 0; text-align: center; background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1)); }
@@ -149,20 +131,21 @@ body {
 }
 .gold-subtle-btn:active::after { animation-play-state: running; }
 
-/* Polished Notifications */
+/* Polished Notifications - Sliding Animation */
 #polishedNotificationContainer {
-    position: fixed; top: 1rem; right: 1rem; z-index: 2000; display: flex; flex-direction: column; gap: 1rem;
+    position: fixed; top: 1rem; right: -400px; z-index: 2000; display: flex; flex-direction: column; gap: 1rem;
 }
 .notification {
     background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(255,165,0,0.9)); padding: 1rem 1.5rem; border-radius: 15px;
     display: flex; align-items: center; gap: 1rem; min-width: 300px; box-shadow: 0 10px 30px rgba(255,215,0,0.3);
     transform: translateX(100%); opacity: 0; transition: all 0.4s ease-out;
+    right: 1rem;
 }
 .notification.show {
     transform: translateX(0); opacity: 1;
-    animation: polished-bounce 0.5s ease-out;
+    animation: polished-slide-bounce 0.5s ease-out;
 }
-@keyframes polished-bounce {
+@keyframes polished-slide-bounce {
     0% { transform: translateX(100%); }
     60% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
@@ -180,9 +163,9 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .hero-title { font-size: 2.5rem; }
-    .why-grid, .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
-    #polishedNotificationContainer { right: 0.5rem; left: 0.5rem; top: 0.5rem; }
-    .notification { min-width: auto; }
+    .why-grid, .services-grid { grid-template-columns: 1fr; }
+    #polishedNotificationContainer { right: -100%; }
+    .notification { min-width: auto; right: 0.5rem; }
     .cta-btn { display: block; margin: 0.5rem 0; }
 }
 @media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
