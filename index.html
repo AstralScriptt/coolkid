@@ -3,120 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Keysys Dashboard</title>
+    <title>Keysys Neon</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="particles"></div> <!-- CSS Particle BG -->
+
     <div class="login-overlay" id="loginOverlay">
         <div class="login-card">
-            <h2>Admin Login</h2>
+            <h2>Enter Token</h2>
             <form id="loginForm">
-                <input type="text" id="username" placeholder="Username (admin)" value="admin">
-                <input type="password" id="password" placeholder="Password">
-                <button type="submit">Enter Dashboard</button>
+                <input type="password" id="token" placeholder="Token (e.g., 1907)" maxlength="4">
+                <button type="submit">Access Dashboard</button>
             </form>
+            <p class="hint">Hint: It's a four-digit year.</p>
         </div>
     </div>
 
     <div class="dashboard" id="dashboard" style="display: none;">
-        <header>
-            <h1>Keysys Pro</h1>
+        <aside class="sidebar">
+            <h1>Keysys Neon</h1>
             <nav>
-                <button class="tab-btn active" data-tab="generator">Generator</button>
-                <button class="tab-btn" data-tab="stats">Statistics</button>
-                <button class="tab-btn" data-tab="management">Key Management</button>
+                <button class="nav-btn active" data-tab="generator">🎯 Generator</button>
+                <button class="nav-btn" data-tab="stats">📊 Statistics</button>
+                <button class="nav-btn" data-tab="management">🔑 Key Management</button>
             </nav>
-        </header>
+        </aside>
 
         <main>
+            <header class="main-header">
+                <h2 id="tabTitle">Generator</h2>
+                <div class="search-bar" id="searchBar" style="display: none;">
+                    <input type="text" id="searchInput" placeholder="Search keys...">
+                </div>
+            </header>
+
             <!-- Generator Tab -->
             <section id="generator" class="tab-content active">
-                <h2>Generate New Key</h2>
-                <form id="keyForm">
-                    <label for="userId">Roblox User ID:</label>
-                    <input type="number" id="userId" required>
-                    
-                    <label for="discordTag">Discord Tag:</label>
-                    <input type="text" id="discordTag" placeholder="user#1234" required>
-                    
-                    <label for="expiresDays">Expiration (Days):</label>
-                    <input type="number" id="expiresDays" value="7" min="1" max="365">
-                    
-                    <button type="submit">Generate Key</button>
-                </form>
-                <div id="genResult" class="toast"></div>
+                <div class="card">
+                    <h3>Generate Secure Key</h3>
+                    <form id="keyForm">
+                        <label for="userId">Roblox User ID:</label>
+                        <input type="number" id="userId" required>
+                        
+                        <label for="discordTag">Discord Tag:</label>
+                        <input type="text" id="discordTag" placeholder="user#1234" required>
+                        
+                        <label for="expiresDays">Expiration (Days):</label>
+                        <input type="number" id="expiresDays" value="7" min="1" max="365">
+                        
+                        <button type="submit">Generate</button>
+                    </form>
+                    <div id="genResult" class="toast"></div>
+                </div>
             </section>
 
             <!-- Stats Tab -->
             <section id="stats" class="tab-content">
-                <h2>System Statistics</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <h3>Total Keys</h3>
+                        <div class="progress-ring" data-value="0" data-max="100">
+                            <div class="progress-ring__circle"></div>
+                        </div>
                         <p id="totalKeys" class="stat-value">0</p>
-                        <div class="stat-bar full"></div>
                     </div>
                     <div class="stat-card">
-                        <h3>Active Keys</h3>
+                        <h3>Active</h3>
+                        <div class="progress-ring green" data-value="0" data-max="100">
+                            <div class="progress-ring__circle"></div>
+                        </div>
                         <p id="activeKeys" class="stat-value">0</p>
-                        <div class="stat-bar" id="activeBar"></div>
                     </div>
                     <div class="stat-card">
-                        <h3>Used Keys</h3>
+                        <h3>Used</h3>
+                        <div class="progress-ring yellow" data-value="0" data-max="100">
+                            <div class="progress-ring__circle"></div>
+                        </div>
                         <p id="usedKeys" class="stat-value">0</p>
-                        <div class="stat-bar" id="usedBar"></div>
                     </div>
                     <div class="stat-card">
-                        <h3>Expired Keys</h3>
+                        <h3>Expired</h3>
+                        <div class="progress-ring red" data-value="0" data-max="100">
+                            <div class="progress-ring__circle"></div>
+                        </div>
                         <p id="expiredKeys" class="stat-value">0</p>
-                        <div class="stat-bar" id="expiredBar"></div>
                     </div>
                 </div>
-                <button id="exportCSV">Export Stats as CSV</button>
+                <button id="exportCSV">Export Stats CSV</button>
                 <div id="statsResult" class="toast"></div>
             </section>
 
             <!-- Management Tab -->
             <section id="management" class="tab-content">
-                <h2>Manage Keys</h2>
-                <div id="keysList"></div>
-                <div id="mgmtResult" class="toast"></div>
+                <div class="card">
+                    <h3>Key Vault</h3>
+                    <div id="keysList"></div>
+                    <div id="mgmtResult" class="toast"></div>
+                </div>
             </section>
         </main>
     </div>
 
     <script>
-        const AUTH = 'Basic ' + btoa('admin:admin123');
+        const VALID_TOKEN = '1907';
         const API_BASE = '/api';
 
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        // Token Login (Client-Side)
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            try {
-                const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: 'Basic ' + btoa(user + ':' + pass) } });
-                if (res.ok) {
-                    document.getElementById('loginOverlay').style.display = 'none';
-                    document.getElementById('dashboard').style.display = 'block';
-                    loadStats();
-                    loadKeys();
-                } else {
-                    alert('Invalid login');
-                }
-            } catch (err) {
-                alert('Login error');
+            const token = document.getElementById('token').value;
+            if (token === VALID_TOKEN) {
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+                loadStats();
+                loadKeys();
+                confettiBurst(); // Welcome effect
+            } else {
+                alert('Invalid token! Try again.');
+                document.getElementById('token').value = '';
             }
         });
 
         // Tab Switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.search-bar').forEach(s => s.style.display = 'none');
                 btn.classList.add('active');
-                document.getElementById(btn.dataset.tab).classList.add('active');
+                const tab = document.getElementById(btn.dataset.tab);
+                tab.classList.add('active');
+                document.getElementById('tabTitle').textContent = btn.textContent;
+                if (btn.dataset.tab === 'management') {
+                    document.getElementById('searchBar').style.display = 'block';
+                }
+                if (btn.dataset.tab === 'generator') loadKeys(); // Refresh on switch
             });
         });
 
@@ -130,14 +153,15 @@
             };
             const res = await fetch(`${API_BASE}/generate-key`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: AUTH },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
             const data = await res.json();
             const result = document.getElementById('genResult');
             if (data.key) {
-                result.innerHTML = `<p>Key: <strong>${data.key}</strong> (Expires: ${data.expires})</p>`;
+                result.innerHTML = `<p>Key: <strong>${data.key}</strong><br>Expires: ${data.expires}</p>`;
                 result.className = 'toast success';
+                confettiBurst();
                 loadStats();
                 loadKeys();
             } else {
@@ -147,69 +171,94 @@
             setTimeout(() => result.classList.add('show'), 10);
         });
 
-        // Stats Loader
+        // Stats Loader with Progress Rings
         async function loadStats() {
-            const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: AUTH } });
+            const res = await fetch(`${API_BASE}/stats`);
             const stats = await res.json();
             document.getElementById('totalKeys').textContent = stats.total;
             document.getElementById('activeKeys').textContent = stats.active;
             document.getElementById('usedKeys').textContent = stats.used;
             document.getElementById('expiredKeys').textContent = stats.expired;
 
-            // Update bars (percentage of total)
-            const updateBar = (id, val) => {
-                const bar = document.getElementById(id);
-                const perc = stats.total > 0 ? (val / stats.total * 100) : 0;
-                bar.style.width = perc + '%';
-                bar.dataset.value = val;
-            };
-            updateBar('activeBar', stats.active);
-            updateBar('usedBar', stats.used);
-            updateBar('expiredBar', stats.expired);
+            // Update progress rings
+            updateProgressRing('total', stats.total, stats.total);
+            updateProgressRing('active', stats.active, stats.total);
+            updateProgressRing('used', stats.used, stats.total);
+            updateProgressRing('expired', stats.expired, stats.total);
+        }
+
+        function updateProgressRing(id, value, max) {
+            const ring = document.querySelector(`[data-value="${id}"] .progress-ring__circle`);
+            const perc = max > 0 ? (value / max * 100) : 0;
+            ring.style.background = `conic-gradient(#00ff88 ${perc}%, #333 ${perc}%)`;
         }
 
         // Export CSV
         document.getElementById('exportCSV').addEventListener('click', async () => {
-            const res = await fetch(`${API_BASE}/stats`, { headers: { Authorization: AUTH } });
+            const res = await fetch(`${API_BASE}/stats`);
             const stats = await res.json();
             const csv = `Metric,Value\nTotal Keys,${stats.total}\nActive,${stats.active}\nUsed,${stats.used}\nExpired,${stats.expired}`;
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'keys-stats.csv'; a.click();
+            a.href = url; a.download = 'neon-stats.csv'; a.click();
         });
 
-        // Keys Loader
-        async function loadKeys() {
-            const res = await fetch(`${API_BASE}/keys`, { headers: { Authorization: AUTH } });
-            const keys = await res.json();
+        // Keys Loader with Search
+        async function loadKeys(filter = '') {
+            const res = await fetch(`${API_BASE}/keys`);
+            let keys = await res.json();
+            if (filter) {
+                keys = keys.filter(k => k.key.toLowerCase().includes(filter.toLowerCase()) || k.discordTag.toLowerCase().includes(filter.toLowerCase()));
+            }
             const list = document.getElementById('keysList');
-            list.innerHTML = keys.map(key => `
-                <div class="key-card ${key.used ? 'used' : key.expires < new Date().toISOString().slice(0,19).replace('T',' ') ? 'expired' : 'active'}">
-                    <div class="key-info">
-                        <strong>${key.key}</strong><br>
-                        UserID: ${key.userId} | Discord: ${key.discordTag}<br>
-                        Expires: ${key.expires} | Status: ${key.used ? 'Used' : (key.expires < new Date().toISOString().slice(0,19).replace('T',' ') ? 'Expired' : 'Active')}
+            list.innerHTML = keys.map(key => {
+                const now = new Date().toISOString().slice(0,19).replace('T',' ');
+                const status = key.used ? 'Used' : (key.expires < now ? 'Expired' : 'Active');
+                const statusClass = key.used ? 'used' : (key.expires < now ? 'expired' : 'active');
+                return `
+                    <div class="key-card ${statusClass}">
+                        <div class="key-info">
+                            <strong>${key.key}</strong><br>
+                            UserID: ${key.userId} | Discord: ${key.discordTag}<br>
+                            Expires: ${key.expires} | Status: <span class="status">${status}</span>
+                        </div>
+                        <button onclick="revokeKey(${key.id})" class="revoke-btn">Revoke</button>
                     </div>
-                    <button onclick="revokeKey(${key.id})" class="revoke-btn">Revoke</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
+
+        // Search Handler
+        document.getElementById('searchInput').addEventListener('input', (e) => loadKeys(e.target.value));
 
         // Revoke Key
         window.revokeKey = async (id) => {
-            const res = await fetch(`${API_BASE}/revoke-key/${id}`, {
-                method: 'DELETE',
-                headers: { Authorization: AUTH }
-            });
+            const res = await fetch(`${API_BASE}/revoke-key/${id}`, { method: 'DELETE' });
             const data = await res.json();
             const result = document.getElementById('mgmtResult');
             result.innerHTML = `<p>${data.message}</p>`;
             result.className = 'toast success';
             setTimeout(() => result.classList.add('show'), 10);
-            loadKeys();
+            loadKeys(document.getElementById('searchInput').value);
             loadStats();
         };
+
+        // Simple Confetti (Canvas)
+        function confettiBurst() {
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            // Basic confetti logic (rectangles falling)
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    ctx.fillRect(Math.random() * canvas.width, 0, 10, 10);
+                }, i * 50);
+            }
+            setTimeout(() => canvas.remove(), 2000);
+        }
     </script>
 </body>
 </html>
