@@ -6,22 +6,7 @@ const port = 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static('.'));
-app.use((req, res, next) => {
-    if (req.path.startsWith('/api/') && !req.headers.authorization) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-    next();
-});
-
-// Simple auth middleware (hardcoded for demo; replace with real auth)
-const authenticate = (req, res, next) => {
-    const auth = req.headers.authorization;
-    if (auth !== 'Basic ' + Buffer.from('admin:admin123').toString('base64')) {
-        return res.status(401).json({ error: 'Invalid credentials' });
-    }
-    next();
-};
+app.use(express.static('.')); // Serve index.html, style.css
 
 // SQLite Setup
 const db = new sqlite3.Database('keys.db');
@@ -36,10 +21,7 @@ db.serialize(() => {
     )`);
 });
 
-// Auth-protected Routes
-app.use('/api', authenticate);
-
-// API: Generate Key
+// API: Generate Key (public for simplicity; add token check if needed)
 app.post('/api/generate-key', (req, res) => {
     const { userId, discordTag, expiresDays = 7 } = req.body;
     if (!userId || !discordTag) return res.status(400).json({ error: 'Missing fields' });
@@ -53,7 +35,7 @@ app.post('/api/generate-key', (req, res) => {
     });
 });
 
-// API: Get All Keys (for management)
+// API: Get All Keys
 app.get('/api/keys', (req, res) => {
     db.all(`SELECT * FROM keys ORDER BY id DESC`, (err, rows) => {
         if (err) return res.status(500).json({ error: 'DB Error' });
@@ -83,7 +65,7 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
-// Public API: Validate Key (no auth needed for Roblox)
+// Public API: Validate Key (for Roblox)
 app.get('/validate', (req, res) => {
     const { key, userId } = req.query;
     if (!key || !userId) return res.status(400).json({ error: 'Missing key or userId' });
@@ -96,31 +78,6 @@ app.get('/validate', (req, res) => {
     });
 });
 
-// Serve login page if no auth (simple redirect for demo)
-app.get('/', (req, res) => {
-    if (!req.headers.authorization) {
-        res.send(`
-            <form action="/login" method="POST">
-                <input type="text" name="user" placeholder="Username" value="admin">
-                <input type="password" name="pass" placeholder="Password">
-                <button type="submit">Login</button>
-            </form>
-            <script>
-                document.querySelector('form').onsubmit = () => {
-                    const user = document.querySelector('[name="user"]').value;
-                    const pass = document.querySelector('[name="pass"]').value;
-                    fetch('/api/stats', { headers: { Authorization: 'Basic ' + btoa(user + ':' + pass) } })
-                        .then(r => r.ok ? location.href = '/dashboard.html' : alert('Invalid login'))
-                        .catch(() => alert('Error'));
-                    return false;
-                };
-            </script>
-        `);
-    } else {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    }
-});
-
 app.listen(port, () => {
-    console.log(`Advanced Server running at http://localhost:${port}`);
+    console.log(`Enhanced Server running at http://localhost:${port}`);
 });
