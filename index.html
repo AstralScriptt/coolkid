@@ -3,147 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keysys Neon</title>
+    <title>Keysys Neon Ultimate</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="particles"></div> <!-- CSS Particle BG -->
+    <div class="particles-bg"></div>
 
     <div class="login-overlay" id="loginOverlay">
         <div class="login-card">
-            <h2>Enter Token</h2>
+            <i class="fas fa-key icon-glow"></i>
+            <h2>Enter Access Token</h2>
             <form id="loginForm">
-                <input type="password" id="token" placeholder="Token (e.g., 1907)" maxlength="4">
-                <button type="submit">Access Dashboard</button>
+                <input type="password" id="token" placeholder="Token (e.g., 1907)" maxlength="4" aria-label="Access Token">
+                <button type="submit"><i class="fas fa-arrow-right"></i> Unlock</button>
             </form>
-            <p class="hint">Hint: It's a four-digit year.</p>
+            <p class="hint">A four-digit portal key awaits.</p>
         </div>
     </div>
 
     <div class="dashboard" id="dashboard" style="display: none;">
         <aside class="sidebar">
-            <h1>Keysys Neon</h1>
-            <nav>
-                <button class="nav-btn active" data-tab="generator">🎯 Generator</button>
-                <button class="nav-btn" data-tab="stats">📊 Statistics</button>
-                <button class="nav-btn" data-tab="management">🔑 Key Management</button>
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Keysys Neon</h1>
+            </div>
+            <nav aria-label="Main Navigation">
+                <button class="nav-btn active" data-tab="generator" aria-current="true">
+                    <i class="fas fa-magic"></i> Generator
+                </button>
+                <button class="nav-btn" data-tab="stats">
+                    <i class="fas fa-chart-line"></i> Statistics
+                </button>
+                <button class="nav-btn" data-tab="management">
+                    <i class="fas fa-vault"></i> Key Vault
+                </button>
             </nav>
+            <div class="sidebar-footer">
+                <button id="quickGen" class="fab"><i class="fas fa-plus"></i></button>
+            </div>
         </aside>
 
         <main>
             <header class="main-header">
-                <h2 id="tabTitle">Generator</h2>
-                <div class="search-bar" id="searchBar" style="display: none;">
-                    <input type="text" id="searchInput" placeholder="Search keys...">
+                <div class="header-left">
+                    <h2 id="tabTitle"><i class="fas fa-magic"></i> Generator</h2>
+                </div>
+                <div class="header-right">
+                    <div class="search-container" id="searchContainer" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search vault..." aria-label="Search keys">
+                    </div>
                 </div>
             </header>
 
             <!-- Generator Tab -->
-            <section id="generator" class="tab-content active">
-                <div class="card">
-                    <h3>Generate Secure Key</h3>
-                    <form id="keyForm">
-                        <label for="userId">Roblox User ID:</label>
-                        <input type="number" id="userId" required>
-                        
-                        <label for="discordTag">Discord Tag:</label>
-                        <input type="text" id="discordTag" placeholder="user#1234" required>
-                        
-                        <label for="expiresDays">Expiration (Days):</label>
-                        <input type="number" id="expiresDays" value="7" min="1" max="365">
-                        
-                        <button type="submit">Generate</button>
+            <section id="generator" class="tab-content active" role="tabpanel">
+                <div class="hero-card">
+                    <h3><i class="fas fa-sparkles"></i> Forge a New Key</h3>
+                    <form id="keyForm" aria-labelledby="gen-title">
+                        <div class="input-group">
+                            <label for="userId">Roblox User ID</label>
+                            <input type="number" id="userId" required aria-required="true">
+                        </div>
+                        <div class="input-group">
+                            <label for="discordTag">Discord Tag</label>
+                            <input type="text" id="discordTag" placeholder="user#1234" required aria-required="true">
+                        </div>
+                        <div class="input-group">
+                            <label for="expiresDays">Expiration Days</label>
+                            <input type="number" id="expiresDays" value="7" min="1" max="365">
+                        </div>
+                        <button type="submit" class="btn-primary"><i class="fas fa-key"></i> Generate Secure Key</button>
                     </form>
-                    <div id="genResult" class="toast"></div>
                 </div>
             </section>
 
             <!-- Stats Tab -->
-            <section id="stats" class="tab-content">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Keys</h3>
-                        <div class="progress-ring" data-value="0" data-max="100">
-                            <div class="progress-ring__circle"></div>
+            <section id="stats" class="tab-content" role="tabpanel">
+                <div class="stats-hero">
+                    <h3><i class="fas fa-analytics"></i> System Pulse</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card" data-stat="total">
+                            <i class="fas fa-layer-group icon-large"></i>
+                            <h4>Total Keys</h4>
+                            <div class="progress-ring" id="totalRing">
+                                <svg class="progress-svg" viewBox="0 0 36 36">
+                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
+                                </svg>
+                            </div>
+                            <p class="stat-value" id="totalKeys">0</p>
                         </div>
-                        <p id="totalKeys" class="stat-value">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Active</h3>
-                        <div class="progress-ring green" data-value="0" data-max="100">
-                            <div class="progress-ring__circle"></div>
+                        <div class="stat-card active" data-stat="active">
+                            <i class="fas fa-clock icon-large"></i>
+                            <h4>Active</h4>
+                            <div class="progress-ring green" id="activeRing">
+                                <svg class="progress-svg" viewBox="0 0 36 36">
+                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
+                                </svg>
+                            </div>
+                            <p class="stat-value" id="activeKeys">0</p>
                         </div>
-                        <p id="activeKeys" class="stat-value">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Used</h3>
-                        <div class="progress-ring yellow" data-value="0" data-max="100">
-                            <div class="progress-ring__circle"></div>
+                        <div class="stat-card used" data-stat="used">
+                            <i class="fas fa-check-circle icon-large"></i>
+                            <h4>Used</h4>
+                            <div class="progress-ring yellow" id="usedRing">
+                                <svg class="progress-svg" viewBox="0 0 36 36">
+                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
+                                </svg>
+                            </div>
+                            <p class="stat-value" id="usedKeys">0</p>
                         </div>
-                        <p id="usedKeys" class="stat-value">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Expired</h3>
-                        <div class="progress-ring red" data-value="0" data-max="100">
-                            <div class="progress-ring__circle"></div>
+                        <div class="stat-card expired" data-stat="expired">
+                            <i class="fas fa-exclamation-triangle icon-large"></i>
+                            <h4>Expired</h4>
+                            <div class="progress-ring red" id="expiredRing">
+                                <svg class="progress-svg" viewBox="0 0 36 36">
+                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
+                                </svg>
+                            </div>
+                            <p class="stat-value" id="expiredKeys">0</p>
                         </div>
-                        <p id="expiredKeys" class="stat-value">0</p>
                     </div>
+                    <button id="exportCSV" class="btn-secondary"><i class="fas fa-download"></i> Export Pulse Data</button>
                 </div>
-                <button id="exportCSV">Export Stats CSV</button>
-                <div id="statsResult" class="toast"></div>
             </section>
 
             <!-- Management Tab -->
-            <section id="management" class="tab-content">
-                <div class="card">
-                    <h3>Key Vault</h3>
-                    <div id="keysList"></div>
-                    <div id="mgmtResult" class="toast"></div>
+            <section id="management" class="tab-content" role="tabpanel">
+                <div class="vault-grid">
+                    <h3><i class="fas fa-database"></i> Secure Vault</h3>
+                    <div id="keysList" class="keys-grid"></div>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- Custom Toast Container -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
     <script>
+        class CustomToast {
+            constructor() {
+                this.container = document.getElementById('toastContainer');
+            }
+            show(message, type = 'info', duration = 4000) {
+                const toast = document.createElement('div');
+                toast.className = `custom-toast ${type}`;
+                toast.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                    <div class="toast-progress"></div>
+                `;
+                this.container.appendChild(toast);
+
+                // Animate in
+                setTimeout(() => toast.classList.add('show'), 10);
+
+                // Progress bar animation
+                const progress = toast.querySelector('.toast-progress');
+                progress.style.animationDuration = `${duration}ms`;
+
+                // Auto dismiss
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, duration);
+            }
+        }
+
+        const toast = new CustomToast();
         const VALID_TOKEN = '1907';
         const API_BASE = '/api';
 
-        // Token Login (Client-Side)
+        // Token Login
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const token = document.getElementById('token').value;
             if (token === VALID_TOKEN) {
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'flex';
+                document.getElementById('loginOverlay').classList.add('fade-out');
+                setTimeout(() => {
+                    document.getElementById('loginOverlay').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'flex';
+                    document.getElementById('dashboard').classList.add('fade-in');
+                }, 500);
+                epicConfetti();
                 loadStats();
                 loadKeys();
-                confettiBurst(); // Welcome effect
+                toast.show('Welcome to Keysys Neon! Access granted.', 'success');
             } else {
-                alert('Invalid token! Try again.');
+                document.getElementById('token').classList.add('shake');
+                setTimeout(() => document.getElementById('token').classList.remove('shake'), 500);
+                toast.show('Invalid token. Portal denied.', 'error', 3000);
                 document.getElementById('token').value = '';
             }
         });
 
-        // Tab Switching
-        document.querySelectorAll('.nav-btn').forEach(btn => {
+        // Tab Switching with Stagger
+        document.querySelectorAll('.nav-btn').forEach((btn, index) => {
+            btn.style.animationDelay = `${index * 0.1}s`;
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.search-bar').forEach(s => s.style.display = 'none');
+                document.getElementById('searchContainer').style.display = 'none';
                 btn.classList.add('active');
                 const tab = document.getElementById(btn.dataset.tab);
                 tab.classList.add('active');
-                document.getElementById('tabTitle').textContent = btn.textContent;
+                document.getElementById('tabTitle').innerHTML = btn.innerHTML;
                 if (btn.dataset.tab === 'management') {
-                    document.getElementById('searchBar').style.display = 'block';
+                    document.getElementById('searchContainer').style.display = 'flex';
+                    loadKeys(document.getElementById('searchInput').value);
                 }
-                if (btn.dataset.tab === 'generator') loadKeys(); // Refresh on switch
+                // Stagger child elements
+                const children = tab.querySelectorAll('.stat-card, .key-card, .input-group');
+                children.forEach((child, i) => {
+                    child.style.animationDelay = `${i * 0.05}s`;
+                    child.classList.add('stagger-in');
+                });
             });
         });
 
-        // Generator
+        // Generator Form
         document.getElementById('keyForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = {
@@ -151,46 +232,59 @@
                 discordTag: document.getElementById('discordTag').value,
                 expiresDays: document.getElementById('expiresDays').value
             };
-            const res = await fetch(`${API_BASE}/generate-key`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-            const data = await res.json();
-            const result = document.getElementById('genResult');
-            if (data.key) {
-                result.innerHTML = `<p>Key: <strong>${data.key}</strong><br>Expires: ${data.expires}</p>`;
-                result.className = 'toast success';
-                confettiBurst();
-                loadStats();
-                loadKeys();
-            } else {
-                result.innerHTML = `<p>Error: ${data.error}</p>`;
-                result.className = 'toast error';
+            try {
+                const res = await fetch(`${API_BASE}/generate-key`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const data = await res.json();
+                if (data.key) {
+                    toast.show(`Key Forged: <strong>${data.key}</strong><br>Expires: ${data.expires}`, 'success');
+                    epicConfetti();
+                    document.getElementById('keyForm').reset();
+                    loadStats();
+                    loadKeys();
+                } else {
+                    toast.show(`Forge Failed: ${data.error}`, 'error');
+                }
+            } catch (err) {
+                toast.show('Network glitch. Try again.', 'error');
             }
-            setTimeout(() => result.classList.add('show'), 10);
         });
 
-        // Stats Loader with Progress Rings
+        // Quick Gen FAB
+        document.getElementById('quickGen').addEventListener('click', () => {
+            // Prompt for quick input or open modal – for now, alert placeholder
+            const userId = prompt('Quick Roblox User ID:');
+            if (userId) {
+                const discordTag = prompt('Discord Tag:');
+                if (discordTag) {
+                    document.getElementById('userId').value = userId;
+                    document.getElementById('discordTag').value = discordTag;
+                    document.getElementById('keyForm').dispatchEvent(new Event('submit'));
+                }
+            }
+        });
+
+        // Stats Loader with SVG Progress
         async function loadStats() {
             const res = await fetch(`${API_BASE}/stats`);
             const stats = await res.json();
-            document.getElementById('totalKeys').textContent = stats.total;
-            document.getElementById('activeKeys').textContent = stats.active;
-            document.getElementById('usedKeys').textContent = stats.used;
-            document.getElementById('expiredKeys').textContent = stats.expired;
-
-            // Update progress rings
-            updateProgressRing('total', stats.total, stats.total);
-            updateProgressRing('active', stats.active, stats.total);
-            updateProgressRing('used', stats.used, stats.total);
-            updateProgressRing('expired', stats.expired, stats.total);
-        }
-
-        function updateProgressRing(id, value, max) {
-            const ring = document.querySelector(`[data-value="${id}"] .progress-ring__circle`);
-            const perc = max > 0 ? (value / max * 100) : 0;
-            ring.style.background = `conic-gradient(#00ff88 ${perc}%, #333 ${perc}%)`;
+            ['total', 'active', 'used', 'expired'].forEach(key => {
+                const count = stats[key];
+                const elem = document.getElementById(`${key}Keys`);
+                const ring = document.getElementById(`${key}Ring`);
+                if (elem) elem.textContent = count;
+                if (ring) {
+                    const path = ring.querySelector('.progress-path');
+                    const max = stats.total || 1;
+                    const perc = (count / max) * 100;
+                    const circumference = 2 * Math.PI * 16.5; // Adjusted for viewBox
+                    path.style.strokeDasharray = `${circumference} ${circumference}`;
+                    path.style.strokeDashoffset = circumference * (1 - perc / 100);
+                }
+            });
         }
 
         // Export CSV
@@ -201,63 +295,77 @@
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'neon-stats.csv'; a.click();
+            a.href = url; a.download = 'neon-pulse.csv'; a.click();
+            toast.show('Pulse data exported to CSV.', 'success');
         });
 
-        // Keys Loader with Search
+        // Keys Loader
         async function loadKeys(filter = '') {
             const res = await fetch(`${API_BASE}/keys`);
             let keys = await res.json();
-            if (filter) {
-                keys = keys.filter(k => k.key.toLowerCase().includes(filter.toLowerCase()) || k.discordTag.toLowerCase().includes(filter.toLowerCase()));
-            }
-            const list = document.getElementById('keysList');
-            list.innerHTML = keys.map(key => {
-                const now = new Date().toISOString().slice(0,19).replace('T',' ');
-                const status = key.used ? 'Used' : (key.expires < now ? 'Expired' : 'Active');
-                const statusClass = key.used ? 'used' : (key.expires < now ? 'expired' : 'active');
+            if (filter) keys = keys.filter(k => 
+                k.key.toLowerCase().includes(filter.toLowerCase()) || k.discordTag.toLowerCase().includes(filter.toLowerCase())
+            );
+            const grid = document.getElementById('keysList');
+            grid.innerHTML = keys.map(key => {
+                const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                const isExpired = key.expires < now;
+                const status = key.used ? 'Used' : isExpired ? 'Expired' : 'Active';
+                const statusClass = key.used ? 'used' : isExpired ? 'expired' : 'active';
                 return `
-                    <div class="key-card ${statusClass}">
-                        <div class="key-info">
-                            <strong>${key.key}</strong><br>
-                            UserID: ${key.userId} | Discord: ${key.discordTag}<br>
-                            Expires: ${key.expires} | Status: <span class="status">${status}</span>
+                    <div class="key-card ${statusClass}" data-key="${key.key}">
+                        <div class="key-header">
+                            <i class="fas fa-key"></i>
+                            <div>
+                                <strong>${key.key}</strong>
+                                <span class="status-badge ${statusClass}">${status}</span>
+                            </div>
                         </div>
-                        <button onclick="revokeKey(${key.id})" class="revoke-btn">Revoke</button>
+                        <div class="key-details">
+                            <p><i class="fas fa-user"></i> ${key.userId}</p>
+                            <p><i class="fab fa-discord"></i> ${key.discordTag}</p>
+                            <p><i class="fas fa-calendar-alt"></i> ${key.expires}</p>
+                        </div>
+                        <button onclick="revokeKey(${key.id})" class="btn-danger" aria-label="Revoke key ${key.key}">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 `;
             }).join('');
+            // Animate in keys
+            grid.querySelectorAll('.key-card').forEach((card, i) => {
+                card.style.animationDelay = `${i * 0.1}s`;
+                card.classList.add('float-in');
+            });
         }
 
-        // Search Handler
+        // Search
         document.getElementById('searchInput').addEventListener('input', (e) => loadKeys(e.target.value));
 
-        // Revoke Key
+        // Revoke
         window.revokeKey = async (id) => {
-            const res = await fetch(`${API_BASE}/revoke-key/${id}`, { method: 'DELETE' });
-            const data = await res.json();
-            const result = document.getElementById('mgmtResult');
-            result.innerHTML = `<p>${data.message}</p>`;
-            result.className = 'toast success';
-            setTimeout(() => result.classList.add('show'), 10);
-            loadKeys(document.getElementById('searchInput').value);
-            loadStats();
+            if (confirm('Revoke this key forever?')) {
+                const res = await fetch(`${API_BASE}/revoke-key/${id}`, { method: 'DELETE' });
+                const data = await res.json();
+                toast.show(data.message, 'success');
+                loadKeys(document.getElementById('searchInput').value);
+                loadStats();
+            }
         };
 
-        // Simple Confetti (Canvas)
-        function confettiBurst() {
-            const canvas = document.createElement('canvas');
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            document.body.appendChild(canvas);
-            const ctx = canvas.getContext('2d');
-            // Basic confetti logic (rectangles falling)
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    ctx.fillRect(Math.random() * canvas.width, 0, 10, 10);
-                }, i * 50);
+        // Epic Confetti (Improved Physics)
+        function epicConfetti() {
+            const colors = ['#00ff88', '#007bff', '#ff4757', '#ffc107', '#8e44ad'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
             }
-            setTimeout(() => canvas.remove(), 2000);
         }
     </script>
 </body>
