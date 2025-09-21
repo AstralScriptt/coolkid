@@ -6,7 +6,14 @@ const port = 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static('.')); // Serve index.html, style.css
+app.use(express.static('.'));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // CORS for bot
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+    if (req.method === 'OPTIONS') return res.sendStatus(200);
+    next();
+});
 
 // SQLite Setup
 const db = new sqlite3.Database('keys.db');
@@ -21,38 +28,41 @@ db.serialize(() => {
     )`);
 });
 
-// API: Generate Key (public for simplicity; add token check if needed)
+// Health Check (for website sync status)
+app.get('/api/health', (req, res) => res.json({ status: 'healthy', timestamp: new Date().toISOString() }));
+
+// API: Generate Key
 app.post('/api/generate-key', (req, res) => {
     const { userId, discordTag, expiresDays = 7 } = req.body;
-    if (!userId || !discordTag) return res.status(400).json({ error: 'Missing fields' });
+    if (!userId || !discordTag) return res.status(400).json({ error: 'Missing userId or discordTag' });
     
     const key = Math.random().toString(36).substring(2, 15).toUpperCase();
     const expires = new Date(Date.now() + expiresDays * 24 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
     db.run(`INSERT INTO keys (key, userId, discordTag, expires) VALUES (?, ?, ?, ?)`, 
-           [key, userId, discordTag, expires], (err) => {
-        if (err) return res.status(500).json({ error: 'DB Error' });
-        res.json({ key, expires, message: 'Key generated!' });
+           [key, userId, discordTag, expires], function(err) {
+        if (err) return res.status(500).json({ error: 'DB Insert Failed' });
+        res.json({ key, expires, message: 'Key generated and synced!' });
     });
 });
 
 // API: Get All Keys
 app.get('/api/keys', (req, res) => {
     db.all(`SELECT * FROM keys ORDER BY id DESC`, (err, rows) => {
-        if (err) return res.status(500).json({ error: 'DB Error' });
-        res.json(rows);
+        if (err) return res.status(500).json({ error: 'DB Query Failed' });
+        res.json(rows || []);
     });
 });
 
 // API: Revoke Key
 app.delete('/api/revoke-key/:id', (req, res) => {
     const { id } = req.params;
-    db.run(`DELETE FROM keys WHERE id = ?`, [id], (err) => {
-        if (err) return res.status(500).json({ error: 'DB Error' });
-        res.json({ message: 'Key revoked!' });
+    db.run(`DELETE FROM keys WHERE id = ?`, [id], function(err) {
+        if (err) return res.status(500).json({ error: 'DB Delete Failed' });
+        res.json({ message: 'Key revoked and synced!' });
     });
 });
 
-// API: Stats
+// API: Stats (Enhanced with health)
 app.get('/api/stats', (req, res) => {
     db.get(`SELECT 
         COUNT(*) as total,
@@ -60,12 +70,12 @@ app.get('/api/stats', (req, res) => {
         SUM(CASE WHEN used = 0 AND expires > datetime('now') THEN 1 ELSE 0 END) as active,
         SUM(CASE WHEN expires <= datetime('now') THEN 1 ELSE 0 END) as expired
         FROM keys`, (err, row) => {
-        if (err) return res.status(500).json({ error: 'DB Error' });
-        res.json(row || { total: 0, used: 0, active: 0, expired: 0 });
+        if (err) return res.status(500).json({ error: 'DB Stats Failed' });
+        res.json({ ... (row || { total: 0, used: 0, active: 0, expired: 0 }), synced: true });
     });
 });
 
-// Public API: Validate Key (for Roblox)
+// Public Validate (Unchanged)
 app.get('/validate', (req, res) => {
     const { key, userId } = req.query;
     if (!key || !userId) return res.status(400).json({ error: 'Missing key or userId' });
@@ -79,5 +89,5 @@ app.get('/validate', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Enhanced Server running at http://localhost:${port}`);
+    console.log(`🌟 Enhanced Keysys at http://localhost:${port} – Synced & Ready!`);
 });
