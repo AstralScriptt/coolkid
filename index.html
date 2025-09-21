@@ -3,233 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keysys Neon Ultimate</title>
+    <title>Fancy - Custom Websites & Discord Bots | Elevate Your Business</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="particles-bg"></div>
+    
+    <!-- Hero Section with Crazy Morphing Animations -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title morph-text">Why Choose <span class="glow-text">Fancy</span>?</h1>
+            <p class="hero-subtitle pulse-text">Custom Websites & Discord Bots That Ignite Your Brand – Insanely Advanced, Unforgettably Epic.</p>
+            <button class="cta-btn explode-btn" id="heroCta">
+                <i class="fas fa-rocket"></i> Launch Your Project Now
+            </button>
+        </div>
+        <div class="hero-morpher">
+            <div class="morph-shape" id="morph1"></div>
+            <div class="morph-shape" id="morph2"></div>
+            <div class="morph-shape" id="morph3"></div>
+        </div>
+    </section>
 
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-card">
-            <i class="fas fa-key icon-glow"></i>
-            <h2>Enter Access Token</h2>
-            <form id="loginForm">
-                <input type="password" id="token" placeholder="Token (e.g., 1907)" maxlength="4" aria-label="Access Token">
-                <button type="submit"><i class="fas fa-arrow-right"></i> Unlock</button>
+    <!-- Why Fancy Section with Staggered Popups -->
+    <section class="why-section">
+        <div class="container">
+            <h2 class="section-title flip-in">Why You Should Buy Custom Websites & Discord Bots from Fancy</h2>
+            <div class="why-grid">
+                <div class="why-card stagger-card" data-delay="0">
+                    <i class="fas fa-bolt lightning-icon"></i>
+                    <h3>Lightning-Fast Innovation</h3>
+                    <p>Our bots respond in milliseconds, and sites load like warp speed. No lag, just pure digital adrenaline.</p>
+                    <button class="placeholder-btn ripple-btn">Explore Bots <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="why-card stagger-card" data-delay="200">
+                    <i class="fas fa-palette paint-icon"></i>
+                    <h3>Bespoke Masterpieces</h3>
+                    <p>Every pixel and command tailored to your vision. From neon cyberpunk to minimalist elegance – it's your world.</p>
+                    <button class="placeholder-btn ripple-btn">See Websites <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="why-card stagger-card" data-delay="400">
+                    <i class="fas fa-shield-alt shield-icon"></i>
+                    <h3>Fortress-Level Security</h3>
+                    <p>Encrypted, scalable, unbreakable. Your data's safe while we handle the chaos of the web.</p>
+                    <button class="placeholder-btn ripple-btn">Secure Your Spot <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="why-card stagger-card" data-delay="600">
+                    <i class="fas fa-chart-line growth-icon"></i>
+                    <h3>Exponential Growth</h3>
+                    <p>Watch your community explode with bots that engage, and sites that convert. ROI? Skyrocketing.</p>
+                    <button class="placeholder-btn ripple-btn">Boost Revenue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Crazy Popups -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title bounce-in">Our Insane Services</h2>
+            <div class="services-grid">
+                <div class="service-card popup-trigger" data-popup="websites">
+                    <i class="fas fa-globe"></i>
+                    <h3>Custom Websites</h3>
+                    <p>Advanced, animated wonders that captivate and convert.</p>
+                </div>
+                <div class="service-card popup-trigger" data-popup="bots">
+                    <i class="fas fa-robot"></i>
+                    <h3>Discord Bots</h3>
+                    <p>Smart, fun, feature-packed bots for ultimate server domination.</p>
+                </div>
+                <div class="service-card popup-trigger" data-popup="bundles">
+                    <i class="fas fa-gift"></i>
+                    <h3>Bundle Deals</h3>
+                    <p>Website + Bot combos at prices that make your wallet dance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials with Floating Animations -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title slide-up">What Clients Rave About</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card float-card">
+                    <p>"Fancy turned my Discord into a legend. The bot's animations? Mind-blowing!"</p>
+                    <h4>- EpicGamer42</h4>
+                </div>
+                <div class="testimonial-card float-card" style="animation-delay: 0.2s;">
+                    <p>"Their website made my brand pop like fireworks. Insanely creative team!"</p>
+                    <h4>- BrandBoss</h4>
+                </div>
+                <div class="testimonial-card float-card" style="animation-delay: 0.4s;">
+                    <p>"Custom everything, zero headaches. Why settle for less? Fancy delivers crazy value."</p>
+                    <h4>- InnovateQueen</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA with Explosive Popup -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title warp-in">Ready to Go Fancy?</h2>
+            <button class="cta-btn mega-explode-btn" id="contactCta">
+                <i class="fas fa-envelope"></i> Shoot Us a Message
+            </button>
+        </div>
+    </section>
+
+    <!-- Crazy Popup Modals -->
+    <div class="popup-overlay" id="websitesPopup">
+        <div class="popup-content explode-popup">
+            <h3>Websites That Wow</h3>
+            <p>Imagine parallax scrolls, morphing heroes, and AI-driven interactions. Placeholder: Click for demo explosion!</p>
+            <button class="close-popup btn-glow">Close <i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="popup-overlay" id="botsPopup">
+        <div class="popup-content explode-popup">
+            <h3>Bots That Boss</h3>
+            <p>Moderation, games, economy systems – with wild animations and voice commands. Placeholder fun: Bot dances on hover!</p>
+            <button class="close-popup btn-glow">Close <i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="popup-overlay" id="bundlesPopup">
+        <div class="popup-content explode-popup">
+            <h3>Bundle Bonanza</h3>
+            <p>Save 30% on paired power. Your site feeds your server, seamlessly synced. Placeholder: Confetti party!</p>
+            <button class="close-popup btn-glow">Close <i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="popup-overlay" id="contactPopup">
+        <div class="popup-content mega-explode-popup">
+            <h3>Contact Fancy</h3>
+            <p>Email: fancy@epicdevs.com | Discord: fancy#0001</p>
+            <form class="quick-form">
+                <input type="text" placeholder="Your Epic Idea..." required>
+                <button type="submit" class="submit-btn">Send Blast!</button>
             </form>
-            <p class="hint">A four-digit portal key awaits.</p>
+            <button class="close-popup btn-glow">Close <i class="fas fa-times"></i></button>
         </div>
     </div>
 
-    <div class="dashboard" id="dashboard" style="display: none;">
-        <aside class="sidebar">
-            <div class="logo">
-                <i class="fas fa-shield-alt sync-icon" id="syncIcon"></i>
-                <h1>Keysys Neon <span id="syncStatus">Syncing...</span></h1>
-            </div>
-            <nav aria-label="Main Navigation">
-                <button class="nav-btn active" data-tab="generator" aria-current="true">
-                    <i class="fas fa-magic"></i> Generator
-                </button>
-                <button class="nav-btn" data-tab="stats">
-                    <i class="fas fa-chart-line"></i> Statistics
-                </button>
-                <button class="nav-btn" data-tab="management">
-                    <i class="fas fa-vault"></i> Key Vault
-                </button>
-            </nav>
-            <div class="sidebar-footer">
-                <button id="quickGen" class="fab"><i class="fas fa-plus"></i></button>
-            </div>
-        </aside>
+    <!-- Custom Notification System -->
+    <div id="notificationContainer"></div>
 
-        <main>
-            <header class="main-header">
-                <div class="header-left">
-                    <h2 id="tabTitle"><i class="fas fa-magic"></i> Generator</h2>
-                </div>
-                <div class="header-right">
-                    <div class="search-container" id="searchContainer" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search vault..." aria-label="Search keys">
-                    </div>
-                </div>
-            </header>
-
-            <!-- Generator Tab -->
-            <section id="generator" class="tab-content active" role="tabpanel">
-                <div class="hero-card">
-                    <h3><i class="fas fa-sparkles"></i> Forge a New Key</h3>
-                    <form id="keyForm" aria-labelledby="gen-title">
-                        <div class="input-group">
-                            <label for="userId">Roblox User ID</label>
-                            <input type="number" id="userId" required aria-required="true">
-                        </div>
-                        <div class="input-group">
-                            <label for="discordTag">Discord Tag</label>
-                            <input type="text" id="discordTag" placeholder="user#1234" required aria-required="true">
-                        </div>
-                        <div class="input-group">
-                            <label for="expiresDays">Expiration Days</label>
-                            <input type="number" id="expiresDays" value="7" min="1" max="365">
-                        </div>
-                        <button type="submit" class="btn-primary"><i class="fas fa-key"></i> Generate & Sync</button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Stats Tab -->
-            <section id="stats" class="tab-content" role="tabpanel">
-                <div class="stats-hero">
-                    <h3><i class="fas fa-analytics"></i> Live System Pulse</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card" data-stat="total">
-                            <i class="fas fa-layer-group icon-large"></i>
-                            <h4>Total Keys</h4>
-                            <div class="progress-ring" id="totalRing">
-                                <svg class="progress-svg" viewBox="0 0 36 36">
-                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
-                                </svg>
-                            </div>
-                            <p class="stat-value" id="totalKeys">0</p>
-                        </div>
-                        <div class="stat-card active" data-stat="active">
-                            <i class="fas fa-clock icon-large"></i>
-                            <h4>Active</h4>
-                            <div class="progress-ring green" id="activeRing">
-                                <svg class="progress-svg" viewBox="0 0 36 36">
-                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
-                                </svg>
-                            </div>
-                            <p class="stat-value" id="activeKeys">0</p>
-                        </div>
-                        <div class="stat-card used" data-stat="used">
-                            <i class="fas fa-check-circle icon-large"></i>
-                            <h4>Used</h4>
-                            <div class="progress-ring yellow" id="usedRing">
-                                <svg class="progress-svg" viewBox="0 0 36 36">
-                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
-                                </svg>
-                            </div>
-                            <p class="stat-value" id="usedKeys">0</p>
-                        </div>
-                        <div class="stat-card expired" data-stat="expired">
-                            <i class="fas fa-exclamation-triangle icon-large"></i>
-                            <h4>Expired</h4>
-                            <div class="progress-ring red" id="expiredRing">
-                                <svg class="progress-svg" viewBox="0 0 36 36">
-                                    <path class="progress-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"/>
-                                </svg>
-                            </div>
-                            <p class="stat-value" id="expiredKeys">0</p>
-                        </div>
-                    </div>
-                    <button id="exportCSV" class="btn-secondary"><i class="fas fa-download"></i> Export Live Data</button>
-                </div>
-            </section>
-
-            <!-- Management Tab -->
-            <section id="management" class="tab-content" role="tabpanel">
-                <div class="vault-grid">
-                    <h3><i class="fas fa-database"></i> Synced Key Vault</h3>
-                    <div id="keysList" class="keys-grid"></div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Custom Toast Container -->
-    <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
-
-    <script>
-        class CustomToast {
-            constructor() {
-                this.container = document.getElementById('toastContainer');
-            }
-            show(message, type = 'info', duration = 5000, preview = null) {
-                const toast = document.createElement('div');
-                toast.className = `custom-toast ${type}`;
-                let content = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-info-circle'}"></i><span>${message}</span>`;
-                if (preview) content += `<div class="preview">${preview}</div>`;
-                toast.innerHTML = content + '<div class="toast-progress"></div>';
-                this.container.appendChild(toast);
-
-                setTimeout(() => toast.classList.add('show'), 10);
-                const progress = toast.querySelector('.toast-progress');
-                progress.style.animationDuration = `${duration}ms`;
-
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => toast.remove(), 300);
-                }, duration);
-            }
-        }
-
-        const toast = new CustomToast();
-        const VALID_TOKEN = '1907';
-        const API_BASE = '/api';
-        let syncInterval;
-
-        // Health Check & Live Sync
-        async function checkSync() {
-            try {
-                const res = await fetch(`${API_BASE}/health`);
-                if (res.ok) {
-                    document.getElementById('syncIcon').className = 'fas fa-shield-alt sync-icon healthy';
-                    document.getElementById('syncStatus').textContent = 'Synced ✓';
-                    document.getElementById('syncStatus').className = 'healthy';
-                } else {
-                    throw new Error('Unhealthy');
-                }
-            } catch {
-                document.getElementById('syncIcon').className = 'fas fa-shield-alt sync-icon error';
-                document.getElementById('syncStatus').textContent = 'Sync Error';
-                document.getElementById('syncStatus').className = 'error';
-            }
-        }
-
-        // Token Login
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const token = document.getElementById('token').value;
-            if (token === VALID_TOKEN) {
-                document.getElementById('loginOverlay').classList.add('fade-out');
-                setTimeout(() => {
-                    document.getElementById('loginOverlay').style.display = 'none';
-                    document.getElementById('dashboard').style.display = 'flex';
-                    document.getElementById('dashboard').classList.add('fade-in');
-                }, 500);
-                epicConfetti();
-                checkSync();
-                loadStats();
-                loadKeys();
-                toast.show('Portal unlocked! Live sync activated.', 'success');
-                // Start live polling
-                syncInterval = setInterval(() => {
-                    if (document.getElementById('stats').classList.contains('active')) loadStats();
-                    if (document.getElementById('management').classList.contains('active')) loadKeys(document.getElementById('searchInput').value);
-                }, 10000); // Poll every 10s
-            } else {
-                document.getElementById('token').classList.add('shake');
-                setTimeout(() => document.getElementById('token').classList.remove('shake'), 500);
-                toast.show('Invalid token. Access denied.', 'error', 3000);
-                document.getElementById('token').value = '';
-            }
-        });
-
-        // Rest of script unchanged from previous (tab switching, forms, etc.) – but add to loadStats & loadKeys: toast.show('Live sync complete!', 'info', 2000); at end
-        // ... (omit for brevity; assume previous script body here)
-
-        // Add to loadStats end:
-        // toast.show('Stats refreshed – Synced with bot!', 'info', 2000);
-
-        // Add to loadKeys end:
-        // toast.show(`${keys.length} keys loaded from sync.`, 'info', 2000);
-
-        // Cleanup on unload
-        window.addEventListener('beforeunload', () => clearInterval(syncInterval));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
