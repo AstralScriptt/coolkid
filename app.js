@@ -1,4 +1,4 @@
-// script.js - Hyper Animations & Simplified Token Access with Popup Menu Notification
+// script.js - Hyper Animations & Simplified Token Access with Popup Menu Notification (Robust Form Handling)
 class HyperNotificationSystem {
     constructor() {
         this.menu = document.getElementById('notificationMenu');
@@ -24,7 +24,7 @@ const notify = new HyperNotificationSystem();
 function unlockWithToken(token) {
     if (!token || token.trim().length === 0) {
         notify.show('Error', 'Enter a token to unlock access.', 'error');
-        return false; // Extra stop for form
+        return false;
     }
     // Accept any non-empty token
     localStorage.setItem('token', token);
@@ -33,7 +33,7 @@ function unlockWithToken(token) {
     setTimeout(() => {
         showMainContent();
     }, 1000); // Give time for popup to show
-    return false; // Extra stop for form
+    return false;
 }
 
 function showMainContent() {
@@ -72,21 +72,31 @@ if (localStorage.getItem('token')) {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded - attaching form listener'); // Debug log
+    console.log('DOM loaded - attaching events'); // Debug log
     
-    // Token Form Submit
+    // Token Form Handling: Use button click instead of submit to avoid any form issues
+    const unlockBtn = document.querySelector('.auth-btn[type="submit"]'); // Target the submit button
+    if (unlockBtn) {
+        unlockBtn.addEventListener('click', (e) => {
+            console.log('Unlock button clicked - handling token'); // Debug log
+            e.preventDefault();
+            e.stopPropagation();
+            const token = document.getElementById('tokenInput').value.trim();
+            unlockWithToken(token);
+        });
+    } else {
+        console.error('Unlock button not found!'); // Debug
+    }
+
+    // Also disable the form's default submit as backup
     const tokenForm = document.getElementById('tokenForm');
     if (tokenForm) {
         tokenForm.addEventListener('submit', (e) => {
-            console.log('Form submitted - preventing default'); // Debug log
+            console.log('Form submit intercepted - blocking'); // Debug log
             e.preventDefault();
-            e.stopPropagation(); // Extra stop
-            const token = document.getElementById('tokenInput').value.trim();
-            unlockWithToken(token);
-            return false; // Belt and suspenders
+            e.stopPropagation();
+            return false;
         });
-    } else {
-        console.error('Token form not found!'); // Debug if ID mismatch
     }
 
     // Close Notification Menu
@@ -108,12 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', logout);
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent any link behavior
+            logout();
+        });
     }
 
     // Popup Triggers
     document.querySelectorAll('.ultra-popup-trigger').forEach(trigger => {
-        trigger.addEventListener('click', () => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
             const popupId = trigger.dataset.popup + 'Popup';
             document.getElementById(popupId).style.display = 'flex';
             notify.show('Details Unlocked', `${trigger.querySelector('h3').textContent} info opened.`, 'info');
@@ -123,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close Popups
     document.querySelectorAll('.close-hyper-popup').forEach(closeBtn => {
         closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.target.closest('.hyper-popup-overlay').style.display = 'none';
             notify.show('Closed', 'Details sealed.', 'success');
         });
@@ -131,7 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact CTA
     const contactCta = document.getElementById('contactCta');
     if (contactCta) {
-        contactCta.addEventListener('click', () => {
+        contactCta.addEventListener('click', (e) => {
+            e.preventDefault();
             document.getElementById('contactPopup').style.display = 'flex';
             notify.show('Contact Opened', 'Portal activated.', 'success');
         });
@@ -142,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quickForm) {
         quickForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             const idea = e.target.querySelector('input').value.trim();
             if (!idea) {
                 notify.show('Error', 'Share your idea to proceed!', 'error');
@@ -157,6 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('mainContent').style.display !== 'none') {
         notify.show('Reloaded', 'Session ready to go!', 'success');
     }
+
+    console.log('All events attached successfully'); // Debug log
 });
 
 // Enhanced Ripple Effect for Buttons
@@ -166,7 +185,7 @@ document.addEventListener('click', (e) => {
         const ripple = document.createElement('span');
         ripple.style.cssText = `
             position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
-            transform: scale(0); animation: hyper-ripple-vortex 0.7s linear; left: ${e.clientX - btn.getBoundingClientRect().left}px; top: ${e.clientY - btn.getBoundingClientRect().top}px;
+            transform: scale(0); animation: hyper-ripple-vortex 0.7s linear; left: ${e.clientX - btn.getBoundingClientRect().left}px; top: ${e.clientY - btn.getBoundingClientRect().top}px; pointer-events: none;
         `;
         btn.appendChild(ripple);
         setTimeout(() => ripple.remove(), 700);
