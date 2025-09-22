@@ -3,99 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>.gg/fancy</title>
+    <title>Fancy - Custom Websites & Discord Bots | Elevate Your Digital Presence</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
-    <!-- Hero Section with Polished Gold -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title polished-gold-text">Why Choose <span class="subtle-glow-gold">Fancy</span>?</h1>
-            <p class="hero-subtitle smooth-pulse">Custom Websites & Discord Bots That Ignite Your Brand – Advanced, Professional, and Timeless.</p>
-            <a href="https://discord.gg/fancyy" class="cta-btn discord-gold-btn" id="heroCta" target="_blank">
-                <i class="fab fa-discord"></i> Join the Discord
-            </a>
-            <button class="cta-btn test-notification-btn" id="testNotification">
-                <i class="fas fa-bell"></i> cool button ik
-            </button>
+    <!-- Auth Overlay -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="signup">Sign Up</button>
+                <button class="tab-btn" data-tab="login">Log In</button>
+            </div>
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form">
+                <div class="input-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required minlength="6">
+                </div>
+                <button type="submit" class="auth-btn primary">Create Account</button>
+            </form>
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn primary">Log In</button>
+            </form>
+            <p class="auth-hint">Join to unlock premium features and get email updates.</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Why Fancy Section with Compact Gold Cards -->
-    <section class="why-section">
-        <div class="container">
-            <h2 class="section-title gold-slide-in">Why You Should Buy Custom Websites & Discord Bots from Fancy</h2>
-            <div class="why-grid">
-                <div class="why-card compact-stagger-card" data-delay="0">
-                    <i class="fas fa-bolt gold-lightning-icon"></i>
-                    <h3>simply the best</h3>
-                    <p>our work is astonishingly amazing</p>
-                </div>
-                <div class="why-card compact-stagger-card" data-delay="150">
-                    <i class="fas fa-palette gold-paint-icon"></i>
-                    <h3>Bespoke Masterpieces</h3>
-                    <p>We tweak every little detail to match what you're picturing. Whether it's got that edgy vibe or keeps it clean and simple, it's all about you.</p>
-                </div>
-                <div class="why-card compact-stagger-card" data-delay="300">
-                    <i class="fas fa-shield-alt gold-shield-icon"></i>
-                    <h3>Fast Responses</h3>
-                    <p>We answer quickly and make things tailored to what u need</p>
-                </div>
-                <div class="why-card compact-stagger-card" data-delay="450">
-                    <i class="fas fa-chart-line gold-growth-icon"></i>
-                    <h3>Exponential Growth</h3>
-                    <p>Your server or site starts pulling in more folks right away with bots that keep things lively and pages that actually hook people in. Watch the numbers climb.</p>
-                </div>
-                <div class="why-card compact-stagger-card" data-delay="600">
-                    <i class="fas fa-rocket gold-rocket-icon"></i>
-                    <h3>Unlimited Customization</h3>
-                    <p>Throw in crazy animations or smart AI bits – whatever floats your boat. We turn those wild ideas into something that actually works.</p>
+    <!-- Main Content - Hidden Initially -->
+    <div class="main-content" id="mainContent" style="display: none;">
+        <!-- Hero Section with Polished Gold -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title polished-gold-text">Why Choose <span class="subtle-glow-gold">Fancy</span>?</h1>
+                <p class="hero-subtitle smooth-pulse">Custom Websites & Discord Bots That Ignite Your Brand – Advanced, Professional, and Timeless.</p>
+                <a href="https://discord.gg/yourinvite" class="cta-btn discord-gold-btn" id="heroCta" target="_blank">
+                    <i class="fab fa-discord"></i> Join the Discord
+                </a>
+                <button class="cta-btn test-notification-btn" id="testNotification">
+                    <i class="fas fa-bell"></i> Test Notification
+                </button>
+                <button class="cta-btn test-email-btn" id="testEmail">
+                    <i class="fas fa-envelope"></i> Send Test Email
+                </button>
+                <button class="cta-btn logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </div>
+        </section>
+
+        <!-- Why Fancy Section with Compact Gold Cards -->
+        <section class="why-section">
+            <div class="container">
+                <h2 class="section-title gold-slide-in">Why You Should Buy Custom Websites & Discord Bots from Fancy</h2>
+                <div class="why-grid">
+                    <div class="why-card compact-stagger-card" data-delay="0">
+                        <i class="fas fa-bolt gold-lightning-icon"></i>
+                        <h3>Lightning-Fast Innovation</h3>
+                        <p>Our bots hit back in a split second, and sites pop up without a hitch. No frustrating delays – just gets the job done quick and easy.</p>
+                    </div>
+                    <div class="why-card compact-stagger-card" data-delay="150">
+                        <i class="fas fa-palette gold-paint-icon"></i>
+                        <h3>Bespoke Masterpieces</h3>
+                        <p>We tweak every little detail to match what you're picturing. Whether it's got that edgy vibe or keeps it clean and simple, it's all about you.</p>
+                    </div>
+                    <div class="why-card compact-stagger-card" data-delay="300">
+                        <i class="fas fa-shield-alt gold-shield-icon"></i>
+                        <h3>Fortress-Level Security</h3>
+                        <p>Locked down tight with encryption and all that good stuff. We keep your info safe so you don't have to sweat the small stuff.</p>
+                    </div>
+                    <div class="why-card compact-stagger-card" data-delay="450">
+                        <i class="fas fa-chart-line gold-growth-icon"></i>
+                        <h3>Exponential Growth</h3>
+                        <p>Your server or site starts pulling in more folks right away with bots that keep things lively and pages that actually hook people in. Watch the numbers climb.</p>
+                    </div>
+                    <div class="why-card compact-stagger-card" data-delay="600">
+                        <i class="fas fa-rocket gold-rocket-icon"></i>
+                        <h3>Unlimited Customization</h3>
+                        <p>Throw in crazy animations or smart AI bits – whatever floats your boat. We turn those wild ideas into something that actually works.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section with Compact Gold Popups -->
-    <section class="services-section">
-        <div class="container">
-            <h2 class="section-title gold-slide-in">Our Professional Services</h2>
-            <div class="services-grid">
-                <div class="service-card compact-popup-trigger" data-popup="websites">
-                    <i class="fas fa-globe gold-subtle-icon"></i>
-                    <h3>Custom Websites</h3>
-                    <p>Built to grab attention and keep visitors clicking around without feeling forced.</p>
-                </div>
-                <div class="service-card compact-popup-trigger" data-popup="bots">
-                    <i class="fas fa-robot gold-subtle-icon"></i>
-                    <h3>Discord Bots</h3>
-                    <p>Handles the fun stuff like games or moderation so you can chill and enjoy your community.</p>
-                </div>
-                <div class="service-card compact-popup-trigger" data-popup="bundles">
-                    <i class="fas fa-gift gold-subtle-icon"></i>
-                    <h3>Bundle Deals</h3>
-                    <p>Pair up a site and bot for less cash – makes everything tie together nice and easy.</p>
-                </div>
-                <div class="service-card compact-popup-trigger" data-popup="support">
-                    <i class="fas fa-headset gold-subtle-icon"></i>
-                    <h3>24/7 Support</h3>
-                    <p>We're there whenever you hit a snag, no matter the hour – quick fixes and real talk.</p>
+        <!-- Services Section with Compact Gold Popups -->
+        <section class="services-section">
+            <div class="container">
+                <h2 class="section-title gold-slide-in">Our Professional Services</h2>
+                <div class="services-grid">
+                    <div class="service-card compact-popup-trigger" data-popup="websites">
+                        <i class="fas fa-globe gold-subtle-icon"></i>
+                        <h3>Custom Websites</h3>
+                        <p>Built to grab attention and keep visitors clicking around without feeling forced.</p>
+                    </div>
+                    <div class="service-card compact-popup-trigger" data-popup="bots">
+                        <i class="fas fa-robot gold-subtle-icon"></i>
+                        <h3>Discord Bots</h3>
+                        <p>Handles the fun stuff like games or moderation so you can chill and enjoy your community.</p>
+                    </div>
+                    <div class="service-card compact-popup-trigger" data-popup="bundles">
+                        <i class="fas fa-gift gold-subtle-icon"></i>
+                        <h3>Bundle Deals</h3>
+                        <p>Pair up a site and bot for less cash – makes everything tie together nice and easy.</p>
+                    </div>
+                    <div class="service-card compact-popup-trigger" data-popup="support">
+                        <i class="fas fa-headset gold-subtle-icon"></i>
+                        <h3>24/7 Support</h3>
+                        <p>We're there whenever you hit a snag, no matter the hour – quick fixes and real talk.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact CTA with Polished Gold Popup -->
-    <section class="contact-section">
-        <div class="container">
-            <h2 class="section-title gold-slide-in">Ready to Go Fancy?</h2>
-            <button class="cta-btn polished-gold-btn" id="contactCta">
-                <i class="fas fa-envelope"></i> Shoot Us a Message
-            </button>
-        </div>
-    </section>
+        <!-- Contact CTA with Polished Gold Popup -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title gold-slide-in">Ready to Go Fancy?</h2>
+                <button class="cta-btn polished-gold-btn" id="contactCta">
+                    <i class="fas fa-envelope"></i> Shoot Us a Message
+                </button>
+            </div>
+        </section>
+    </div>
 
     <!-- Polished Gold Popup Modals -->
     <div class="polished-popup-overlay" id="websitesPopup">
@@ -129,7 +172,7 @@
     <div class="polished-popup-overlay" id="contactPopup">
         <div class="polished-popup-content polished-gold-slide-popup">
             <h3>Contact Fancy</h3>
-            <p>Email: discord.gg/fancyy | Discord: lazh</p>
+            <p>Email: contact@fancy.com | Discord: fancy#0001</p>
             <form class="quick-form">
                 <input type="text" placeholder="Your Epic Idea..." required>
                 <button type="submit" class="gold-submit-btn">Send Blast!</button>
@@ -144,5 +187,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
