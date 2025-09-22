@@ -24,7 +24,7 @@ const notify = new HyperNotificationSystem();
 function unlockWithToken(token) {
     if (!token || token.trim().length === 0) {
         notify.show('Error', 'Enter a token to unlock access.', 'error');
-        return;
+        return false; // Extra stop for form
     }
     // Accept any non-empty token
     localStorage.setItem('token', token);
@@ -33,10 +33,16 @@ function unlockWithToken(token) {
     setTimeout(() => {
         showMainContent();
     }, 1000); // Give time for popup to show
+    return false; // Extra stop for form
 }
 
 function showMainContent() {
-    document.getElementById('authOverlay').style.display = 'none';
+    const authOverlay = document.getElementById('authOverlay');
+    authOverlay.style.opacity = '0'; // Fade out first
+    setTimeout(() => {
+        authOverlay.style.display = 'none';
+    }, 300); // Match fade timing
+    
     const main = document.getElementById('mainContent');
     main.style.display = 'block';
     main.classList.add('fade-in');
@@ -54,6 +60,7 @@ function logout() {
     localStorage.removeItem('token');
     document.getElementById('mainContent').style.display = 'none';
     document.getElementById('authOverlay').style.display = 'flex';
+    document.getElementById('authOverlay').style.opacity = '1';
     document.getElementById('tokenInput').value = ''; // Clear input
     notify.show('Session Closed', 'Enter a new token to return.', 'info');
 }
@@ -65,25 +72,44 @@ if (localStorage.getItem('token')) {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded - attaching form listener'); // Debug log
+    
     // Token Form Submit
-    document.getElementById('tokenForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const token = document.getElementById('tokenInput').value.trim();
-        unlockWithToken(token);
-    });
+    const tokenForm = document.getElementById('tokenForm');
+    if (tokenForm) {
+        tokenForm.addEventListener('submit', (e) => {
+            console.log('Form submitted - preventing default'); // Debug log
+            e.preventDefault();
+            e.stopPropagation(); // Extra stop
+            const token = document.getElementById('tokenInput').value.trim();
+            unlockWithToken(token);
+            return false; // Belt and suspenders
+        });
+    } else {
+        console.error('Token form not found!'); // Debug if ID mismatch
+    }
 
     // Close Notification Menu
-    document.getElementById('closeNotificationMenu').addEventListener('click', () => {
-        notify.hide();
-    });
+    const closeBtn = document.getElementById('closeNotificationMenu');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            notify.hide();
+        });
+    }
 
     // Test Notification (now uses popup menu)
-    document.getElementById('testNotification').addEventListener('click', () => {
-        notify.show('Test Alert', 'Notification test successful! Vibes activated.', 'success');
-    });
+    const testBtn = document.getElementById('testNotification');
+    if (testBtn) {
+        testBtn.addEventListener('click', () => {
+            notify.show('Test Alert', 'Notification test successful! Vibes activated.', 'success');
+        });
+    }
 
     // Logout
-    document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
 
     // Popup Triggers
     document.querySelectorAll('.ultra-popup-trigger').forEach(trigger => {
@@ -103,23 +129,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Contact CTA
-    document.getElementById('contactCta').addEventListener('click', () => {
-        document.getElementById('contactPopup').style.display = 'flex';
-        notify.show('Contact Opened', 'Portal activated.', 'success');
-    });
+    const contactCta = document.getElementById('contactCta');
+    if (contactCta) {
+        contactCta.addEventListener('click', () => {
+            document.getElementById('contactPopup').style.display = 'flex';
+            notify.show('Contact Opened', 'Portal activated.', 'success');
+        });
+    }
 
     // Quick Form Submit
-    document.querySelector('.quick-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const idea = e.target.querySelector('input').value.trim();
-        if (!idea) {
-            notify.show('Error', 'Share your idea to proceed!', 'error');
-            return;
-        }
-        notify.show('Sent!', `Idea "${idea.substring(0, 20)}..." sent! Thanks.`, 'success');
-        e.target.reset();
-        e.target.closest('.hyper-popup-overlay').style.display = 'none';
-    });
+    const quickForm = document.querySelector('.quick-form');
+    if (quickForm) {
+        quickForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const idea = e.target.querySelector('input').value.trim();
+            if (!idea) {
+                notify.show('Error', 'Share your idea to proceed!', 'error');
+                return;
+            }
+            notify.show('Sent!', `Idea "${idea.substring(0, 20)}..." sent! Thanks.`, 'success');
+            e.target.reset();
+            e.target.closest('.hyper-popup-overlay').style.display = 'none';
+        });
+    }
 
     // Initial Load Effect
     if (document.getElementById('mainContent').style.display !== 'none') {
