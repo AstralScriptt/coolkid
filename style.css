@@ -461,54 +461,24 @@ body {
     100% { transform: scale(5) rotate(360deg); opacity: 0; }
 }
 .gold-subtle-btn:active::after { animation-play-state: running; }
-/* Hyper Notifications - Ultimate Sliding Vortex */
-#hyperNotificationContainer {
-    position: fixed; top: 1.5rem; right: -600px; z-index: 2000; display: flex; flex-direction: column; gap: 1.5rem;
+/* Notification Menu Popup */
+.notification-menu-overlay {
+    position: fixed; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(255,215,0,0.1));
+    backdrop-filter: blur(20px); display: none; align-items: center; justify-content: center; z-index: 3000;
 }
-.notification {
-    background: linear-gradient(135deg, rgba(255,215,0,0.98), rgba(255,165,0,0.98));
-    padding: 1.5rem 2rem; border-radius: 25px; display: flex; align-items: center; gap: 1.2rem;
-    min-width: 400px; box-shadow: 0 20px 60px rgba(255,215,0,0.5);
-    transform: translateX(120%) rotate(10deg) skew(2deg); opacity: 0;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); right: 1.5rem; position: relative; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.2);
+.notification-menu-content {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(255,215,0,0.2));
+    padding: 2.5rem; border-radius: 25px; text-align: center; max-width: 400px; width: 85%;
+    border: 2px solid rgba(255,215,0,0.7); box-shadow: 0 30px 80px rgba(255,215,0,0.4);
+    animation: hyper-aura-slide 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
-.notification::before {
-    content: ''; position: absolute; inset: 0; background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent);
-    transform: rotate(0deg); animation: hyper-notif-orbit 3s linear infinite;
-}
-@keyframes hyper-notif-orbit { to { transform: rotate(360deg); } }
-.notification.show {
-    transform: translateX(0) rotate(0deg) skew(0deg); opacity: 1;
-    animation: hyper-slide-vortex 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-@keyframes hyper-slide-vortex {
-    0% { transform: translateX(120%) rotate(10deg) skew(2deg); }
-    30% { transform: translateX(-15px) rotate(-3deg) skew(-1deg); }
-    60% { transform: translateX(8px) rotate(1deg) skew(0.5deg); }
-    100% { transform: translateX(0) rotate(0deg) skew(0deg); }
-}
-.notification i { font-size: 1.6rem; animation: hyper-spin-vortex 3s linear infinite; filter: drop-shadow(0 0 10px currentColor); }
-@keyframes hyper-spin-vortex { 0% { transform: rotate(0deg) scale(1) skew(0deg); } 100% { transform: rotate(1080deg) scale(1.3) skew(1deg); } }
-.notification.success { background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00); }
-.notification.error { background: linear-gradient(135deg, #FF4500, #FFD700, #FFA500); }
-.notification::after {
-    content: ''; position: absolute; bottom: 0; left: 0; height: 5px; width: 100%;
-    background: linear-gradient(90deg, #FF8C00, #FFD700, #FFA500); transform: scaleX(0);
-    animation: hyper-progress-vortex 4s linear forwards;
-}
-@keyframes hyper-progress-vortex {
-    0% { transform: scaleX(0) skew(0deg); }
-    50% { transform: scaleX(0.5) skew(1deg); }
-    100% { transform: scaleX(1) skew(0deg); }
-}
+.notification-menu-content h3 { color: #fff; margin-bottom: 1rem; font-family: 'Audiowide', cursive; font-size: 1.8rem; text-shadow: 0 0 15px rgba(255,215,0,0.6); }
+.notification-menu-content p { color: #e0e0e0; margin-bottom: 1.5rem; font-size: 1.1rem; }
 /* Responsive Enhancements */
 @media (max-width: 768px) {
     .hyper-aura-text, .hyper-aura-hero-text { font-size: 2.8rem; }
     .hyper-actions { flex-direction: column; align-items: center; gap: 1rem; }
     .why-grid, .services-grid { grid-template-columns: 1fr; gap: 2rem; }
-    #hyperNotificationContainer { right: -100%; top: 0.5rem; }
-    .notification { min-width: auto; right: 0.5rem; padding: 1.2rem; font-size: 0.9rem; }
 }
 @media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 /* Main Content Hyper Fade In */
