@@ -1,4 +1,4 @@
-// script.js - Hyper Animations & Simplified Token Access with Popup Menu Notification (Robust Form Handling)
+// script.js - Hyper Animations & Simplified Token Access with Popup Menu Notification (Click Fixed + Debug)
 class HyperNotificationSystem {
     constructor() {
         this.menu = document.getElementById('notificationMenu');
@@ -6,6 +6,7 @@ class HyperNotificationSystem {
         this.message = document.getElementById('notificationMessage');
     }
     show(title, message, type = 'info', duration = 5000) {
+        console.log('Showing notification:', title, message); // Debug
         this.title.textContent = title;
         this.message.textContent = message;
         this.menu.style.display = 'flex';
@@ -15,6 +16,7 @@ class HyperNotificationSystem {
         }, duration);
     }
     hide() {
+        console.log('Hiding notification'); // Debug
         this.menu.style.display = 'none';
     }
 }
@@ -22,6 +24,7 @@ const notify = new HyperNotificationSystem();
 
 // Simplified Token Access Function
 function unlockWithToken(token) {
+    console.log('unlockWithToken called with:', token); // Debug
     if (!token || token.trim().length === 0) {
         notify.show('Error', 'Enter a token to unlock access.', 'error');
         return false;
@@ -37,6 +40,7 @@ function unlockWithToken(token) {
 }
 
 function showMainContent() {
+    console.log('Showing main content'); // Debug
     const authOverlay = document.getElementById('authOverlay');
     authOverlay.style.opacity = '0'; // Fade out first
     setTimeout(() => {
@@ -74,9 +78,10 @@ if (localStorage.getItem('token')) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - attaching events'); // Debug log
     
-    // Token Form Handling: Use button click instead of submit to avoid any form issues
-    const unlockBtn = document.querySelector('.auth-btn[type="submit"]'); // Target the submit button
+    // Handle Unlock Button Click
+    const unlockBtn = document.getElementById('unlockBtn');
     if (unlockBtn) {
+        console.log('Unlock button found, adding listener'); // Debug
         unlockBtn.addEventListener('click', (e) => {
             console.log('Unlock button clicked - handling token'); // Debug log
             e.preventDefault();
@@ -85,10 +90,27 @@ document.addEventListener('DOMContentLoaded', () => {
             unlockWithToken(token);
         });
     } else {
-        console.error('Unlock button not found!'); // Debug
+        console.error('Unlock button (#unlockBtn) not found! Check HTML ID.'); // Debug
     }
 
-    // Also disable the form's default submit as backup
+    // Handle Enter Key in Input - Call Unlock Directly
+    const tokenInput = document.getElementById('tokenInput');
+    if (tokenInput) {
+        console.log('Token input found, adding keypress listener'); // Debug
+        tokenInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                console.log('Enter pressed in input - handling token'); // Debug log
+                e.preventDefault();
+                e.stopPropagation();
+                const token = tokenInput.value.trim();
+                unlockWithToken(token);
+            }
+        });
+    } else {
+        console.error('Token input (#tokenInput) not found!'); // Debug
+    }
+
+    // Backup: Block any form submit
     const tokenForm = document.getElementById('tokenForm');
     if (tokenForm) {
         tokenForm.addEventListener('submit', (e) => {
