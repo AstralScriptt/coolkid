@@ -9,198 +9,229 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Complex Particle Background -->
-    <div class="aura-particles-bg"></div>
+    <!-- Ultra-Complex Aura Particle System -->
+    <div class="aura-particle-system">
+        <div class="aura-particle" style="--x: 10%; --y: 20%; --delay: 0s; --duration: 15s; --size: 3px; --color: #FFD700;"></div>
+        <div class="aura-particle" style="--x: 40%; --y: 60%; --delay: 2s; --duration: 20s; --size: 4px; --color: #FFA500;"></div>
+        <div class="aura-particle" style="--x: 70%; --y: 30%; --delay: 4s; --duration: 18s; --size: 2px; --color: #FF8C00;"></div>
+        <div class="aura-particle" style="--x: 90%; --y: 80%; --delay: 6s; --duration: 22s; --size: 5px; --color: #DAA520;"></div>
+        <div class="aura-particle" style="--x: 25%; --y: 50%; --delay: 8s; --duration: 16s; --size: 3px; --color: #B8860B;"></div>
+        <div class="aura-particle" style="--x: 60%; --y: 10%; --delay: 10s; --duration: 19s; --size: 4px; --color: #FFD700;"></div>
+    </div>
     
-    <!-- Auth Overlay with Advanced Animations -->
+    <!-- Auth Overlay with Hyper-Advanced Animations -->
     <div class="auth-overlay" id="authOverlay">
         <div class="auth-card">
             <div class="auth-header">
-                <h2 class="aura-title">Fancy for <span class="aura-glow">Aura</span> Points</h2>
-                <p class="aura-subtitle">Unlock premium vibes with email magic</p>
+                <h2 class="aura-title hyper-aura-text">Fancy for <span class="aura-glow hyper-glow">Aura</span> Points</h2>
+                <p class="aura-subtitle wave-subtitle">Unlock premium vibes with email magic – feel the aura surge</p>
             </div>
             <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="signup"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <button class="tab-btn" data-tab="login"><i class="fas fa-sign-in-alt"></i> Log In</button>
+                <button class="tab-btn active-tab" data-tab="signup"><i class="fas fa-user-plus hyper-icon"></i> Ignite Aura</button>
+                <button class="tab-btn" data-tab="login"><i class="fas fa-sign-in-alt hyper-icon"></i> Channel Aura</button>
             </div>
             <!-- Signup Form -->
             <form id="signupForm" class="auth-form active-form">
-                <div class="input-group aura-input">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" placeholder="Enter your email..." required>
-                    <i class="fas fa-envelope input-icon"></i>
+                <div class="input-group hyper-input">
+                    <label for="signupEmail">Aura Email</label>
+                    <input type="email" id="signupEmail" placeholder="Channel your email aura..." required>
+                    <i class="fas fa-envelope input-icon hyper-icon"></i>
+                    <span class="input-aura-line"></span>
                 </div>
-                <div class="input-group aura-input">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="Create a strong password..." required minlength="6">
-                    <i class="fas fa-lock input-icon"></i>
+                <div class="input-group hyper-input">
+                    <label for="signupPassword">Aura Password</label>
+                    <input type="password" id="signupPassword" placeholder="Forge a 6+ char aura lock..." required minlength="6">
+                    <i class="fas fa-lock input-icon hyper-icon"></i>
+                    <span class="input-aura-line"></span>
                 </div>
-                <button type="submit" class="auth-btn primary aura-btn"><i class="fas fa-magic"></i> Create Aura Account</button>
+                <button type="submit" class="auth-btn primary hyper-aura-btn"><i class="fas fa-magic hyper-icon"></i> Ignite Aura Account</button>
             </form>
             <!-- Login Form -->
             <form id="loginForm" class="auth-form">
-                <div class="input-group aura-input">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" placeholder="Enter your email..." required>
-                    <i class="fas fa-envelope input-icon"></i>
+                <div class="input-group hyper-input">
+                    <label for="loginEmail">Aura Email</label>
+                    <input type="email" id="loginEmail" placeholder="Channel your email aura..." required>
+                    <i class="fas fa-envelope input-icon hyper-icon"></i>
+                    <span class="input-aura-line"></span>
                 </div>
-                <div class="input-group aura-input">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password..." required>
-                    <i class="fas fa-lock input-icon"></i>
+                <div class="input-group hyper-input">
+                    <label for="loginPassword">Aura Password</label>
+                    <input type="password" id="loginPassword" placeholder="Unleash your aura lock..." required>
+                    <i class="fas fa-lock input-icon hyper-icon"></i>
+                    <span class="input-aura-line"></span>
                 </div>
-                <button type="submit" class="auth-btn primary aura-btn"><i class="fas fa-key"></i> Unlock Aura</button>
+                <button type="submit" class="auth-btn primary hyper-aura-btn"><i class="fas fa-key hyper-icon"></i> Channel Aura Now</button>
             </form>
-            <p class="auth-hint">Join the elite for exclusive aura drops via email.</p>
+            <p class="auth-hint pulse-hint">Join the elite circle for exclusive aura drops – emails packed with point boosts.</p>
         </div>
     </div>
 
     <!-- Main Content - Hidden Initially -->
     <div class="main-content" id="mainContent" style="display: none;">
-        <!-- Hero Section with Advanced Gold Animations -->
+        <!-- Hero Section with Hyper-Complex Aura Gold -->
         <section class="hero">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title aura-hero-text">Fancy for <span class="aura-hero-glow">Aura</span> Points</h1>
-                <p class="hero-subtitle complex-pulse">Custom Websites & Discord Bots That Ignite Your Brand – Advanced, Professional, and Timeless. Earn Aura with every epic build.</p>
-                <div class="hero-actions">
-                    <a href="https://discord.gg/yourinvite" class="cta-btn discord-gold-btn" id="heroCta" target="_blank">
-                        <i class="fab fa-discord"></i> Join the Aura Discord
+                <h1 class="hero-title hyper-aura-hero-text">Fancy for <span class="aura-hero-glow hyper-hero-glow">Aura</span> Points</h1>
+                <p class="hero-subtitle ultra-complex-pulse">Custom Websites & Discord Bots That Ignite Your Brand – Advanced, Professional, and Timeless. Earn Aura with every epic build, feel the vibe multiply.</p>
+                <div class="hero-actions hyper-actions">
+                    <a href="https://discord.gg/yourinvite" class="cta-btn discord-gold-btn hyper-cta" id="heroCta" target="_blank">
+                        <i class="fab fa-discord hyper-icon"></i> Join the Aura Vortex
                     </a>
-                    <button class="cta-btn test-notification-btn" id="testNotification">
-                        <i class="fas fa-bell"></i> Test Aura Notification
+                    <button class="cta-btn test-notification-btn hyper-cta" id="testNotification">
+                        <i class="fas fa-bell hyper-icon"></i> Test Aura Pulse
                     </button>
-                    <button class="cta-btn test-email-btn" id="testEmail">
-                        <i class="fas fa-envelope"></i> Send Aura Email
+                    <button class="cta-btn test-email-btn hyper-cta" id="testEmail">
+                        <i class="fas fa-envelope hyper-icon"></i> Dispatch Aura Mail
                     </button>
-                    <button class="cta-btn logout-btn" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    <button class="cta-btn logout-btn hyper-cta" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt hyper-icon"></i> Eclipse Aura
                     </button>
                 </div>
             </div>
-            <div class="hero-aura-floaters">
-                <div class="aura-floater" style="--delay: 0s; --color: #FFD700;"></div>
-                <div class="aura-floater" style="--delay: 1s; --color: #FFA500;"></div>
-                <div class="aura-floater" style="--delay: 2s; --color: #FF8C00;"></div>
+            <div class="hero-aura-orbiters">
+                <div class="aura-orbiter orb1" style="--orbit-delay: 0s;"></div>
+                <div class="aura-orbiter orb2" style="--orbit-delay: 3s;"></div>
+                <div class="aura-orbiter orb3" style="--orbit-delay: 6s;"></div>
+                <div class="aura-orbiter orb4" style="--orbit-delay: 9s;"></div>
             </div>
         </section>
 
-        <!-- Why Fancy Section with Complex Gold Cards -->
+        <!-- Why Fancy Section with Ultra-Complex Gold Cards -->
         <section class="why-section">
             <div class="container">
-                <h2 class="section-title complex-slide-in">Why You Should Buy Custom Websites & Discord Bots from Fancy</h2>
+                <h2 class="section-title ultra-slide-in">Why Channel Custom Websites & Discord Bots from Fancy</h2>
                 <div class="why-grid">
-                    <div class="why-card complex-stagger-card" data-delay="0">
-                        <i class="fas fa-bolt gold-lightning-icon complex-icon"></i>
+                    <div class="why-card ultra-stagger-card" data-delay="0">
+                        <div class="card-aura-core">
+                            <i class="fas fa-bolt gold-lightning-icon ultra-icon"></i>
+                        </div>
                         <h3>Lightning-Fast Innovation</h3>
-                        <p>Our bots hit back in a split second, and sites pop up without a hitch. No frustrating delays – just gets the job done quick and easy. Aura boost: +50 points.</p>
+                        <p>Our bots hit back in a split second, and sites pop up without a hitch. No frustrating delays – just gets the job done quick and easy. Aura boost: +50 points for speed vibes.</p>
                     </div>
-                    <div class="why-card complex-stagger-card" data-delay="200">
-                        <i class="fas fa-palette gold-paint-icon complex-icon"></i>
+                    <div class="why-card ultra-stagger-card" data-delay="250">
+                        <div class="card-aura-core">
+                            <i class="fas fa-palette gold-paint-icon ultra-icon"></i>
+                        </div>
                         <h3>Bespoke Masterpieces</h3>
-                        <p>We tweak every little detail to match what you're picturing. Whether it's got that edgy vibe or keeps it clean and simple, it's all about you. Aura boost: +100 points.</p>
+                        <p>We tweak every little detail to match what you're picturing. Whether it's got that edgy vibe or keeps it clean and simple, it's all about you. Aura boost: +100 points for custom flair.</p>
                     </div>
-                    <div class="why-card complex-stagger-card" data-delay="400">
-                        <i class="fas fa-shield-alt gold-shield-icon complex-icon"></i>
+                    <div class="why-card ultra-stagger-card" data-delay="500">
+                        <div class="card-aura-core">
+                            <i class="fas fa-shield-alt gold-shield-icon ultra-icon"></i>
+                        </div>
                         <h3>Fortress-Level Security</h3>
-                        <p>Locked down tight with encryption and all that good stuff. We keep your info safe so you don't have to sweat the small stuff. Aura boost: +75 points.</p>
+                        <p>Locked down tight with encryption and all that good stuff. We keep your info safe so you don't have to sweat the small stuff. Aura boost: +75 points for unbreakable trust.</p>
                     </div>
-                    <div class="why-card complex-stagger-card" data-delay="600">
-                        <i class="fas fa-chart-line gold-growth-icon complex-icon"></i>
+                    <div class="why-card ultra-stagger-card" data-delay="750">
+                        <div class="card-aura-core">
+                            <i class="fas fa-chart-line gold-growth-icon ultra-icon"></i>
+                        </div>
                         <h3>Exponential Growth</h3>
-                        <p>Your server or site starts pulling in more folks right away with bots that keep things lively and pages that actually hook people in. Watch the numbers climb. Aura boost: +200 points.</p>
+                        <p>Your server or site starts pulling in more folks right away with bots that keep things lively and pages that actually hook people in. Watch the numbers climb. Aura boost: +200 points for viral energy.</p>
                     </div>
-                    <div class="why-card complex-stagger-card" data-delay="800">
-                        <i class="fas fa-rocket gold-rocket-icon complex-icon"></i>
+                    <div class="why-card ultra-stagger-card" data-delay="1000">
+                        <div class="card-aura-core">
+                            <i class="fas fa-rocket gold-rocket-icon ultra-icon"></i>
+                        </div>
                         <h3>Unlimited Customization</h3>
-                        <p>Throw in crazy animations or smart AI bits – whatever floats your boat. We turn those wild ideas into something that actually works. Aura boost: +150 points.</p>
+                        <p>Throw in crazy animations or smart AI bits – whatever floats your boat. We turn those wild ideas into something that actually works. Aura boost: +150 points for infinite creativity.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section with Complex Gold Popups -->
+        <!-- Services Section with Hyper-Complex Gold Popups -->
         <section class="services-section">
             <div class="container">
-                <h2 class="section-title complex-slide-in">Our Professional Services</h2>
+                <h2 class="section-title ultra-slide-in">Our Aura-Infused Services</h2>
                 <div class="services-grid">
-                    <div class="service-card complex-popup-trigger" data-popup="websites">
-                        <i class="fas fa-globe gold-subtle-icon complex-icon"></i>
+                    <div class="service-card ultra-popup-trigger" data-popup="websites">
+                        <div class="service-aura-core">
+                            <i class="fas fa-globe gold-subtle-icon ultra-icon"></i>
+                        </div>
                         <h3>Custom Websites</h3>
-                        <p>Built to grab attention and keep visitors clicking around without feeling forced. Aura eligible.</p>
+                        <p>Built to grab attention and keep visitors clicking around without feeling forced. Aura eligible – earn 50 points on launch.</p>
                     </div>
-                    <div class="service-card complex-popup-trigger" data-popup="bots">
-                        <i class="fas fa-robot gold-subtle-icon complex-icon"></i>
+                    <div class="service-card ultra-popup-trigger" data-popup="bots">
+                        <div class="service-aura-core">
+                            <i class="fas fa-robot gold-subtle-icon ultra-icon"></i>
+                        </div>
                         <h3>Discord Bots</h3>
-                        <p>Handles the fun stuff like games or moderation so you can chill and enjoy your community. Aura eligible.</p>
+                        <p>Handles the fun stuff like games or moderation so you can chill and enjoy your community. Aura eligible – 75 points for bot mastery.</p>
                     </div>
-                    <div class="service-card complex-popup-trigger" data-popup="bundles">
-                        <i class="fas fa-gift gold-subtle-icon complex-icon"></i>
+                    <div class="service-card ultra-popup-trigger" data-popup="bundles">
+                        <div class="service-aura-core">
+                            <i class="fas fa-gift gold-subtle-icon ultra-icon"></i>
+                        </div>
                         <h3>Bundle Deals</h3>
-                        <p>Pair up a site and bot for less cash – makes everything tie together nice and easy. Double Aura!</p>
+                        <p>Pair up a site and bot for less cash – makes everything tie together nice and easy. Double Aura – 200 points for synergy!</p>
                     </div>
-                    <div class="service-card complex-popup-trigger" data-popup="support">
-                        <i class="fas fa-headset gold-subtle-icon complex-icon"></i>
-                        <h3>24/7 Support</h3>
-                        <p>We're there whenever you hit a snag, no matter the hour – quick fixes and real talk. Aura bonus included.</p>
+                    <div class="service-card ultra-popup-trigger" data-popup="support">
+                        <div class="service-aura-core">
+                            <i class="fas fa-headset gold-subtle-icon ultra-icon"></i>
+                        </div>
+                        <h3>24/7 Aura Support</h3>
+                        <p>We're there whenever you hit a snag, no matter the hour – quick fixes and real talk. Aura bonus: +30 points per session.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact CTA with Complex Gold Popup -->
+        <!-- Contact CTA with Hyper-Complex Gold Popup -->
         <section class="contact-section">
             <div class="container">
-                <h2 class="section-title complex-slide-in">Ready to Go Fancy?</h2>
-                <button class="cta-btn polished-gold-btn complex-btn" id="contactCta">
-                    <i class="fas fa-envelope"></i> Shoot Us a Message
+                <h2 class="section-title ultra-slide-in">Ready to Channel Aura?</h2>
+                <button class="cta-btn polished-gold-btn ultra-cta" id="contactCta">
+                    <i class="fas fa-envelope hyper-icon"></i> Blast an Aura Message
                 </button>
             </div>
         </section>
     </div>
 
-    <!-- Complex Gold Popup Modals -->
-    <div class="complex-popup-overlay" id="websitesPopup">
-        <div class="complex-popup-content aura-slide-popup">
-            <h3>Websites That Wow</h3>
-            <p>Think smooth scrolls, cool transitions, and bits that react to what users do. Hit up for a quick look. Earn 50 Aura points on purchase!</p>
-            <button class="close-complex-popup gold-subtle-btn complex-btn">Close <i class="fas fa-times"></i></button>
+    <!-- Hyper-Complex Aura Popup Modals -->
+    <div class="hyper-popup-overlay" id="websitesPopup">
+        <div class="hyper-popup-content aura-slide-popup">
+            <h3>Websites That Channel Aura</h3>
+            <p>Think smooth scrolls, cool transitions, and bits that react to what users do. Hit up for a quick look. Earn 50 Aura points on purchase – vibe multiplier activated!</p>
+            <button class="close-hyper-popup gold-subtle-btn ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
         </div>
     </div>
-    <div class="complex-popup-overlay" id="botsPopup">
-        <div class="complex-popup-content aura-slide-popup">
-            <h3>Bots That Boss</h3>
-            <p>Covers moderation, little games, or economy setups – plus some flair like animations. It'll keep things rolling. Aura points: 75!</p>
-            <button class="close-complex-popup gold-subtle-btn complex-btn">Close <i class="fas fa-times"></i></button>
+    <div class="hyper-popup-overlay" id="botsPopup">
+        <div class="hyper-popup-content aura-slide-popup">
+            <h3>Bots That Boss Aura</h3>
+            <p>Covers moderation, little games, or economy setups – plus some flair like animations. It'll keep things rolling. Aura points: 75! Unlock bot dominion.</p>
+            <button class="close-hyper-popup gold-subtle-btn ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
         </div>
     </div>
-    <div class="complex-popup-overlay" id="bundlesPopup">
-        <div class="complex-popup-content aura-slide-popup">
-            <h3>Bundle Bonanza</h3>
-            <p>Knock off some bucks when you grab both – site and bot play nice together out of the box. Massive Aura reward: 200 points!</p>
-            <button class="close-complex-popup gold-subtle-btn complex-btn">Close <i class="fas fa-times"></i></button>
+    <div class="hyper-popup-overlay" id="bundlesPopup">
+        <div class="hyper-popup-content aura-slide-popup">
+            <h3>Bundle Aura Bonanza</h3>
+            <p>Knock off some bucks when you grab both – site and bot play nice together out of the box. Massive Aura reward: 200 points! Synergy surge incoming.</p>
+            <button class="close-hyper-popup gold-subtle-btn ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
         </div>
     </div>
-    <div class="complex-popup-overlay" id="supportPopup">
-        <div class="complex-popup-content aura-slide-popup">
-            <h3>Support Activated</h3>
-            <p>Jump in chat or shoot an email – we'll sort it out fast, no fluff. Free Aura consultation included.</p>
-            <button class="close-complex-popup gold-subtle-btn complex-btn">Close <i class="fas fa-times"></i></button>
+    <div class="hyper-popup-overlay" id="supportPopup">
+        <div class="hyper-popup-content aura-slide-popup">
+            <h3>Aura Support Vortex</h3>
+            <p>Jump in chat or shoot an email – we'll sort it out fast, no fluff. Free Aura consultation included – +30 points per query.</p>
+            <button class="close-hyper-popup gold-subtle-btn ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
         </div>
     </div>
-    <div class="complex-popup-overlay" id="contactPopup">
-        <div class="complex-popup-content aura-hero-slide-popup">
-            <h3>Contact Fancy Aura</h3>
+    <div class="hyper-popup-overlay" id="contactPopup">
+        <div class="hyper-popup-content aura-hero-slide-popup">
+            <h3>Contact Aura Central</h3>
             <p>Email: contact@fancy.com | Discord: fancy#0001</p>
-            <form class="quick-form complex-form">
-                <input type="text" placeholder="Your Epic Aura Idea..." required>
-                <button type="submit" class="gold-submit-btn complex-btn">Send Aura Blast!</button>
+            <form class="quick-form hyper-form">
+                <input type="text" placeholder="Your Epic Aura Idea – describe the vibe..." required>
+                <button type="submit" class="gold-submit-btn ultra-cta">Ignite Aura Blast!</button>
             </form>
-            <button class="close-complex-popup gold-subtle-btn complex-btn">Close <i class="fas fa-times"></i></button>
+            <button class="close-hyper-popup gold-subtle-btn ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
         </div>
     </div>
 
-    <!-- Complex Custom Notification System -->
-    <div id="complexNotificationContainer"></div>
+    <!-- Hyper-Complex Custom Notification System -->
+    <div id="hyperNotificationContainer"></div>
 
     <script src="script.js"></script>
 </body>
