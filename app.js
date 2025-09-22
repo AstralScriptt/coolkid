@@ -1,20 +1,21 @@
-// script.js - Hyper Animations & Simplified Token Access
+// script.js - Hyper Animations & Simplified Token Access with Popup Menu Notification
 class HyperNotificationSystem {
     constructor() {
-        this.container = document.getElementById('hyperNotificationContainer');
+        this.menu = document.getElementById('notificationMenu');
+        this.title = document.getElementById('notificationTitle');
+        this.message = document.getElementById('notificationMessage');
     }
-    show(message, type = 'info', duration = 3500) {
-        const notif = document.createElement('div');
-        notif.className = `notification ${type}`;
-        notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i><span>${message}</span>`;
-        this.container.appendChild(notif);
-        // Force reflow for smooth animation
-        notif.offsetHeight;
-        requestAnimationFrame(() => notif.classList.add('show'));
+    show(title, message, type = 'info', duration = 5000) {
+        this.title.textContent = title;
+        this.message.textContent = message;
+        this.menu.style.display = 'flex';
+        // Auto close after duration
         setTimeout(() => {
-            notif.classList.remove('show');
-            setTimeout(() => notif.remove(), 500);
+            this.hide();
         }, duration);
+    }
+    hide() {
+        this.menu.style.display = 'none';
     }
 }
 const notify = new HyperNotificationSystem();
@@ -22,39 +23,39 @@ const notify = new HyperNotificationSystem();
 // Simplified Token Access Function
 function unlockWithToken(token) {
     if (!token || token.trim().length === 0) {
-        notify.show('Enter a token to unlock access.', 'error');
+        notify.show('Error', 'Enter a token to unlock access.', 'error');
         return;
     }
     // Accept any non-empty token
     localStorage.setItem('token', token);
-    notify.show(`Access unlocked with token! Welcome aboard.`, 'success');
-    showMainContent();
+    notify.show('Access Unlocked!', `Welcome aboard with your token!`, 'success');
+    // Delay main content show until after notification is visible
+    setTimeout(() => {
+        showMainContent();
+    }, 1000); // Give time for popup to show
 }
 
 function showMainContent() {
-    document.getElementById('authOverlay').style.opacity = '0';
+    document.getElementById('authOverlay').style.display = 'none';
+    const main = document.getElementById('mainContent');
+    main.style.display = 'block';
+    main.classList.add('fade-in');
+    // Trigger stagger for cards
     setTimeout(() => {
-        document.getElementById('authOverlay').style.display = 'none';
-        const main = document.getElementById('mainContent');
-        main.style.display = 'block';
-        main.classList.add('fade-in');
-        // Trigger stagger for cards
-        setTimeout(() => {
-            document.querySelectorAll('.ultra-stagger-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-                card.style.animationPlayState = 'running';
-            });
-        }, 200);
-    }, 300);
+        document.querySelectorAll('.ultra-stagger-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+            card.style.animationPlayState = 'running';
+        });
+    }, 200);
+    notify.hide(); // Close the notification menu now
 }
 
 function logout() {
     localStorage.removeItem('token');
     document.getElementById('mainContent').style.display = 'none';
     document.getElementById('authOverlay').style.display = 'flex';
-    document.getElementById('authOverlay').style.opacity = '1';
     document.getElementById('tokenInput').value = ''; // Clear input
-    notify.show('Session closed. Enter a new token to return.', 'info');
+    notify.show('Session Closed', 'Enter a new token to return.', 'info');
 }
 
 // Check if already unlocked
@@ -71,9 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         unlockWithToken(token);
     });
 
-    // Test Notification
+    // Close Notification Menu
+    document.getElementById('closeNotificationMenu').addEventListener('click', () => {
+        notify.hide();
+    });
+
+    // Test Notification (now uses popup menu)
     document.getElementById('testNotification').addEventListener('click', () => {
-        notify.show('Notification test successful! Vibes activated.', 'success');
+        notify.show('Test Alert', 'Notification test successful! Vibes activated.', 'success');
     });
 
     // Logout
@@ -84,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger.addEventListener('click', () => {
             const popupId = trigger.dataset.popup + 'Popup';
             document.getElementById(popupId).style.display = 'flex';
-            notify.show(`${trigger.querySelector('h3').textContent} details unlocked.`, 'info', 2000);
+            notify.show('Details Unlocked', `${trigger.querySelector('h3').textContent} info opened.`, 'info');
         });
     });
 
@@ -92,14 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.close-hyper-popup').forEach(closeBtn => {
         closeBtn.addEventListener('click', (e) => {
             e.target.closest('.hyper-popup-overlay').style.display = 'none';
-            notify.show('Details sealed.', 'success', 1500);
+            notify.show('Closed', 'Details sealed.', 'success');
         });
     });
 
     // Contact CTA
     document.getElementById('contactCta').addEventListener('click', () => {
         document.getElementById('contactPopup').style.display = 'flex';
-        notify.show('Contact portal opened.', 'success', 2000);
+        notify.show('Contact Opened', 'Portal activated.', 'success');
     });
 
     // Quick Form Submit
@@ -107,17 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const idea = e.target.querySelector('input').value.trim();
         if (!idea) {
-            notify.show('Share your idea to proceed!', 'error');
+            notify.show('Error', 'Share your idea to proceed!', 'error');
             return;
         }
-        notify.show(`Idea "${idea.substring(0, 20)}..." sent! Thanks.`, 'success');
+        notify.show('Sent!', `Idea "${idea.substring(0, 20)}..." sent! Thanks.`, 'success');
         e.target.reset();
         e.target.closest('.hyper-popup-overlay').style.display = 'none';
     });
 
     // Initial Load Effect
     if (document.getElementById('mainContent').style.display !== 'none') {
-        notify.show('Session reloaded – ready to go!', 'success', 2000);
+        notify.show('Reloaded', 'Session ready to go!', 'success');
     }
 });
 
@@ -126,9 +132,10 @@ document.addEventListener('click', (e) => {
     if (e.target.closest('.hyper-cta, .auth-btn, .gold-submit-btn')) {
         const btn = e.target.closest('button, a');
         const ripple = document.createElement('span');
-        ripple.className = 'gold-subtle-btn::after'; // Trigger CSS pseudo via class
-        ripple.style.left = `${e.clientX - btn.getBoundingClientRect().left}px`;
-        ripple.style.top = `${e.clientY - btn.getBoundingClientRect().top}px`;
+        ripple.style.cssText = `
+            position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+            transform: scale(0); animation: hyper-ripple-vortex 0.7s linear; left: ${e.clientX - btn.getBoundingClientRect().left}px; top: ${e.clientY - btn.getBoundingClientRect().top}px;
+        `;
         btn.appendChild(ripple);
         setTimeout(() => ripple.remove(), 700);
     }
