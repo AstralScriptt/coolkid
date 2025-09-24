@@ -3,206 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy</title>
+    <title>Torkzz.gg - Advanced Gaming Hub</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Audiowide:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Ultra-Complex Particle System -->
-    <div class="aura-particle-system">
-        <div class="aura-particle" style="--x: 10%; --y: 20%; --delay: 0s; --duration: 15s; --size: 3px; --color: #FFD700;"></div>
-        <div class="aura-particle" style="--x: 40%; --y: 60%; --delay: 2s; --duration: 20s; --size: 4px; --color: #FFA500;"></div>
-        <div class="aura-particle" style="--x: 70%; --y: 30%; --delay: 4s; --duration: 18s; --size: 2px; --color: #FF8C00;"></div>
-        <div class="aura-particle" style="--x: 90%; --y: 80%; --delay: 6s; --duration: 22s; --size: 5px; --color: #DAA520;"></div>
-        <div class="aura-particle" style="--x: 25%; --y: 50%; --delay: 8s; --duration: 16s; --size: 3px; --color: #B8860B;"></div>
-        <div class="aura-particle" style="--x: 60%; --y: 10%; --delay: 10s; --duration: 19s; --size: 4px; --color: #FFD700;"></div>
-    </div>
-   
-    <!-- Auth Overlay with Hyper-Advanced Animations -->
-    <div class="auth-overlay" id="authOverlay">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2 class="hyper-aura-text">Fancy Access</h2>
-                <p class="wave-subtitle">Enter your token to unlock the full experience</p>
+    <div class="container">
+        <!-- Header with animations -->
+        <header class="header">
+            <div class="logo">
+                <h1 class="logo-text">Torkzz.gg</h1>
+                <p class="tagline">Elevate Your Game Experience</p>
             </div>
-            <!-- Single Token Form - No Submit, Button is Type Button -->
-            <form id="tokenForm" class="auth-form active-form">
-                <div class="input-group hyper-input">
-                    <label for="tokenInput">Access Token</label>
-                    <input type="text" id="tokenInput" placeholder="Enter any token to proceed...">
-                    <i class="fas fa-key input-icon hyper-icon"></i>
-                    <span class="input-aura-line"></span>
-                </div>
-                <button type="button" class="auth-btn hyper-aura-btn" id="unlockBtn"><i class="fas fa-unlock hyper-icon"></i> Unlock Access</button>
-            </form>
-            <p class="pulse-hint">Any valid token grants instant access – feel the surge!</p>
-        </div>
-    </div>
-    <!-- Main Content - Hidden Initially -->
-    <div class="main-content" id="mainContent" style="display: none;">
-        <!-- Hero Section with Hyper-Complex Gold -->
+            <nav class="nav">
+                <button id="loginBtn" class="btn-login">Login / Register</button>
+            </nav>
+        </header>
+
+        <!-- Hero Section with animations -->
         <section class="hero">
-            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hyper-aura-hero-text">Fancy</h1>
-                <p class="hero-subtitle ultra-complex-pulse">Custom Websites & Discord Bots That Ignite Your Brand – Advanced, Professional, and Timeless.</p>
-                <div class="hero-actions hyper-actions">
-                    <a href="https://discord.gg/yourinvite" class="cta-btn hyper-cta" id="heroCta" target="_blank">
-                        <i class="fab fa-discord hyper-icon"></i> Join the Community
-                    </a>
-                    <button class="cta-btn test-notification-btn hyper-cta" id="testNotification">
-                        <i class="fas fa-bell hyper-icon"></i> Test Notification
-                    </button>
-                    <button class="cta-btn logout-btn hyper-cta" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt hyper-icon"></i> Logout
-                    </button>
+                <h2>Welcome to Torkzz.gg</h2>
+                <p>Discover advanced scripts for your favorite games. Join the community and level up today!</p>
+                <div class="hero-buttons">
+                    <a href="https://discord.gg/torkzz" target="_blank" class="btn-discord">Join Discord</a>
+                    <button id="scriptInfoBtn" class="btn-script">Script Info</button>
                 </div>
             </div>
-            <div class="hero-aura-orbiters">
-                <div class="aura-orbiter orb1" style="--orbit-delay: 0s;"></div>
-                <div class="aura-orbiter orb2" style="--orbit-delay: 3s;"></div>
-                <div class="aura-orbiter orb3" style="--orbit-delay: 6s;"></div>
-                <div class="aura-orbiter orb4" style="--orbit-delay: 9s;"></div>
+            <div class="hero-animation">
+                <div class="floating-card">Advanced Scripts</div>
+                <div class="floating-card delay-1">Community Driven</div>
+                <div class="floating-card delay-2">Purple Power</div>
             </div>
         </section>
-        <!-- Why Fancy Section with Ultra-Complex Gold Cards -->
-        <section class="why-section">
-            <div class="container">
-                <h2 class="section-title ultra-slide-in">Why Choose Fancy</h2>
-                <div class="why-grid">
-                    <div class="why-card ultra-stagger-card" data-delay="0">
-                        <div class="card-aura-core">
-                            <i class="fas fa-bolt gold-lightning-icon ultra-icon"></i>
-                        </div>
-                        <h3>Lightning-Fast Innovation</h3>
-                        <p>Our bots hit back in a split second, and sites pop up without a hitch. No frustrating delays – just gets the job done quick and easy.</p>
-                    </div>
-                    <div class="why-card ultra-stagger-card" data-delay="250">
-                        <div class="card-aura-core">
-                            <i class="fas fa-palette gold-paint-icon ultra-icon"></i>
-                        </div>
-                        <h3>Bespoke Masterpieces</h3>
-                        <p>We tweak every little detail to match what you're picturing. Whether it's got that edgy vibe or keeps it clean and simple, it's all about you.</p>
-                    </div>
-                    <div class="why-card ultra-stagger-card" data-delay="500">
-                        <div class="card-aura-core">
-                            <i class="fas fa-shield-alt gold-shield-icon ultra-icon"></i>
-                        </div>
-                        <h3>Fortress-Level Security</h3>
-                        <p>Locked down tight with encryption and all that good stuff. We keep your info safe so you don't have to sweat the small stuff.</p>
-                    </div>
-                    <div class="why-card ultra-stagger-card" data-delay="750">
-                        <div class="card-aura-core">
-                            <i class="fas fa-chart-line gold-growth-icon ultra-icon"></i>
-                        </div>
-                        <h3>Exponential Growth</h3>
-                        <p>Your server or site starts pulling in more folks right away with bots that keep things lively and pages that actually hook people in. Watch the numbers climb.</p>
-                    </div>
-                    <div class="why-card ultra-stagger-card" data-delay="1000">
-                        <div class="card-aura-core">
-                            <i class="fas fa-rocket gold-rocket-icon ultra-icon"></i>
-                        </div>
-                        <h3>Unlimited Customization</h3>
-                        <p>Throw in crazy animations or smart AI bits – whatever floats your boat. We turn those wild ideas into something that actually works.</p>
-                    </div>
+
+        <!-- Games Section -->
+        <section class="games">
+            <h2>Supported Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Arcade Basketball</h3>
+                    <p>Master the court with precision scripts.</p>
+                    <div class="game-icon basketball"></div>
+                </div>
+                <div class="game-card">
+                    <h3>Philly Streetz</h3>
+                    <p>Dominate the streets like a pro.</p>
+                    <div class="game-icon streetz"></div>
+                </div>
+                <div class="game-card">
+                    <h3>Tha Bronx 3</h3>
+                    <p>Elevate your urban gameplay.</p>
+                    <div class="game-icon bronx"></div>
                 </div>
             </div>
         </section>
-        <!-- Services Section with Hyper-Complex Gold Popups -->
-        <section class="services-section">
-            <div class="container">
-                <h2 class="section-title ultra-slide-in">Our Services</h2>
-                <div class="services-grid">
-                    <div class="service-card ultra-popup-trigger" data-popup="websites">
-                        <div class="service-aura-core">
-                            <i class="fas fa-globe ultra-icon"></i>
-                        </div>
-                        <h3>Custom Websites</h3>
-                        <p>Built to grab attention and keep visitors clicking around without feeling forced.</p>
-                    </div>
-                    <div class="service-card ultra-popup-trigger" data-popup="bots">
-                        <div class="service-aura-core">
-                            <i class="fas fa-robot ultra-icon"></i>
-                        </div>
-                        <h3>Discord Bots</h3>
-                        <p>Handles the fun stuff like games or moderation so you can chill and enjoy your community.</p>
-                    </div>
-                    <div class="service-card ultra-popup-trigger" data-popup="bundles">
-                        <div class="service-aura-core">
-                            <i class="fas fa-gift ultra-icon"></i>
-                        </div>
-                        <h3>Bundle Deals</h3>
-                        <p>Pair up a site and bot for less cash – makes everything tie together nice and easy.</p>
-                    </div>
-                    <div class="service-card ultra-popup-trigger" data-popup="support">
-                        <div class="service-aura-core">
-                            <i class="fas fa-headset ultra-icon"></i>
-                        </div>
-                        <h3>24/7 Support</h3>
-                        <p>We're there whenever you hit a snag, no matter the hour – quick fixes and real talk.</p>
+
+        <!-- Auth Modal -->
+        <div id="authModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="loginForm" class="auth-form">
+                    <h3>Login</h3>
+                    <input type="text" id="loginUsername" placeholder="Username" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button id="loginSubmit">Login</button>
+                    <p>Not registered? <a href="#" id="switchToReg">Register here</a></p>
+                </div>
+                <div id="regForm" class="auth-form" style="display: none;">
+                    <h3>Register</h3>
+                    <input type="text" id="regUsername" placeholder="Username" required>
+                    <input type="password" id="regPassword" placeholder="Password" required>
+                    <button id="regSubmit">Register</button>
+                    <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script Info Modal -->
+        <div id="scriptModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Script Info & Changelogs</h3>
+                <div id="statusSection">
+                    <h4>Script Status</h4>
+                    <div class="status-circle green"></div>
+                    <span id="statusText">Active & Updated</span>
+                </div>
+                <div id="changelogSection">
+                    <h4>Changelogs</h4>
+                    <div id="changelogList"></div>
+                    <div id="adminEdit" style="display: none;">
+                        <h4>Admin Edit (Jeff only)</h4>
+                        <textarea id="editChangelog" placeholder="Add new changelog entry..."></textarea>
+                        <button id="addChangelog">Add Entry</button>
+                        <button id="toggleStatus">Toggle Status</button>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Contact CTA with Hyper-Complex Gold Popup -->
-        <section class="contact-section">
-            <div class="container">
-                <h2 class="section-title ultra-slide-in">Ready to Get Started?</h2>
-                <button class="cta-btn ultra-cta" id="contactCta">
-                    <i class="fas fa-envelope hyper-icon"></i> Send a Message
-                </button>
-            </div>
-        </section>
-    </div>
-    <!-- Hyper Popup Menu for Notifications -->
-    <div class="notification-menu-overlay" id="notificationMenu">
-        <div class="notification-menu-content">
-            <h3 id="notificationTitle">Success!</h3>
-            <p id="notificationMessage"></p>
-            <button id="closeNotificationMenu" class="close-hyper-popup ultra-cta">Got it!</button>
         </div>
     </div>
-    <!-- Hyper-Complex Popup Modals -->
-    <div class="hyper-popup-overlay" id="websitesPopup">
-        <div class="hyper-popup-content">
-            <h3>Websites That Shine</h3>
-            <p>Think smooth scrolls, cool transitions, and bits that react to what users do. Hit up for a quick look.</p>
-            <button class="close-hyper-popup ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
-        </div>
-    </div>
-    <div class="hyper-popup-overlay" id="botsPopup">
-        <div class="hyper-popup-content">
-            <h3>Bots That Deliver</h3>
-            <p>Covers moderation, little games, or economy setups – plus some flair like animations. It'll keep things rolling.</p>
-            <button class="close-hyper-popup ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
-        </div>
-    </div>
-    <div class="hyper-popup-overlay" id="bundlesPopup">
-        <div class="hyper-popup-content">
-            <h3>Bundle Deals</h3>
-            <p>Knock off some bucks when you grab both – site and bot play nice together out of the box.</p>
-            <button class="close-hyper-popup ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
-        </div>
-    </div>
-    <div class="hyper-popup-overlay" id="supportPopup">
-        <div class="hyper-popup-content">
-            <h3>Support Hub</h3>
-            <p>Jump in chat or shoot an email – we'll sort it out fast, no fluff.</p>
-            <button class="close-hyper-popup ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
-        </div>
-    </div>
-    <div class="hyper-popup-overlay" id="contactPopup">
-        <div class="hyper-popup-content">
-            <h3>Contact Us</h3>
-            <p>Email: contact@fancy.com | Discord: fancy#0001</p>
-            <form class="quick-form hyper-form">
-                <input type="text" placeholder="Your idea – describe the vibe..." required>
-                <button type="submit" class="gold-submit-btn ultra-cta">Send!</button>
-            </form>
-            <button class="close-hyper-popup ultra-cta">Close <i class="fas fa-times hyper-icon"></i></button>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
