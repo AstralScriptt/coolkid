@@ -192,7 +192,7 @@ function loadScriptInfo() {
             changelogs = changelogs.filter(log => log.id !== id);
             localStorage.setItem('changelogs', JSON.stringify(changelogs));
             loadScriptInfo();
-            showNotification('Wiped that note.');
+            showNotification('Wiped');
         });
     });
 
@@ -257,3 +257,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
