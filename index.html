@@ -3,105 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torkzz.gg - Advanced Gaming Hub</title>
+    <title>Torkzz.gg</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="stars"></div>
     <div class="container">
-        <!-- Header with animations -->
-        <header class="header">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
             <div class="logo">
                 <h1 class="logo-text">Torkzz.gg</h1>
-                <p class="tagline">Elevate Your Game Experience</p>
+                <p class="tagline">Unlock Infinite Possibilities</p>
             </div>
-            <nav class="nav">
-                <button id="loginBtn" class="btn-login">Login / Register</button>
-            </nav>
-        </header>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#games" class="nav-link">Games</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><button id="loginBtn" class="btn-nav">Account</button></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="https://discord.gg/torkzz" target="_blank" class="btn-discord">Join Discord</a>
+                <button id="scriptInfoBtn" class="btn-nav-script">Script Hub</button>
+            </div>
+        </nav>
 
-        <!-- Hero Section with animations -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Welcome to Torkzz.gg</h2>
-                <p>Discover advanced scripts for your favorite games. Join the community and level up today!</p>
-                <div class="hero-buttons">
-                    <a href="https://discord.gg/torkzz" target="_blank" class="btn-discord">Join Discord</a>
-                    <button id="scriptInfoBtn" class="btn-script">Script Info</button>
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <h2 class="hero-title">Dominate the Game</h2>
+                    <p class="hero-subtitle">Advanced scripts for Arcade Basketball, Philly Streetz, and Tha Bronx 3. Join the elite.</p>
+                    <div class="hero-cta">
+                        <a href="#games" class="btn-cta">Explore Games</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-animation">
-                <div class="floating-card">Advanced Scripts</div>
-                <div class="floating-card delay-1">Community Driven</div>
-                <div class="floating-card delay-2">Purple Power</div>
-            </div>
-        </section>
+                <div class="hero-particles">
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                    <div class="particle p4"></div>
+                </div>
+            </section>
 
-        <!-- Games Section -->
-        <section class="games">
-            <h2>Supported Games</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <h3>Arcade Basketball</h3>
-                    <p>Master the court with precision scripts.</p>
-                    <div class="game-icon basketball"></div>
+            <!-- Games Section -->
+            <section id="games" class="games">
+                <h2 class="section-title">Supported Titles</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-icon basketball"></div>
+                        <h3>Arcade Basketball</h3>
+                        <p>Precision shots and auto-dunks unlocked.</p>
+                        <button class="btn-game">Load Script</button>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon streetz"></div>
+                        <h3>Philly Streetz</h3>
+                        <p>Street domination with AI-enhanced moves.</p>
+                        <button class="btn-game">Load Script</button>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon bronx"></div>
+                        <h3>Tha Bronx 3</h3>
+                        <p>Urban warfare scripts for ultimate control.</p>
+                        <button class="btn-game">Load Script</button>
+                    </div>
                 </div>
-                <div class="game-card">
-                    <h3>Philly Streetz</h3>
-                    <p>Dominate the streets like a pro.</p>
-                    <div class="game-icon streetz"></div>
-                </div>
-                <div class="game-card">
-                    <h3>Tha Bronx 3</h3>
-                    <p>Elevate your urban gameplay.</p>
-                    <div class="game-icon bronx"></div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Auth Modal -->
-        <div id="authModal" class="modal">
-            <div class="modal-content">
+            <!-- Community Section -->
+            <section id="community" class="community">
+                <h2 class="section-title">Join the Revolution</h2>
+                <p>Connect with fellow gamers and script masters.</p>
+                <div class="community-stats">
+                    <div class="stat">
+                        <span class="stat-num">10K+</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">50+</span>
+                        <span class="stat-label">Scripts Updated</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">24/7</span>
+                        <span class="stat-label">Support</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <span class="notification-icon">!</span>
+            <span id="notification-text"></span>
+            <button class="notification-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Secure Login</h3>
                 <span class="close">&times;</span>
-                <div id="loginForm" class="auth-form">
-                    <h3>Login</h3>
-                    <input type="text" id="loginUsername" placeholder="Username" required>
-                    <input type="password" id="loginPassword" placeholder="Password" required>
-                    <button id="loginSubmit">Login</button>
-                    <p>Not registered? <a href="#" id="switchToReg">Register here</a></p>
-                </div>
-                <div id="regForm" class="auth-form" style="display: none;">
-                    <h3>Register</h3>
-                    <input type="text" id="regUsername" placeholder="Username" required>
-                    <input type="password" id="regPassword" placeholder="Password" required>
-                    <button id="regSubmit">Register</button>
-                    <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
-                </div>
+            </div>
+            <div id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" placeholder="Enter Username" required>
+                <input type="password" id="loginPassword" placeholder="Enter Password" required>
+                <button id="loginSubmit" class="btn-auth">Enter Realm</button>
+                <p class="auth-switch">New? <a href="#" id="switchToReg">Create Account</a></p>
+            </div>
+            <div id="regForm" class="auth-form" style="display: none;">
+                <input type="text" id="regUsername" placeholder="Choose Username" required>
+                <input type="password" id="regPassword" placeholder="Choose Password" required>
+                <button id="regSubmit" class="btn-auth">Forge Account</button>
+                <p class="auth-switch">Existing? <a href="#" id="switchToLogin">Login</a></p>
             </div>
         </div>
+    </div>
 
-        <!-- Script Info Modal -->
-        <div id="scriptModal" class="modal">
-            <div class="modal-content">
+    <!-- Script Info Modal -->
+    <div id="scriptModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Script Nexus</h3>
                 <span class="close">&times;</span>
-                <h3>Script Info & Changelogs</h3>
-                <div id="statusSection">
-                    <h4>Script Status</h4>
-                    <div class="status-circle green"></div>
-                    <span id="statusText">Active & Updated</span>
+            </div>
+            <div class="script-content">
+                <div class="status-panel">
+                    <h4>Core Status</h4>
+                    <div class="status-display">
+                        <div id="statusCircle" class="status-circle green"></div>
+                        <span id="statusText">Operational</span>
+                    </div>
                 </div>
-                <div id="changelogSection">
-                    <h4>Changelogs</h4>
-                    <div id="changelogList"></div>
-                    <div id="adminEdit" style="display: none;">
-                        <h4>Admin Edit (Jeff only)</h4>
-                        <textarea id="editChangelog" placeholder="Add new changelog entry..."></textarea>
-                        <button id="addChangelog">Add Entry</button>
-                        <button id="toggleStatus">Toggle Status</button>
+                <div class="changelog-panel">
+                    <h4>Evolution Log</h4>
+                    <div id="changelogList" class="changelog-scroll"></div>
+                    <div id="adminPanel" style="display: none;">
+                        <h4>Admin Console</h4>
+                        <textarea id="editChangelog" placeholder="Inscribe new evolution..."></textarea>
+                        <div class="admin-buttons">
+                            <button id="addChangelog" class="btn-admin">Inscribe</button>
+                            <button id="toggleStatus" class="btn-admin">Toggle Core</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
