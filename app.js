@@ -1,20 +1,25 @@
-// app.js - Enhanced System with Custom Notifications and Fixed Admin Login
+// app.js - Updated with Popups, Remove Func, Natural Text
 
-// Initialize data
+// Initialize data - Updated dates for 2025
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUser = localStorage.getItem('currentUser') || null;
 let changelogs = JSON.parse(localStorage.getItem('changelogs')) || [
-    { id: 1, text: 'Nexus initialized: Full integration for Arcade Basketball with quantum aiming.', date: new Date().toISOString().split('T')[0] },
-    { id: 2, text: 'Evolution v2.1: Philly Streetz now features adaptive street AI.', date: new Date(Date.now() - 86400000).toISOString().split('T')[0] },
-    { id: 3, text: 'Bronx Protocol activated: Enhanced urban combat modules deployed.', date: new Date(Date.now() - 172800000).toISOString().split('T')[0] }
+    { id: 1, text: 'Kicked off with full Arcade Basketball support – auto-aim feels buttery now.', date: '2025-09-01' },
+    { id: 2, text: 'Philly Streetz got a bump: better combo chaining, no more drops.', date: '2025-09-10' },
+    { id: 3, text: 'Tha Bronx 3 lockdown mode tuned – spots enemies quicker.', date: '2025-09-20' }
 ];
 let scriptStatus = localStorage.getItem('scriptStatus') || 'active';
 
 // DOM Elements
 const authModal = document.getElementById('authModal');
+const gamesModal = document.getElementById('gamesModal');
+const communityModal = document.getElementById('communityModal');
 const scriptModal = document.getElementById('scriptModal');
 const loginBtn = document.getElementById('loginBtn');
 const scriptInfoBtn = document.getElementById('scriptInfoBtn');
+const gamesLink = document.getElementById('gamesLink');
+const communityLink = document.getElementById('communityLink');
+const exploreGames = document.getElementById('exploreGames');
 const notification = document.getElementById('notification');
 const notificationText = document.getElementById('notification-text');
 const loginForm = document.getElementById('loginForm');
@@ -35,7 +40,7 @@ const modalTitle = document.getElementById('modalTitle');
 
 // Event Listeners
 loginBtn.addEventListener('click', () => {
-    modalTitle.textContent = 'Secure Login';
+    modalTitle.textContent = 'Log In';
     loginForm.style.display = 'block';
     regForm.style.display = 'none';
     authModal.style.display = 'block';
@@ -43,7 +48,7 @@ loginBtn.addEventListener('click', () => {
 
 scriptInfoBtn.addEventListener('click', () => {
     if (!currentUser) {
-        showNotification('Access denied. Secure your identity first.', 'error');
+        showNotification('Gotta log in first, chief.', 'error');
         loginBtn.click();
         return;
     }
@@ -51,16 +56,31 @@ scriptInfoBtn.addEventListener('click', () => {
     scriptModal.style.display = 'block';
 });
 
+gamesLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    gamesModal.style.display = 'block';
+});
+
+communityLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    communityModal.style.display = 'block';
+});
+
+exploreGames.addEventListener('click', (e) => {
+    e.preventDefault();
+    gamesModal.style.display = 'block';
+});
+
 switchToReg.addEventListener('click', (e) => {
     e.preventDefault();
-    modalTitle.textContent = 'Account Forging';
+    modalTitle.textContent = 'Sign Up';
     loginForm.style.display = 'none';
     regForm.style.display = 'block';
 });
 
 switchToLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    modalTitle.textContent = 'Secure Login';
+    modalTitle.textContent = 'Log In';
     regForm.style.display = 'none';
     loginForm.style.display = 'block';
 });
@@ -71,59 +91,59 @@ addChangelogBtn.addEventListener('click', addChangelog);
 toggleStatusBtn.addEventListener('click', toggleStatus);
 document.querySelector('.notification-close').addEventListener('click', hideNotification);
 
-Array.from(closeBtns).forEach(btn => btn.addEventListener('click', closeModals));
+Array.from(closeBtns).forEach(btn => btn.addEventListener('click', closeAllModals));
 window.addEventListener('click', (e) => {
-    if (e.target === authModal || e.target === scriptModal) closeModals();
+    if ([authModal, gamesModal, communityModal, scriptModal].includes(e.target)) closeAllModals();
 });
 
 // Functions
-function closeModals() {
+function closeAllModals() {
     authModal.style.display = 'none';
+    gamesModal.style.display = 'none';
+    communityModal.style.display = 'none';
     scriptModal.style.display = 'none';
     regForm.style.display = 'none';
     loginForm.style.display = 'block';
-    modalTitle.textContent = 'Secure Login';
+    modalTitle.textContent = 'Log In';
 }
 
 function showNotification(message, type = 'info') {
     notificationText.textContent = message;
-    notification.classList.add('error'); // Style based on type if needed
     notification.style.display = 'block';
     setTimeout(hideNotification, 4000);
 }
 
 function hideNotification() {
     notification.style.display = 'none';
-    notification.classList.remove('error');
 }
 
 function registerUser() {
     const username = document.getElementById('regUsername').value.trim();
     const password = document.getElementById('regPassword').value.trim();
     if (!username || !password) {
-        showNotification('All fields must be forged.', 'error');
+        showNotification('Fill in the blanks, yeah?', 'error');
         return;
     }
     if (users.find(u => u.username === username)) {
-        showNotification('Identity already claimed.', 'error');
+        showNotification('Handle\'s taken, try another.', 'error');
         return;
     }
     const isAdmin = username === 'jeff' && password === 'billy';
     users.push({ username, password, isAdmin });
     localStorage.setItem('users', JSON.stringify(users));
-    showNotification('Account forged. Enter the realm.');
-    closeModals();
+    showNotification('All set – now log in.');
+    closeAllModals();
 }
 
 function loginUser() {
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
     if (!username || !password) {
-        showNotification('Credentials incomplete.', 'error');
+        showNotification('Missing something there.', 'error');
         return;
     }
 
-    // Special handling for admin: create if not exists
+    // Admin auto-create
     if (username === 'jeff' && password === 'billy') {
         let adminUser = users.find(u => u.username === 'jeff');
         if (!adminUser) {
@@ -135,28 +155,46 @@ function loginUser() {
 
     const user = users.find(u => u.username === username && u.password === password);
     if (!user) {
-        showNotification('Invalid credentials. Try again.', 'error');
+        showNotification('Nah, that ain\'t right. Double-check.', 'error');
         return;
     }
 
     currentUser = username;
     localStorage.setItem('currentUser', currentUser);
-    loginBtn.textContent = `Welcome, ${username}`;
+    loginBtn.textContent = `Hey, ${username}`;
     loginBtn.style.background = '#8a2be2';
-    showNotification(`Welcome back, ${username}!`, 'success');
-    closeModals();
+    showNotification(`Yo ${username}, good to see ya.`);
+    closeAllModals();
 }
 
 function loadScriptInfo() {
     scriptStatus = localStorage.getItem('scriptStatus') || 'active';
     statusCircle.className = `status-circle ${scriptStatus === 'active' ? 'green' : 'red'}`;
-    statusText.textContent = scriptStatus === 'active' ? 'Operational' : 'In Eclipse';
+    statusText.textContent = scriptStatus === 'active' ? 'Working' : 'Non Working';
 
     changelogList.innerHTML = changelogs.map(log => 
         `<div class="changelog-entry">
-            <strong>${log.date}:</strong> ${log.text}
+            <div class="changelog-text">
+                <strong>${log.date}:</strong> ${log.text}
+            </div>
+            <button class="delete-btn" data-id="${log.id}">&times;</button>
         </div>`
     ).join('');
+
+    // Add delete listeners
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if (!currentUser || currentUser !== 'jeff') {
+                showNotification('Only the boss can do that.', 'error');
+                return;
+            }
+            const id = parseInt(e.target.dataset.id);
+            changelogs = changelogs.filter(log => log.id !== id);
+            localStorage.setItem('changelogs', JSON.stringify(changelogs));
+            loadScriptInfo();
+            showNotification('Wiped that note.');
+        });
+    });
 
     const user = users.find(u => u.username === currentUser);
     if (user && user.isAdmin) {
@@ -168,12 +206,12 @@ function loadScriptInfo() {
 
 function addChangelog() {
     if (!currentUser || currentUser !== 'jeff') {
-        showNotification('Admin access required.', 'error');
+        showNotification('Boss moves only.', 'error');
         return;
     }
     const text = editChangelog.value.trim();
     if (!text) {
-        showNotification('Entry cannot be void.', 'error');
+        showNotification('Can\'t add nothing.', 'error');
         return;
     }
     const newLog = {
@@ -185,39 +223,37 @@ function addChangelog() {
     localStorage.setItem('changelogs', JSON.stringify(changelogs));
     editChangelog.value = '';
     loadScriptInfo();
-    showNotification('Evolution inscribed.', 'success');
+    showNotification('Note added.');
 }
 
 function toggleStatus() {
     if (!currentUser || currentUser !== 'jeff') {
-        showNotification('Admin access required.', 'error');
+        showNotification('Boss moves only.', 'error');
         return;
     }
     scriptStatus = scriptStatus === 'active' ? 'inactive' : 'active';
     localStorage.setItem('scriptStatus', scriptStatus);
     loadScriptInfo();
-    showNotification(`Core toggled to ${scriptStatus === 'active' ? 'Operational' : 'In Eclipse'}.`, 'success');
+    showNotification(`Status flipped to ${scriptStatus === 'active' ? 'Working' : 'Non Working'}.`);
 }
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     if (currentUser) {
-        loginBtn.textContent = `Welcome, ${currentUser}`;
+        loginBtn.textContent = `Hey, ${currentUser}`;
         loginBtn.style.background = '#8a2be2';
-        const user = users.find(u => u.username === currentUser);
-        if (user && user.isAdmin) {
-            // Admin panel will show when modal opens
-        }
     }
 
-    // Smooth scrolling for nav links
+    // Nav active class
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
+            if (e.target.id !== 'gamesLink' && e.target.id !== 'communityLink') {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            }
         });
     });
 });
