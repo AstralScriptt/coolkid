@@ -295,7 +295,7 @@ body {
     90% { opacity: 1; }
     100% { transform: translateY(-100vh) rotate(720deg) scale(0); opacity: 0; }
 }
-/* Features Teaser */
+/* Features Teaser - Improved Colors */
 .features-teaser {
     display: flex;
     justify-content: center;
@@ -325,12 +325,12 @@ body {
     background: linear-gradient(90deg, #8a2be2, #9370db);
 }
 .legit {
-    background: rgba(0, 255, 0, 0.1);
-    border: 1px solid rgba(0, 255, 0, 0.3);
+    background: rgba(147, 112, 219, 0.15);
+    border: 1px solid rgba(147, 112, 219, 0.4);
 }
 .hvh {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: rgba(218, 160, 221, 0.15);
+    border: 1px solid rgba(218, 160, 221, 0.4);
 }
 .teaser-card:hover {
     transform: translateY(-15px) rotateX(5deg);
@@ -598,8 +598,8 @@ body {
     animation: iconSpin 5s linear infinite;
     box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
 }
-.legit { background: linear-gradient(45deg, #00ff00, #32cd32); }
-.hvh { background: linear-gradient(45deg, #ff0000, #ff4500); }
+.legit { background: linear-gradient(45deg, #9370db, #8a2be2); }
+.hvh { background: linear-gradient(45deg, #dda0dd, #9370db); }
 .mode-card h3 {
     font-size: 1.8em;
     margin-bottom: 20px;
