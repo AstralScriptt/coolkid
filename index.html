@@ -3,41 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torkzz.gg</title>
+    <title>Insights.lol</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="stars"></div>
     <div class="container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
-                <h1 class="logo-text">Torkzz.gg</h1>
-                <p class="tagline">Win legit. or blatant your choice</p>
+                <h1 class="logo-text">Insights.lol</h1>
+                <p class="tagline">Dominate Da Hood – Legit or HVH, your call.</p>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#" class="nav-link" id="gamesLink">Games</a></li>
-                <li><a href="#" class="nav-link" id="communityLink">community</a></li>
+                <li><a href="#" class="nav-link" id="gamesLink">Scripts</a></li>
+                <li><a href="#" class="nav-link" id="communityLink">Community</a></li>
                 <li><button id="loginBtn" class="btn-nav">Account</button></li>
             </ul>
             <div class="sidebar-footer">
-                <a href="https://discord.gg/torkzz" target="_blank" class="btn-discord">Discord</a>
-                <button id="scriptInfoBtn" class="btn-nav-script">Scripts</button>
+                <a href="https://discord.gg/insights" target="_blank" class="btn-discord">Join Discord</a>
+                <button id="scriptInfoBtn" class="btn-nav-script">Updates</button>
             </div>
         </nav>
-
         <!-- Main Content -->
         <main class="main">
             <!-- Hero Section -->
             <section id="home" class="hero">
                 <div class="hero-bg"></div>
                 <div class="hero-content">
-                    <h2 class="hero-title">TORKZZ.GG ON TOP KID</h2>
-                    <p class="hero-subtitle">Simply The Best Hub.</p>
+                    <h2 class="hero-title">INSIGHTS.LOL – DA HOOD MASTERY</h2>
+                    <p class="hero-subtitle">Unlock god mode in Da Hood. Go legit for stealth wins or HVH for chaos. We've got the scripts that hit different.</p>
                     <div class="hero-cta">
-                        <a href="#" id="exploreGames" class="btn-cta">Check the Games</a>
+                        <a href="#" id="exploreGames" class="btn-cta">Grab the Edge</a>
                     </div>
                 </div>
                 <div class="hero-particles">
@@ -46,11 +51,23 @@
                     <div class="particle p3"></div>
                     <div class="particle p4"></div>
                     <div class="particle p5"></div>
+                    <div class="particle p6"></div>
+                    <div class="particle p7"></div>
+                </div>
+            </section>
+            <!-- Features Teaser -->
+            <section class="features-teaser">
+                <div class="teaser-card legit">
+                    <h3>Legit Mode</h3>
+                    <p>Subtle tweaks for natural plays – no bans, all gains.</p>
+                </div>
+                <div class="teaser-card hvh">
+                    <h3>HVH Mode</h3>
+                    <p>Full send against hackers. Rage, aim, and own the block.</p>
                 </div>
             </section>
         </main>
     </div>
-
     <!-- Custom Notification -->
     <div id="notification" class="notification">
         <div class="notification-content">
@@ -59,7 +76,6 @@
             <button class="notification-close">&times;</button>
         </div>
     </div>
-
     <!-- Auth Modal -->
     <div id="authModal" class="modal">
         <div class="modal-overlay"></div>
@@ -72,139 +88,117 @@
                 <input type="text" id="loginUsername" placeholder="Your handle" required>
                 <input type="password" id="loginPassword" placeholder="Your pass" required>
                 <button id="loginSubmit" class="btn-auth">Log In</button>
-                <p class="auth-switch">no account kid?>> <a href="#" id="switchToReg">Sign up</a></p>
+                <p class="auth-switch">no account? <a href="#" id="switchToReg">Sign up</a></p>
             </div>
             <div id="regForm" class="auth-form" style="display: none;">
                 <input type="text" id="regUsername" placeholder="Pick a handle" required>
                 <input type="password" id="regPassword" placeholder="Pick a pass" required>
                 <button id="regSubmit" class="btn-auth">Sign Up</button>
-                <p class="auth-switch">Got one already? <a href="#" id="switchToLogin">Log in</a></p>
+                <p class="auth-switch">Got one? <a href="#" id="switchToLogin">Log in</a></p>
             </div>
         </div>
     </div>
-
     <!-- Games Modal -->
     <div id="gamesModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content large">
             <div class="modal-header">
-                <h3>Games</h3>
+                <h3>Da Hood Scripts</h3>
                 <span class="close">&times;</span>
             </div>
             <div class="games-content">
-                <div class="games-grid">
-                    <div class="game-card advanced">
-                        <div class="game-icon basketball"></div>
-                        <h3>Arcade Basketball</h3>
-                        <div class="game-stats">
-                            <span>Auto-green</span>
-                            <span>No Contest</span>
-                            <span>Auto Guard and more</span>
+                <div class="game-hero">
+                    <h2>Da Hood – Own the Streets</h2>
+                    <p>From subtle legit plays to full HVH rampage, our scripts give you the tools to run the hood your way. No more getting clapped – it's your world now.</p>
+                </div>
+                <div class="modes-grid">
+                    <div class="mode-card legit-mode">
+                        <div class="mode-icon legit"></div>
+                        <h3>Legit Mode</h3>
+                        <div class="mode-features">
+                            <span>Silent Aim</span>
+                            <span>ESP</span>
+                            <span>Speed Tweaks</span>
+                            <span>Anti-Aim Detect</span>
                         </div>
-                        <p>Shoot dem 3s boi</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Light And Simple</span>
-                            <span class="feature-tag">Powerfull</span>
-                        </div>
+                        <p>Blend in, win out. Perfect for grinding without the heat.</p>
                     </div>
-                    <div class="game-card advanced">
-                        <div class="game-icon streetz"></div>
-                        <h3>Philly Streetz</h3>
-                        <div class="game-stats">
-                            <span>Aimbot</span>
-                            <span>Esp</span>
-                            <span>Movement and more</span>
+                    <div class="mode-card hvh-mode">
+                        <div class="mode-icon hvh"></div>
+                        <h3>HVH Mode</h3>
+                        <div class="mode-features">
+                            <span>Rage Aimbot</span>
+                            <span>Wallbang</span>
+                            <span>Inf Stamina</span>
+                            <span>Godmode Toggle</span>
                         </div>
-                        <p>Win with torkzz'.</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Simple</span>
-                            <span class="feature-tag">good</span>
-                        </div>
-                    </div>
-                    <div class="game-card advanced">
-                        <div class="game-icon bronx"></div>
-                        <h3>Tha Bronx 3</h3>
-                        <div class="game-stats">
-                            <span>Aimbot</span>
-                            <span>INF MONEY</span>
-                            <span>Esp visuals and more</span>
-                        </div>
-                        <p>Kill them all.</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Stealth</span>
-                            <span class="feature-tag">Control</span>
-                        </div>
+                        <p>Go toe-to-toe with the hackers. Chaos mode activated.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Community Modal -->
     <div id="communityModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content large">
             <div class="modal-header">
-                <h3>the peopleh3>
+                <h3>Community Vibes</h3>
                 <span class="close">&times;</span>
             </div>
             <div class="community-content">
-                <p>join up with all the other torkzz users</p>
+                <p>Link up with fellow Da Hood grinders. Share clips, tips, and script tweaks in the Discord – where the real action drops.</p>
                 <div class="community-stats">
                     <div class="stat">
-                        <span class="stat-num">40+</span>
-                        <span class="stat-label">still growing</span>
+                        <span class="stat-num">200+</span>
+                        <span class="stat-label">Active Users</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-num">3+</span>
-                        <span class="stat-label">scripts soon</span>
+                        <span class="stat-num">Daily</span>
+                        <span class="stat-label">Updates</span>
                     </div>
                     <div class="stat">
                         <span class="stat-num">24/7</span>
-                        <span class="stat-label">Backup</span>
+                        <span class="stat-label">Support</span>
                     </div>
                 </div>
                 <div class="community-call">
-                    <p>Join the discord – that's where the magic happens boii</p>
+                    <p>Jump in – trades, Ls, and Ws waiting. Don't sleep on it.</p>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Script Info Modal -->
     <div id="scriptModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content large">
             <div class="modal-header">
-                <h3>Script info</h3>
+                <h3>Update Log</h3>
                 <span class="close">&times;</span>
             </div>
             <div class="script-content">
                 <div class="status-panel">
-                    <h4>Status Check</h4>
+                    <h4>Script Status</h4>
                     <div class="status-display">
                         <div id="statusCircle" class="status-circle green"></div>
-                        <span id="statusText">Working</span>
+                        <span id="statusText">Active</span>
                     </div>
                 </div>
                 <div class="changelog-panel">
-                    <h4>Patch Notes</h4>
+                    <h4>Recent Patches</h4>
                     <div id="changelogList" class="changelog-scroll"></div>
                     <div id="adminPanel" style="display: none;">
-                        <h4>Mods</h4>
-                        <textarea id="editChangelog" placeholder="Drop a new Log"></textarea>
+                        <h4>Admin Tools</h4>
+                        <textarea id="editChangelog" placeholder="Add a patch note..."></textarea>
                         <div class="admin-buttons">
-                            <button id="addChangelog" class="btn-admin">Add It</button>
-                            <button id="toggleStatus" class="btn-admin">change Status</button>
+                            <button id="addChangelog" class="btn-admin">Post Update</button>
+                            <button id="toggleStatus" class="btn-admin">Toggle Status</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
-
-
