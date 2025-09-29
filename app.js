@@ -3,9 +3,9 @@
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUser = localStorage.getItem('currentUser') || null;
 let changelogs = JSON.parse(localStorage.getItem('changelogs')) || [
-    { id: 1, text: 'Da Hood legit mode refined – silent aim locks on smoother, no jitter.', date: '2025-09-01' },
-    { id: 2, text: 'HVH updates: Wallbang exploits patched in, rage bot eats through shields.', date: '2025-09-10' },
-    { id: 3, text: 'ESP visuals boosted – spot enemies through walls like never before.', date: '2025-09-20' }
+    { id: 1, text: 'fixed lag??', date: '2025-09-01' },
+    { id: 2, text: 'no crashing i hope' },
+    { id: 3, text: 'fixed.', date: '2025-09-20' }
 ];
 let scriptStatus = localStorage.getItem('scriptStatus') || 'active';
 // DOM Elements
@@ -248,3 +248,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 500);
 });
+
