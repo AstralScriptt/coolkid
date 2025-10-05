@@ -5,45 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insights.lol</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="stars"></div>
+    <button class="mobile-toggle" id="mobileToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="container">
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-toggle" id="mobileToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="logo">
-                <h1 class="logo-text">Insights.lol</h1>
-                <p class="tagline">Dominate Da Hood – Legit or HVH, your call.</p>
+                <h1 class="logo-text">INSIGHTS.LOL</h1>
+                <p class="tagline">The Best AHK for Da Hood</p>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#" class="nav-link" id="gamesLink">Scripts</a></li>
-                <li><a href="#" class="nav-link" id="communityLink">Community</a></li>
-                <li><button id="loginBtn" class="btn-nav">Account</button></li>
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a id="communityLink" class="nav-link" href="#">Community</a></li>
+                <li><a id="gamesLink" class="nav-link" href="#">Da Hood AHK</a></li>
             </ul>
-            <div class="sidebar-footer">
-                <a href="https://discord.gg/insights" target="_blank" class="btn-discord">Join Discord</a>
-                <button id="scriptInfoBtn" class="btn-nav-script">Updates</button>
-            </div>
-        </nav>
-        <!-- Main Content -->
+            <button class="btn-nav" id="loginBtn">Account</button>
+            <a href="https://discord.gg/yourdiscord" class="btn-discord">Join Discord</a>
+        </aside>
         <main class="main">
-            <!-- Hero Section -->
-            <section id="home" class="hero">
+            <section id="hero" class="hero">
                 <div class="hero-bg"></div>
                 <div class="hero-content">
-                    <h2 class="hero-title">INSIGHTS.LOL</h2>
-                    <p class="hero-subtitle">Unlock the edge in Da Hood. Legit for stealth, HVH for chaos.</p>
-                    <div class="hero-cta">
-                        <a href="#" id="exploreGames" class="btn-cta">Grab the Edge</a>
-                    </div>
+                    <h1 class="hero-title">Dominate Da Hood with the Best AHK</h1>
+                    <p class="hero-subtitle">Undetected power that hides as Spotify. Accurate camlock, easy config – own the streets.</p>
+                    <a href="#features" class="btn-cta">Get the Edge</a>
                 </div>
                 <div class="hero-particles">
                     <div class="particle p1"></div>
@@ -53,27 +44,47 @@
                     <div class="particle p5"></div>
                     <div class="particle p6"></div>
                     <div class="particle p7"></div>
+                    <div class="particle p8"></div>
+                    <div class="particle p9"></div>
+                    <div class="particle p10"></div>
+                    <div class="particle p11"></div>
+                    <div class="particle p12"></div>
+                    <div class="particle p13"></div>
+                    <div class="particle p14"></div>
+                    <div class="particle p15"></div>
+                    <div class="particle p16"></div>
+                    <div class="particle p17"></div>
+                    <div class="particle p18"></div>
+                    <div class="particle p19"></div>
+                    <div class="particle p20"></div>
                 </div>
             </section>
-            <!-- Features Teaser -->
-            <section class="features-teaser">
-                <div class="teaser-card legit">
-                    <h3>Legit Mode</h3>
-                    <p>be a pro without being sus??.</p>
+            <section id="features" class="features-teaser">
+                <div class="teaser-card undetected">
+                    <h3>Undetected</h3>
+                    <p>Stay under the radar – our AHK is built to evade detection like no other.</p>
                 </div>
-                <div class="teaser-card hvh">
-                    <h3>HVH Mode</h3>
-                    <p>go head on with other cheaters.</p>
+                <div class="teaser-card spotify">
+                    <h3>Hides as Spotify</h3>
+                    <p>Disguised as Spotify for ultimate stealth. No one will suspect a thing.</p>
+                </div>
+                <div class="teaser-card camlock">
+                    <h3>Accurate Camlock</h3>
+                    <p>Pinpoint precision camlock that locks on targets flawlessly every time.</p>
+                </div>
+                <div class="teaser-card config">
+                    <h3>Easy Configuration</h3>
+                    <p>Simple, intuitive config system – customize in seconds, dominate in minutes.</p>
                 </div>
             </section>
         </main>
     </div>
-    <!-- Custom Notification -->
-    <div id="notification" class="notification">
+    <!-- Notification -->
+    <div class="notification" id="notification">
         <div class="notification-content">
             <span class="notification-icon">!</span>
-            <span id="notification-text"></span>
-            <button class="notification-close">&times;</button>
+            <p id="notification-text"></p>
+            <button class="notification-close">×</button>
         </div>
     </div>
     <!-- Auth Modal -->
@@ -82,20 +93,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalTitle">Log In</h3>
-                <span class="close">&times;</span>
+                <span class="close">×</span>
             </div>
-            <div id="loginForm" class="auth-form">
-                <input type="text" id="loginUsername" placeholder="Your handle" required>
-                <input type="password" id="loginPassword" placeholder="Your pass" required>
-                <button id="loginSubmit" class="btn-auth">Log In</button>
-                <p class="auth-switch">no account? <a href="#" id="switchToReg">Sign up</a></p>
-            </div>
-            <div id="regForm" class="auth-form" style="display: none;">
-                <input type="text" id="regUsername" placeholder="Pick a handle" required>
-                <input type="password" id="regPassword" placeholder="Pick a pass" required>
-                <button id="regSubmit" class="btn-auth">Sign Up</button>
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" placeholder="Username">
+                <input type="password" id="loginPassword" placeholder="Password">
+                <button type="button" class="btn-auth" id="loginSubmit">Log In</button>
+                <p class="auth-switch">No account? <a href="#" id="switchToReg">Sign up</a></p>
+            </form>
+            <form id="regForm" class="auth-form" style="display: none;">
+                <input type="text" id="regUsername" placeholder="Username">
+                <input type="password" id="regPassword" placeholder="Password">
+                <button type="button" class="btn-auth" id="regSubmit">Sign Up</button>
                 <p class="auth-switch">Got one? <a href="#" id="switchToLogin">Log in</a></p>
-            </div>
+            </form>
         </div>
     </div>
     <!-- Games Modal -->
@@ -103,37 +114,34 @@
         <div class="modal-overlay"></div>
         <div class="modal-content large">
             <div class="modal-header">
-                <h3>Da Hood Scripts</h3>
-                <span class="close">&times;</span>
+                <h3>Da Hood AHK</h3>
+                <span class="close">×</span>
             </div>
             <div class="games-content">
                 <div class="game-hero">
-                    <h2>Da Hood</h2>
-                    <p>From playing legitely with our legit mode, to going head on with other exploiters with out hvh mode.</p>
+                    <h2>The Best AHK for Da Hood</h2>
+                    <p>Undetected, hides as Spotify, accurate camlock, easy config. Dominate effortlessly.</p>
                 </div>
                 <div class="modes-grid">
-                    <div class="mode-card legit-mode">
-                        <div class="mode-icon legit"></div>
-                        <h3>Legit Mode</h3>
-                        <div class="mode-features">
-                            <span>Triggerbot</span>
-                            <span>Speed</span>
-                            <span>Silent Aim</span>
-                            <span>High Jump</span>
-                        </div>
-                        <p>Perfect for winning without looking weird</p>
+                    <div class="mode-card undetected">
+                        <div class="mode-icon undetected"></div>
+                        <h3>Undetected</h3>
+                        <p>Engineered to stay hidden from all anti-cheat systems.</p>
                     </div>
-                    <div class="mode-card hvh-mode">
-                        <div class="mode-icon hvh"></div>
-                        <h3>HVH Mode</h3>
-                        <div class="mode-features">
-                            <span>Orbit Speed</span>
-                            <span>Fly</span>
-                            <span>Camlock</span>
-                            <span>Legit Assist</span>
-                            <span>Silent Aim</span>
-                        </div>
-                        <p>go head on with others exploiteres!</p>
+                    <div class="mode-card spotify">
+                        <div class="mode-icon spotify"></div>
+                        <h3>Hides as Spotify</h3>
+                        <p>Runs disguised as Spotify for maximum stealth.</p>
+                    </div>
+                    <div class="mode-card camlock">
+                        <div class="mode-icon camlock"></div>
+                        <h3>Accurate Camlock</h3>
+                        <p>Ultra-precise targeting that never misses.</p>
+                    </div>
+                    <div class="mode-card config">
+                        <div class="mode-icon config"></div>
+                        <h3>Easy Configuration</h3>
+                        <p>User-friendly setup – tweak and go.</p>
                     </div>
                 </div>
             </div>
@@ -142,13 +150,13 @@
     <!-- Community Modal -->
     <div id="communityModal" class="modal">
         <div class="modal-overlay"></div>
-        <div class="modal-content large">
+        <div class="modal-content">
             <div class="modal-header">
                 <h3>Community Vibes</h3>
-                <span class="close">&times;</span>
+                <span class="close">×</span>
             </div>
             <div class="community-content">
-                <p>Link up with other insight buyers.</p>
+                <p>Link up with other insight users.</p>
                 <div class="community-stats">
                     <div class="stat">
                         <span class="stat-num">60+</span>
@@ -163,44 +171,10 @@
                         <span class="stat-label">Support</span>
                     </div>
                 </div>
-                <div class="community-call">
-                    <p>insight.lol - the future of cheating</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Script Info Modal -->
-    <div id="scriptModal" class="modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h3>Update Log</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="script-content">
-                <div class="status-panel">
-                    <h4>Script Status</h4>
-                    <div class="status-display">
-                        <div id="statusCircle" class="status-circle green"></div>
-                        <span id="statusText">Active</span>
-                    </div>
-                </div>
-                <div class="changelog-panel">
-                    <h4>Recent Patches</h4>
-                    <div id="changelogList" class="changelog-scroll"></div>
-                    <div id="adminPanel" style="display: none;">
-                        <h4>Admin Tools</h4>
-                        <textarea id="editChangelog" placeholder="Add a patch note..."></textarea>
-                        <div class="admin-buttons">
-                            <button id="addChangelog" class="btn-admin">Post Update</button>
-                            <button id="toggleStatus" class="btn-admin">Toggle Status</button>
-                        </div>
-                    </div>
-                </div>
+                <p class="community-call">insight.lol - the future of AHK</p>
             </div>
         </div>
     </div>
     <script src="app.js"></script>
 </body>
 </html>
-
