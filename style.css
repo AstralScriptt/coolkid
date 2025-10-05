@@ -1,4 +1,4 @@
-/* style.css - Enhanced Black/Purple Theme, Da Hood Focus, Mobile-First Animations */
+/* style.css - Enhanced Black/Pink Theme, Da Hood Focus, Mobile-First Animations, Crazier Animations */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
 * {
     margin: 0;
@@ -20,7 +20,7 @@ body {
     height: 100%;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     z-index: -1;
-    animation: starsTwinkle 8s ease-in-out infinite alternate;
+    animation: starsTwinkle 4s ease-in-out infinite alternate; /* Faster for crazier */
 }
 @keyframes starsTwinkle {
     0%, 100% { opacity: 0.6; }
@@ -34,7 +34,7 @@ body {
     left: 20px;
     z-index: 101;
     flex-direction: column;
-    background: rgba(138, 43, 226, 0.8);
+    background: rgba(255, 105, 180, 0.8);
     border: none;
     padding: 10px;
     border-radius: 8px;
@@ -52,7 +52,9 @@ body {
 .mobile-toggle.active span:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
-.mobile-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
 .mobile-toggle.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
@@ -63,14 +65,14 @@ body {
 /* Sidebar - Enhanced for Mobile */
 .sidebar {
     width: 280px;
-    background: linear-gradient(180deg, rgba(75, 0, 130, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(255, 20, 147, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
     padding: 40px 20px;
     position: fixed;
     height: 100vh;
     overflow-y: auto;
     backdrop-filter: blur(20px);
-    border-right: 1px solid rgba(138, 43, 226, 0.5);
-    animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-right: 1px solid rgba(255, 105, 180, 0.5);
+    animation: slideInLeft 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Crazier easing */
     z-index: 100;
     transition: transform 0.4s ease;
 }
@@ -81,13 +83,13 @@ body {
     font-family: 'Orbitron', monospace;
     font-size: 2.2em;
     font-weight: 900;
-    background: linear-gradient(45deg, #9370db, #dda0dd, #8a2be2, #9370db);
-    background-size: 200% 200%;
+    background: linear-gradient(45deg, #ff1493, #ffb6c1, #ff69b4, #ff1493);
+    background-size: 400% 400%; /* Bigger for crazier shift */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
     margin-bottom: 10px;
-    animation: logoPulse 3s ease-in-out infinite, gradientShift 4s ease infinite;
+    animation: logoPulse 1s ease-in-out infinite, gradientShift 2s ease infinite; /* Faster */
 }
 @keyframes gradientShift {
     0%, 100% { background-position: 0% 50%; }
@@ -99,11 +101,11 @@ body {
     font-size: 0.95em;
     letter-spacing: 1.5px;
     font-style: italic;
-    animation: taglineGlow 2s ease-in-out infinite alternate;
+    animation: taglineGlow 1s ease-in-out infinite alternate; /* Faster */
 }
 @keyframes taglineGlow {
-    from { text-shadow: 0 0 5px rgba(138, 43, 226, 0.5); }
-    to { text-shadow: 0 0 15px rgba(138, 43, 226, 0.8); }
+    from { text-shadow: 0 0 5px rgba(255, 105, 180, 0.5); }
+    to { text-shadow: 0 0 30px rgba(255, 105, 180, 0.8); } /* Bigger glow */
 }
 .nav-menu {
     list-style: none;
@@ -112,7 +114,7 @@ body {
 .nav-link {
     display: block;
     padding: 18px 25px;
-    color: #dda0dd;
+    color: #ffb6c1;
     text-decoration: none;
     font-weight: 400;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -127,16 +129,16 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.2), transparent);
     transition: left 0.5s;
 }
 .nav-link:hover::before, .nav-link.active::before {
     left: 100%;
 }
 .nav-link:hover, .nav-link.active {
-    background: rgba(138, 43, 226, 0.2);
-    border-left-color: #9370db;
-    transform: translateX(8px);
+    background: rgba(255, 105, 180, 0.2);
+    border-left-color: #ff1493;
+    transform: translateX(8px) rotate(5deg); /* Added rotation for crazier */
     color: #fff;
     font-weight: 700;
 }
@@ -144,8 +146,8 @@ body {
     width: 100%;
     padding: 18px 25px;
     background: transparent;
-    color: #dda0dd;
-    border: 2px solid #8a2be2;
+    color: #ffb6c1;
+    border: 2px solid #ff69b4;
     border-radius: 10px;
     cursor: pointer;
     font-family: inherit;
@@ -162,25 +164,25 @@ body {
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(138, 43, 226, 0.2);
+    background: rgba(255, 105, 180, 0.2);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
 .btn-nav:hover::after, .btn-nav-script:hover::after {
-    width: 300px;
-    height: 300px;
+    width: 600px; /* Bigger for crazier */
+    height: 600px;
 }
 .btn-nav:hover, .btn-nav-script:hover {
-    background: #8a2be2;
-    transform: scale(1.03) translateY(-2px);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    background: #ff69b4;
+    transform: scale(1.1) translateY(-5px) rotate(10deg); /* More scale and rotate */
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.5);
 }
 .btn-discord {
     display: block;
     width: 100%;
     padding: 18px;
-    background: linear-gradient(45deg, #7289da, #8a2be2);
+    background: linear-gradient(45deg, #7289da, #ff69b4);
     color: #fff;
     text-decoration: none;
     text-align: center;
@@ -195,8 +197,8 @@ body {
     margin-right: 10px;
 }
 .btn-discord:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(114, 137, 218, 0.5);
+    transform: translateY(-6px) scale(1.05) rotate(15deg); /* More rotate */
+    box-shadow: 0 30px 70px rgba(114, 137, 218, 0.5);
 }
 /* Main Content */
 .main {
@@ -212,8 +214,8 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
-    animation: heroFade 2s ease-out;
+    background: radial-gradient(circle at center, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
+    animation: heroFade 1s ease-out; /* Faster */
 }
 .hero-bg {
     position: absolute;
@@ -221,13 +223,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%238a2be2" stop-opacity="0.1"/><stop offset="100%" stop-color="%239370db" stop-opacity="0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23g)"/></svg>') no-repeat center/cover;
-    animation: bgShift 25s linear infinite;
+    background: url('data:image/svg+xml,') no-repeat center/cover;
+    animation: bgShift 10s linear infinite; /* Faster */
 }
 .hero-content {
     text-align: center;
     z-index: 2;
-    animation: heroSlideUp 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: heroSlideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Crazier easing */
     max-width: 800px;
     padding: 0 20px;
 }
@@ -235,12 +237,12 @@ body {
     font-family: 'Orbitron', monospace;
     font-size: 4.5em;
     font-weight: 900;
-    background: linear-gradient(45deg, #9370db, #dda0dd, #8a2be2);
-    background-size: 200% 200%;
+    background: linear-gradient(45deg, #ff1493, #ffb6c1, #ff69b4);
+    background-size: 400% 400%; /* Bigger */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
-    animation: titleGlow 2.5s ease-in-out infinite alternate, gradientShift 3s ease infinite;
+    animation: titleGlow 1s ease-in-out infinite alternate, gradientShift 1.5s ease infinite; /* Faster */
 }
 .hero-subtitle {
     font-size: 1.5em;
@@ -248,19 +250,19 @@ body {
     margin-bottom: 50px;
     font-weight: 300;
     line-height: 1.6;
-    animation: subtitleFade 1.2s ease-out 0.6s both;
+    animation: subtitleFade 0.6s ease-out 0.3s both; /* Faster */
 }
 .btn-cta {
     display: inline-block;
     padding: 22px 45px;
-    background: linear-gradient(45deg, #8a2be2, #9370db);
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
     font-size: 1.2em;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 12px 35px rgba(138, 43, 226, 0.4);
+    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -269,31 +271,45 @@ body {
     margin-right: 10px;
 }
 .btn-cta:hover {
-    transform: translateY(-6px) scale(1.06);
-    box-shadow: 0 20px 50px rgba(138, 43, 226, 0.6);
-    background: linear-gradient(45deg, #9370db, #8a2be2);
+    transform: translateY(-12px) scale(1.1) rotate(20deg); /* More transform */
+    box-shadow: 0 40px 100px rgba(255, 105, 180, 0.6);
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
 }
 .hero-particles .particle {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background: linear-gradient(45deg, #8a2be2, #9370db);
+    width: 10px; /* Bigger particles */
+    height: 10px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
     border-radius: 50%;
-    animation: particleFloat 7s linear infinite;
-    box-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
+    animation: particleFloat 3s linear infinite; /* Much faster */
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
 }
 .p1 { top: 15%; left: 5%; animation-delay: 0s; }
-.p2 { top: 45%; right: 15%; animation-delay: 1.2s; }
-.p3 { bottom: 25%; left: 20%; animation-delay: 2.4s; }
-.p4 { top: 65%; right: 35%; animation-delay: 3.6s; }
-.p5 { top: 5%; left: 45%; animation-delay: 1.8s; }
-.p6 { bottom: 10%; right: 10%; animation-delay: 4.8s; }
-.p7 { top: 30%; left: 70%; animation-delay: 3s; }
+.p2 { top: 45%; right: 15%; animation-delay: 0.2s; }
+.p3 { bottom: 25%; left: 20%; animation-delay: 0.4s; }
+.p4 { top: 65%; right: 35%; animation-delay: 0.6s; }
+.p5 { top: 5%; left: 45%; animation-delay: 0.8s; }
+.p6 { bottom: 10%; right: 10%; animation-delay: 1s; }
+.p7 { top: 30%; left: 70%; animation-delay: 1.2s; }
+.p8 { top: 20%; left: 30%; animation-delay: 1.4s; }
+.p9 { bottom: 15%; right: 25%; animation-delay: 1.6s; }
+.p10 { top: 50%; left: 10%; animation-delay: 1.8s; }
+.p11 { top: 10%; right: 5%; animation-delay: 2s; }
+.p12 { bottom: 30%; left: 50%; animation-delay: 2.2s; }
+.p13 { top: 70%; right: 20%; animation-delay: 2.4s; }
+.p14 { bottom: 5%; left: 15%; animation-delay: 2.6s; }
+.p15 { top: 40%; right: 40%; animation-delay: 2.8s; }
+.p16 { bottom: 20%; left: 60%; animation-delay: 3s; }
+.p17 { top: 60%; left: 25%; animation-delay: 3.2s; }
+.p18 { bottom: 40%; right: 30%; animation-delay: 3.4s; }
+.p19 { top: 25%; left: 80%; animation-delay: 3.6s; }
+.p20 { bottom: 50%; right: 50%; animation-delay: 3.8s; }
 @keyframes particleFloat {
     0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
-    10% { opacity: 1; scale(1); }
+    10% { opacity: 1; scale(1.5); } /* Bigger scale */
+    50% { transform: translateY(-50vh) rotate(1080deg) scale(2); } /* More rotation */
     90% { opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(720deg) scale(0); opacity: 0; }
+    100% { transform: translateY(-100vh) rotate(2160deg) scale(0); opacity: 0; } /* Even more */
 }
 /* Features Teaser - Improved Colors */
 .features-teaser {
@@ -303,6 +319,7 @@ body {
     padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap; /* For responsiveness */
 }
 .teaser-card {
     flex: 1;
@@ -310,7 +327,7 @@ body {
     padding: 40px 30px;
     border-radius: 20px;
     text-align: center;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     backdrop-filter: blur(15px);
     position: relative;
     overflow: hidden;
@@ -322,25 +339,21 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #8a2be2, #9370db);
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
 }
-.legit {
-    background: rgba(147, 112, 219, 0.15);
-    border: 1px solid rgba(147, 112, 219, 0.4);
-}
-.hvh {
-    background: rgba(218, 160, 221, 0.15);
-    border: 1px solid rgba(218, 160, 221, 0.4);
-}
+.undetected { background: rgba(255, 20, 147, 0.15); border: 1px solid rgba(255, 20, 147, 0.4); }
+.spotify { background: rgba(255, 182, 193, 0.15); border: 1px solid rgba(255, 182, 193, 0.4); }
+.camlock { background: rgba(255, 105, 180, 0.15); border: 1px solid rgba(255, 105, 180, 0.4); }
+.config { background: rgba(255, 20, 147, 0.15); border: 1px solid rgba(255, 20, 147, 0.4); }
 .teaser-card:hover {
-    transform: translateY(-15px) rotateX(5deg);
-    box-shadow: 0 25px 60px rgba(138, 43, 226, 0.3);
+    transform: translateY(-30px) rotateX(10deg) rotateY(10deg); /* More rotation */
+    box-shadow: 0 50px 120px rgba(255, 105, 180, 0.3);
 }
 .teaser-card h3 {
     font-family: 'Orbitron', monospace;
     font-size: 2em;
     margin-bottom: 15px;
-    color: #dda0dd;
+    color: #ffb6c1;
 }
 .teaser-card p {
     font-size: 1.1em;
@@ -354,27 +367,27 @@ body {
     right: -400px;
     width: 380px;
     z-index: 2000;
-    animation: notifySlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: notifySlideIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; /* Faster */
 }
 .notification-content {
-    background: linear-gradient(135deg, #000 0%, #4b0082 100%);
+    background: linear-gradient(135deg, #000 0%, #ff1493 100%);
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-    border: 1px solid #8a2be2;
+    border: 1px solid #ff69b4;
     display: flex;
     align-items: center;
-    animation: notifyGlow 2s ease-in-out infinite alternate;
+    animation: notifyGlow 1s ease-in-out infinite alternate; /* Faster */
 }
 .notification-icon {
     font-size: 1.8em;
     margin-right: 15px;
-    color: #9370db;
-    animation: iconBounce 1s ease infinite;
+    color: #ff1493;
+    animation: iconBounce 0.5s ease infinite; /* Faster */
 }
 @keyframes iconBounce {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.5); } /* Bigger bounce */
 }
 #notification-text {
     flex: 1;
@@ -384,7 +397,7 @@ body {
 .notification-close {
     background: none;
     border: none;
-    color: #dda0dd;
+    color: #ffb6c1;
     font-size: 1.4em;
     cursor: pointer;
     margin-left: 15px;
@@ -399,7 +412,7 @@ body {
 .notification-close:hover {
     color: #ff6b6b;
     background: rgba(255, 107, 107, 0.2);
-    transform: rotate(90deg);
+    transform: rotate(180deg); /* More rotate */
 }
 /* Modal - Improved Responsiveness */
 .modal {
@@ -419,41 +432,44 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
-    animation: overlayFade 0.4s ease-out;
+    animation: overlayFade 0.2s ease-out; /* Faster */
 }
 .modal-content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    background: linear-gradient(135deg, #000 0%, #4b0082 100%);
+    background: linear-gradient(135deg, #000 0%, #ff1493 100%);
     padding: 0;
     border-radius: 25px;
     width: 90%;
     max-width: 550px;
-    animation: modalExpand 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    border: 1px solid #8a2be2;
-    box-shadow: 0 25px 70px rgba(138, 43, 226, 0.4);
+    animation: modalExpand 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; /* Faster, crazier */
+    border: 1px solid #ff69b4;
+    box-shadow: 0 25px 70px rgba(255, 105, 180, 0.4);
     overflow: hidden;
     max-height: 90vh;
 }
-.modal-content.large { max-width: 950px; height: 85%; }
+.modal-content.large {
+    max-width: 950px;
+    height: 85%;
+}
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 35px;
-    background: rgba(138, 43, 226, 0.15);
-    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    background: rgba(255, 105, 180, 0.15);
+    border-bottom: 1px solid rgba(255, 105, 180, 0.3);
 }
 .modal-header h3 {
     font-size: 1.7em;
-    color: #dda0dd;
+    color: #ffb6c1;
     font-weight: 400;
     font-family: 'Orbitron', monospace;
 }
 .close {
-    color: #dda0dd;
+    color: #ffb6c1;
     font-size: 2em;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -467,11 +483,11 @@ body {
 .close:hover {
     color: #ff6b6b;
     background: rgba(255, 107, 107, 0.2);
-    transform: rotate(180deg) scale(1.1);
+    transform: rotate(360deg) scale(1.2); /* More rotate and scale */
 }
 .auth-form {
     padding: 45px 35px;
-    animation: formSlideUp 0.6s ease-out;
+    animation: formSlideUp 0.3s ease-out; /* Faster */
 }
 .auth-form input {
     width: 100%;
@@ -491,13 +507,13 @@ body {
 .auth-form input:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
-    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6); /* Bigger shadow */
+    transform: scale(1.05) rotate(5deg); /* Added rotate */
 }
 .btn-auth {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(45deg, #8a2be2, #9370db);
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -509,8 +525,8 @@ body {
     position: relative;
 }
 .btn-auth:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(138, 43, 226, 0.5);
+    transform: translateY(-6px) scale(1.05) rotate(10deg); /* More transform */
+    box-shadow: 0 30px 70px rgba(255, 105, 180, 0.5);
 }
 .auth-switch {
     text-align: center;
@@ -518,17 +534,17 @@ body {
     font-weight: 300;
 }
 .auth-switch a {
-    color: #9370db;
+    color: #ff1493;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 .auth-switch a:hover {
-    color: #dda0dd;
+    color: #ffb6c1;
     text-decoration: underline;
 }
 /* Games Modal - Da Hood Focused */
-.games-content, .community-content, .script-content {
+.games-content, .community-content {
     padding: 35px;
     height: calc(100% - 90px);
     overflow-y: auto;
@@ -536,12 +552,12 @@ body {
 .game-hero {
     text-align: center;
     padding: 20px 0;
-    animation: heroSlideUp 0.8s ease-out;
+    animation: heroSlideUp 0.4s ease-out; /* Faster */
 }
 .game-hero h2 {
     font-family: 'Orbitron', monospace;
     font-size: 2.5em;
-    color: #dda0dd;
+    color: #ffb6c1;
     margin-bottom: 15px;
 }
 .game-hero p {
@@ -560,12 +576,12 @@ body {
     padding: 35px;
     border-radius: 20px;
     text-align: center;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 1px solid rgba(138, 43, 226, 0.4);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 1px solid rgba(255, 105, 180, 0.4);
     backdrop-filter: blur(12px);
     position: relative;
     overflow: hidden;
-    animation: cardStagger 0.8s ease-out forwards;
+    animation: cardStagger 0.4s ease-out forwards; /* Faster */
 }
 .mode-card::before {
     content: '';
@@ -574,45 +590,39 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(138, 43, 226, 0.08), transparent);
+    background: linear-gradient(45deg, transparent, rgba(255, 105, 180, 0.08), transparent);
     transform: rotate(45deg);
     transition: all 0.7s;
 }
 .mode-card:hover::before {
-    animation: shine 2s infinite;
+    animation: shine 1s infinite; /* Faster */
 }
 @keyframes shine {
     0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
     100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 .mode-card:hover {
-    transform: translateY(-12px) rotateY(8deg);
-    box-shadow: 0 25px 50px rgba(138, 43, 226, 0.3);
-    border-color: #9370db;
+    transform: translateY(-24px) rotateY(16deg); /* More rotate */
+    box-shadow: 0 50px 100px rgba(255, 105, 180, 0.3);
+    border-color: #ff1493;
 }
 .mode-icon {
     width: 120px;
     height: 120px;
     margin: 0 auto 25px;
     border-radius: 50%;
-    animation: iconSpin 5s linear infinite;
-    box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
+    animation: iconSpin 2s linear infinite; /* Much faster */
+    box-shadow: 0 0 50px rgba(255, 105, 180, 0.5); /* Bigger shadow */
 }
-.legit { background: linear-gradient(45deg, #9370db, #8a2be2); }
-.hvh { background: linear-gradient(45deg, #dda0dd, #9370db); }
+.undetected { background: linear-gradient(45deg, #ff1493, #ff69b4); }
+.spotify { background: linear-gradient(45deg, #ffb6c1, #ff1493); }
+.camlock { background: linear-gradient(45deg, #ff69b4, #ffb6c1); }
+.config { background: linear-gradient(45deg, #ff1493, #ff69b4); }
 .mode-card h3 {
     font-size: 1.8em;
     margin-bottom: 20px;
-    color: #dda0dd;
+    color: #ffb6c1;
     font-family: 'Orbitron', monospace;
-}
-.mode-features {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    opacity: 0.85;
 }
 .mode-card p {
     font-size: 1.1em;
@@ -628,19 +638,19 @@ body {
     margin: 40px 0;
 }
 .stat {
-    animation: statRise 1.2s ease-out 0.7s both;
+    animation: statRise 0.6s ease-out 0.4s both; /* Faster */
     text-align: center;
     transition: transform 0.3s ease;
 }
 .stat:hover {
-    transform: scale(1.1);
+    transform: scale(1.2) rotate(10deg); /* More scale and rotate */
 }
 .stat-num {
     display: block;
     font-family: 'Orbitron', monospace;
     font-size: 3em;
     font-weight: 900;
-    background: linear-gradient(45deg, #9370db, #8a2be2);
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -654,129 +664,20 @@ body {
     text-align: center;
     margin-top: 30px;
     padding: 25px;
-    background: rgba(138, 43, 226, 0.15);
+    background: rgba(255, 105, 180, 0.15);
     border-radius: 15px;
     font-style: italic;
     font-size: 1.1em;
-    border: 1px solid rgba(138, 43, 226, 0.3);
-}
-/* Script Modal - Refined */
-.status-panel, .changelog-panel {
-    margin-bottom: 35px;
-}
-.status-display {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-    font-weight: 400;
-    font-size: 1.1em;
-}
-.status-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 20px;
-    animation: statusPulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 15px currentColor;
-}
-.green { background: linear-gradient(45deg, #00ff00, #32cd32); }
-.red { background: linear-gradient(45deg, #ff0000, #ff4500); }
-.changelog-scroll {
-    max-height: 350px;
-    overflow-y: auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 15px;
-    margin: 20px 0;
-    border: 1px solid rgba(138, 43, 226, 0.2);
-}
-.changelog-entry {
-    padding: 15px;
-    margin: 15px 0;
-    background: rgba(138, 43, 226, 0.15);
-    border-radius: 12px;
-    animation: entryFade 0.6s ease-out;
-    border-left: 4px solid #9370db;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    transition: all 0.3s ease;
-}
-.changelog-entry:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
-}
-.changelog-text {
-    flex: 1;
-    line-height: 1.4;
-}
-.delete-btn {
-    background: linear-gradient(45deg, #ff6b6b, #ff4500);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 0.9em;
-    opacity: 0;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
-}
-.changelog-entry:hover .delete-btn {
-    opacity: 1;
-    transform: scale(1.1);
-}
-#adminPanel {
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 15px;
-    margin-top: 25px;
-    border: 1px solid #8a2be2;
-}
-#editChangelog {
-    width: 100%;
-    height: 120px;
-    margin: 15px 0;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid #8a2be2;
-    border-radius: 8px;
-    color: #fff;
-    resize: vertical;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
-#editChangelog:focus {
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-}
-.admin-buttons {
-    display: flex;
-    gap: 15px;
-}
-.btn-admin {
-    flex: 1;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #9370db, #8a2be2);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    font-weight: 500;
-}
-.btn-admin:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+    border: 1px solid rgba(255, 105, 180, 0.3);
 }
 /* Animations - Upped Intensity */
 @keyframes slideInLeft {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from { transform: translateX(-100%) rotate(-90deg); opacity: 0; } /* Added rotate */
+    to { transform: translateX(0) rotate(0); opacity: 1; }
 }
 @keyframes logoPulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
+    50% { transform: scale(1.2); } /* Bigger */
 }
 @keyframes heroFade {
     from { opacity: 0; }
@@ -784,120 +685,69 @@ body {
 }
 @keyframes bgShift {
     0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.05); }
-    100% { transform: rotate(360deg) scale(1); }
+    50% { transform: rotate(360deg) scale(1.1); } /* More rotate */
+    100% { transform: rotate(720deg) scale(1); }
 }
 @keyframes heroSlideUp {
-    from { transform: translateY(60px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(60px) rotate(0); opacity: 0; }
+    to { transform: translateY(0) rotate(360deg); opacity: 1; } /* Added full rotate */
 }
 @keyframes titleGlow {
-    from { text-shadow: 0 0 15px #9370db; }
-    to { text-shadow: 0 0 40px #9370db, 0 0 60px #8a2be2; }
+    from { text-shadow: 0 0 15px #ff1493; }
+    to { text-shadow: 0 0 80px #ff1493, 0 0 120px #ff69b4; } /* Much bigger */
 }
 @keyframes subtitleFade {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(30px) scale(0.5); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
 }
 @keyframes cardStagger {
-    from { transform: translateY(60px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(60px) rotate(-45deg); opacity: 0; } /* Added rotate */
+    to { transform: translateY(0) rotate(0); opacity: 1; }
 }
 @keyframes iconSpin {
     from { transform: rotate(0deg) scale(1); }
-    50% { scale(1.1); }
-    to { transform: rotate(360deg) scale(1); }
+    50% { scale(1.5); } /* Bigger */
+    to { transform: rotate(720deg) scale(1); } /* More rotate */
 }
 @keyframes statRise {
-    from { transform: translateY(40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(40px) rotate(0); opacity: 0; }
+    to { transform: translateY(0) rotate(360deg); opacity: 1; } /* Added rotate */
 }
 @keyframes notifySlideIn {
     to { right: 25px; }
 }
 @keyframes notifyGlow {
-    from { box-shadow: 0 0 15px #8a2be2; }
-    to { box-shadow: 0 0 25px #8a2be2, 0 0 40px #9370db; }
+    from { box-shadow: 0 0 15px #ff69b4; }
+    to { box-shadow: 0 0 50px #ff69b4, 0 0 80px #ff1493; } /* Bigger */
 }
 @keyframes overlayFade {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 @keyframes modalExpand {
-    to { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1) rotate(360deg); } /* Added rotate */
 }
 @keyframes formSlideUp {
-    from { transform: translateY(25px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-@keyframes statusPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.15); opacity: 0.8; }
-}
-@keyframes entryFade {
-    from { transform: translateX(-15px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from { transform: translateY(25px) rotate(-180deg); opacity: 0; } /* Added rotate */
+    to { transform: translateY(0) rotate(0); opacity: 1; }
 }
 /* Responsive - Mobile Optimized */
 @media (max-width: 768px) {
-    .mobile-toggle {
-        display: flex;
-    }
-    .sidebar {
-        transform: translateX(-100%);
-        width: 80%;
-    }
-    .sidebar.mobile-open {
-        transform: translateX(0);
-    }
-    .main {
-        margin-left: 0;
-        padding: 15px;
-    }
-    .hero-title {
-        font-size: 3em;
-        line-height: 1.2;
-    }
-    .hero-subtitle {
-        font-size: 1.2em;
-    }
-    .hero {
-        height: 100vh;
-        padding: 0 15px;
-    }
-    .features-teaser {
-        flex-direction: column;
-        gap: 30px;
-        padding: 40px 15px;
-    }
-    .community-stats {
-        gap: 30px;
-        justify-content: space-around;
-    }
-    .modes-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    .admin-buttons {
-        flex-direction: column;
-    }
-    .modal-content {
-        width: 95%;
-        max-height: 95vh;
-    }
-    .modal-content.large {
-        height: 95%;
-    }
-    .games-content, .community-content, .script-content {
-        padding: 20px;
-    }
-    .notification {
-        width: 90%;
-        right: -100%;
-    }
-    @keyframes notifySlideIn {
-        to { right: 5%; }
-    }
+    .mobile-toggle { display: flex; }
+    .sidebar { transform: translateX(-100%); width: 80%; }
+    .sidebar.mobile-open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 15px; }
+    .hero-title { font-size: 3em; line-height: 1.2; }
+    .hero-subtitle { font-size: 1.2em; }
+    .hero { height: 100vh; padding: 0 15px; }
+    .features-teaser { flex-direction: column; gap: 30px; padding: 40px 15px; }
+    .community-stats { gap: 30px; justify-content: space-around; }
+    .modes-grid { grid-template-columns: 1fr; gap: 25px; }
+    .modal-content { width: 95%; max-height: 95vh; }
+    .modal-content.large { height: 95%; }
+    .games-content, .community-content { padding: 20px; }
+    .notification { width: 90%; right: -100%; }
+    @keyframes notifySlideIn { to { right: 5%; } }
 }
 @media (max-width: 480px) {
     .hero-title { font-size: 2.5em; }
