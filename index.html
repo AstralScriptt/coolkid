@@ -25,9 +25,9 @@
             const [error, setError] = useState('');
             const [success, setSuccess] = useState('');
 
-            const GITHUB_PAT = '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';
+            const GITHUB_PAT = 'your_new_pat_here'; // Replace with new PAT
             const REPO_OWNER = 'liam675';
-            const REPO_NAME = 'keys.json';
+            const REPO_NAME = 'keys.json'; // Change to 'keys' if that's the correct repo name
             const FILE_PATH = 'keys.json';
 
             const fetchKeys = async () => {
@@ -43,7 +43,7 @@
                     setError('');
                 } catch (err) {
                     setError(`Failed to fetch keys: ${err.response?.status} - ${err.response?.data?.message || err.message}`);
-                    console.error(err);
+                    console.error('Fetch error:', err.response || err);
                 }
             };
 
@@ -73,7 +73,7 @@
                     return true;
                 } catch (err) {
                     setError(`Failed to update keys: ${err.response?.status} - ${err.response?.data?.message || err.message}`);
-                    console.error(err);
+                    console.error('Update error:', err.response || err);
                     return false;
                 }
             };
