@@ -25,25 +25,20 @@
             const [error, setError] = useState('');
             const [success, setSuccess] = useState('');
 
-            const GITHUB_PAT = 'your_new_pat_here'; // Replace with new PAT
+            const GITHUB_PAT = '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';
             const REPO_OWNER = 'liam675';
-            const REPO_NAME = 'keys.json'; // Change to 'keys' if that's the correct repo name
+            const REPO_NAME = 'keys.json';
             const FILE_PATH = 'keys.json';
+            const RAW_URL = 'https://raw.githubusercontent.com/liam675/keys.json/main/keys.json';
 
             const fetchKeys = async () => {
                 try {
-                    const response = await axios.get(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-                        headers: {
-                            Authorization: `token ${GITHUB_PAT}`,
-                            Accept: 'application/vnd.github.v3+json'
-                        }
-                    });
-                    const content = JSON.parse(atob(response.data.content));
-                    setKeys(content);
+                    const response = await axios.get(RAW_URL);
+                    setKeys(response.data);
                     setError('');
                 } catch (err) {
-                    setError(`Failed to fetch keys: ${err.response?.status} - ${err.response?.data?.message || err.message}`);
-                    console.error('Fetch error:', err.response || err);
+                    setError(`Failed to fetch keys: ${err.message}`);
+                    console.error('Fetch error:', err);
                 }
             };
 
@@ -60,7 +55,7 @@
 
                     // Update file
                     const content = btoa(JSON.stringify(newKeys, null, 2));
-                    const response = await axios.put(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+                    await axios.put(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
                         message: `Update keys.json at ${new Date().toISOString()}`,
                         content: content,
                         sha: sha
@@ -80,7 +75,7 @@
 
             const addKey = async () => {
                 if (!newUsername || !newHwid) {
-                    setError('Please enter both username and HWID');
+                    setError('Enter both username and HWID');
                     return;
                 }
                 const newKeys = { ...keys, [newUsername]: newHwid };
@@ -88,7 +83,7 @@
                     setKeys(newKeys);
                     setNewUsername('');
                     setNewHwid('');
-                    setSuccess('Key added successfully!');
+                    setSuccess('Key added!');
                     setError('');
                 }
             };
@@ -98,7 +93,7 @@
                 delete newKeys[username];
                 if (await updateKeysFile(newKeys)) {
                     setKeys(newKeys);
-                    setSuccess('Key deleted successfully!');
+                    setSuccess('Key deleted!');
                     setError('');
                 }
             };
@@ -111,7 +106,7 @@
 
             const saveEdit = async () => {
                 if (!editUsername || !editHwid) {
-                    setError('Please enter both username and HWID');
+                    setError('Enter both username and HWID');
                     return;
                 }
                 const newKeys = { ...keys };
@@ -124,7 +119,7 @@
                     setEditingKey(null);
                     setEditUsername('');
                     setEditHwid('');
-                    setSuccess('Key updated successfully!');
+                    setSuccess('Key updated!');
                     setError('');
                 }
             };
@@ -134,24 +129,24 @@
             }, []);
 
             return (
-                <div className="min-h-screen bg-gray-900 text-white p-8">
-                    <h1 className="text-3xl font-bold mb-8 text-center">HWID Manager</h1>
+                <div className="min-h-screen bg-gray-900 text-white p-6">
+                    <h1 className="text-2xl font-bold mb-6 text-center">HWID Manager</h1>
                     
                     {error && (
-                        <div className="bg-red-500 text-white p-4 rounded mb-4">
+                        <div className="bg-red-500 text-white p-3 rounded mb-4">
                             {error}
                         </div>
                     )}
                     {success && (
-                        <div className="bg-green-500 text-white p-4 rounded mb-4">
+                        <div className="bg-green-500 text-white p-3 rounded mb-4">
                             {success}
                             {setTimeout(() => setSuccess(''), 3000)}
                         </div>
                     )}
 
-                    <div className="mb-8">
-                        <h2 className="text-xl font-semibold mb-4">Add New Key</h2>
-                        <div className="flex gap-4 mb-4">
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold mb-2">Add Key</h2>
+                        <div className="flex gap-3 mb-3">
                             <input
                                 type="text"
                                 placeholder="Username"
@@ -168,20 +163,20 @@
                             />
                             <button
                                 onClick={addKey}
-                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+                                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                             >
-                                Add Key
+                                Add
                             </button>
                         </div>
                     </div>
 
                     <div>
-                        <h2 className="text-xl font-semibold mb-4">Existing Keys</h2>
-                        <div className="grid gap-4">
+                        <h2 className="text-lg font-semibold mb-2">Keys</h2>
+                        <div className="grid gap-3">
                             {Object.entries(keys).map(([username, hwid]) => (
-                                <div key={username} className="bg-gray-800 p-4 rounded flex items-center justify-between">
+                                <div key={username} className="bg-gray-800 p-3 rounded flex items-center justify-between">
                                     {editingKey === username ? (
-                                        <div className="flex gap-4 w-full">
+                                        <div className="flex gap-3 w-full">
                                             <input
                                                 type="text"
                                                 value={editUsername}
@@ -197,13 +192,13 @@
                                             <div>
                                                 <button
                                                     onClick={saveEdit}
-                                                    className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded mr-2"
+                                                    className="bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded mr-2"
                                                 >
                                                     Save
                                                 </button>
                                                 <button
                                                     onClick={() => setEditingKey(null)}
-                                                    className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded"
+                                                    className="bg-gray-600 hover:bg-gray-700 text-white py-1 px-3 rounded"
                                                 >
                                                     Cancel
                                                 </button>
@@ -219,13 +214,13 @@
                                             <div>
                                                 <button
                                                     onClick={() => startEdit(username, hwid)}
-                                                    className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded mr-2"
+                                                    className="bg-yellow-600 hover:bg-yellow-700 text-white py-1 px-3 rounded mr-2"
                                                 >
                                                     Edit
                                                 </button>
                                                 <button
                                                     onClick={() => deleteKey(username)}
-                                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+                                                    className="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded"
                                                 >
                                                     Delete
                                                 </button>
